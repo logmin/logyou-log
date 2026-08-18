@@ -1,6 +1,6 @@
 // log you 参戦ログ - Service Worker
 // network-first: オンライン時は常に最新を取得し、オフライン時のみキャッシュを使う
-const CACHE = 'logyou-log-v15';
+const CACHE = 'logyou-log-v16';
 const ASSETS = [
   './',
   './index.html',
