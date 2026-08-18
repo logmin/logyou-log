@@ -2,7 +2,7 @@
 
 アイドルグループ **log you** の参戦記録アプリ。公式スケジュールを取り込んで、参加/予定/不参加、セットリスト、チェキ枚数、写真、メモを記録できます。
 
-**公開URL: https://hasegawakei-art.github.io/-logyou-log/**
+**公開URL: https://logmin.github.io/logyou-log/**
 
 非公式のファン制作アプリです。log you・アソビシステム・PEAK SPOT とは関係ありません。
 
