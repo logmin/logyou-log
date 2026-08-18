@@ -202,5 +202,9 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-11-20-1", date:"2026-11-20", type:"LIVE",  title:"log you 1st ANNIVERSARY LIVE 〜 Beyond the log 〜", venue:"Zepp Shinjuku" },
   { id:"2026-11-20-2", date:"2026-11-20", type:"OTHER", title:"❤️久保怜音 BIRTHDAY❤️", venue:"" },
   { id:"2026-11-29-1", date:"2026-11-29", type:"LIVE",  title:"久保怜音 生誕祭2026", venue:"Spotify O-WEST" },
-  { id:"2026-11-29-2", date:"2026-11-29", type:"LIVE",  title:"竹内月音 生誕祭2026", venue:"Spotify O-WEST" }
+  { id:"2026-11-29-2", date:"2026-11-29", type:"LIVE",  title:"竹内月音 生誕祭2026", venue:"Spotify O-WEST" },
+
+
+  // ===== 2027-02 =====
+  { id:"2027-02-12-1", date:"2027-02-12", type:"OTHER", title:"🩷小浜菜摘 BIRTHDAY🩷", venue:"" }
 ];
