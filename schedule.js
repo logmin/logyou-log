@@ -101,6 +101,7 @@ window.LOGYOU_SCHEDULE = [
   // ===== 2026-05 =====
   { id:"2026-05-02-1", date:"2026-05-02", type:"LIVE",   title:"IDOL SUMMER JUNGLE GOLDEN", venue:"お台場・青海特設会場" },  // 公式未掲載（要確認）
   { id:"2026-05-03-1", date:"2026-05-03", type:"LIVE",  title:"PEAK SPOT JOIN Vol.8", venue:"恵比寿LIQUIDROOM" },
+  { id:"2026-05-03-2", date:"2026-05-03", type:"LIVE",  title:"sound stock Vol.11", venue:"恵比寿LIQUIDROOM" },  // 公式未掲載（本人確認済み）
   { id:"2026-05-05-1", date:"2026-05-05", type:"LIVE",  title:"歌舞伎町UP GATE↑↑2026", venue:"新宿サーキット" },
   { id:"2026-05-10-1", date:"2026-05-10", type:"LIVE",  title:"MAWA LOOP OSAKA 2026", venue:"心斎橋エリア8会場（大阪）" },
   { id:"2026-05-13-1", date:"2026-05-13", type:"LIVE",   title:"ONE AND ONLY Vol.34", venue:"Veats Shibuya" },  // 公式未掲載（要確認）
