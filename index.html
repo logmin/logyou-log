@@ -200,6 +200,9 @@
   .tb-chip .tn{font-size:12px; font-weight:700; color:var(--muted)}
   .tb-chip .tv{font-size:16px; font-weight:800}
   .tb-chip .tv small{font-size:10px; margin-left:1px}
+  .tb-chip.off{opacity:.55; border-style:dashed}
+  .tb-chip.off .tv{color:var(--muted)}
+  .tb-chip .tn small{font-size:9.5px; font-weight:700}
   .mini-types{font-size:10px; color:var(--muted); margin-top:2px}
   .sheet .grip{cursor:grab}
   .song-row .del{background:none; border:0; color:var(--danger); font-size:22px; cursor:pointer; padding:0 4px; flex-shrink:0;}
@@ -252,7 +255,7 @@
 <header class="app-header">
   <h1>🎤 log you 参戦ログ</h1>
   <p class="sub">公式スケジュールから、参戦を記録</p>
-  <div class="stats">
+  <div class="stats" id="headerStats">
     <div class="stat"><b id="stWent">0</b><span>通算 参戦</span></div>
     <div class="stat"><b id="stRate">—</b><span>通算 参加率</span></div>
     <div class="stat"><b id="stMonth">0</b><span>今月 参戦</span></div>
@@ -313,6 +316,11 @@
 
   <!-- SONGS -->
   <section class="view" id="viewSongs">
+    <div class="seg-period" id="songSeg">
+      <button class="on" data-s="lives">公演別</button>
+      <button data-s="rate">実施率</button>
+      <button data-s="rank">ランキング</button>
+    </div>
     <div id="songBody"></div>
   </section>
 
@@ -715,11 +723,88 @@ function songLog(){
   });
   return m;
 }
+let songSub='lives';
+/* セトリを記録した公演の一覧。ここが曲タブの基本表示 */
+function setlistLives(){
+  const byId={}; allEvents().forEach(e=>{ byId[e.id]=e; });
+  const out=[];
+  Object.keys(store.notes||{}).forEach(id=>{
+    const ev=byId[id]; if(!ev) return;
+    const n=store.notes[id];
+    const c=songCount(n);
+    if(c>0) out.push({ev:ev,note:n,songs:c});
+  });
+  out.sort((a,b)=>b.ev.date.localeCompare(a.ev.date));
+  return out;
+}
 function renderSongs(){
   const wrap=$('#songBody'); if(!wrap) return;
+  if(songSub==='lives') return renderSongLives(wrap);
+  if(songSub==='rate')  return renderSongRate(wrap);
+  return renderSongRank(wrap);
+}
+function renderSongLives(wrap){
+  const lives=setlistLives();
+  if(!lives.length){
+    wrap.innerHTML='<div class="list-empty"><div class="big">🎵</div><p>まだセットリストの記録がありません</p><p style="font-size:12px">公演の詳細画面 →「記録を編集」から曲を追加できます</p></div>';
+    return;
+  }
+  const total=lives.reduce((a,b)=>a+b.songs,0);
+  let h='<div class="cal-summary">'
+    +'<div class="chip rate"><b>'+lives.length+'</b><span>記録した公演</span></div>'
+    +'<div class="chip"><b>'+total+'</b><span>のべ曲数</span></div>'
+    +'</div>';
+  h+='<div id="songLiveList">'+lives.map(function(x){
+    const d=new Date(x.ev.date+'T00:00:00');
+    return '<div class="ev" data-id="'+esc(x.ev.id)+'">'
+      +'<div class="ev-date"><div class="d">'+d.getDate()+'</div><div class="w">'+WD[d.getDay()]+'</div></div>'
+      +'<div class="ev-body">'
+        +'<span class="tp tp-LIVE">'+x.ev.date.slice(0,7).replace('-','.')+'</span>'
+        +'<h3>'+esc(x.ev.title)+'</h3>'
+        +'<p class="vn">🎵 全'+x.songs+'曲'+(x.ev.venue?' ・ 📍 '+esc(x.ev.venue):'')+'</p>'
+      +'</div></div>';
+  }).join('')+'</div>';
+  wrap.innerHTML=h;
+  wrap.querySelectorAll('#songLiveList .ev').forEach(function(row){
+    row.addEventListener('click',()=>openDetail(row.dataset.id));
+  });
+}
+/* 実施率 = その曲が演奏された公演数 ÷ セトリを記録した公演数 */
+function renderSongRate(wrap){
+  const log=songLog(); const denom=setlistLives().length;
+  if(!denom){
+    wrap.innerHTML='<div class="list-empty"><div class="big">🎵</div><p>まだセットリストの記録がありません</p></div>';
+    return;
+  }
+  const rows=new Map();
+  SONGS.forEach(x=>rows.set(normSong(x.title),{name:x.title,release:x.release,count:0,last:'',live:false}));
+  log.forEach(function(v,k){
+    const r=rows.get(k)||{name:v.name,release:'',count:0,last:'',live:true};
+    r.count=v.count; r.last=v.dates.slice().sort().pop()||''; rows.set(k,r);
+  });
+  const arr=[...rows.values()].sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,'ja'));
+  let h='<div class="cal-summary">'
+    +'<div class="chip rate"><b>'+denom+'</b><span>母数の公演</span></div>'
+    +'<div class="chip"><b>'+arr.filter(r=>r.count>0).length+'</b><span>聴いた曲</span></div>'
+    +'<div class="chip"><b>'+arr.filter(r=>r.count===0).length+'</b><span>未聴の曲</span></div>'
+    +'</div>';
+  h+='<ol class="song-stats">'+arr.map(function(r){
+    const pct=Math.round(r.count/denom*100);
+    return '<li>'
+      +'<span class="rank">'+pct+'<small style="font-size:9px">%</small></span>'
+      +'<span class="sname">'+esc(r.name)+(r.live?'<i class="tagx">記録のみ</i>':'')+'</span>'
+      +'<span class="bar"><i style="width:'+pct+'%"></i></span>'
+      +'<span class="cnt">'+r.count+'<small>/'+denom+'</small></span>'
+      +'<span class="last">'+(r.last?'最後: '+r.last:'まだ聴いていません')+'</span>'
+      +'</li>';
+  }).join('')+'</ol>';
+  h+='<div class="footer-note">実施率は「セトリを記録した'+denom+'公演」のうち何公演で演奏されたかです。記録していない公演は母数に入りません。</div>';
+  wrap.innerHTML=h;
+}
+function renderSongRank(wrap){
   const log=songLog(); const rows=new Map();
-  SONGS.forEach(s=>rows.set(normSong(s.title),{name:s.title,release:s.release,kind:s.kind,count:0,last:''}));
-  log.forEach((v,k)=>{
+  SONGS.forEach(x=>rows.set(normSong(x.title),{name:x.title,release:x.release,kind:x.kind,count:0,last:''}));
+  log.forEach(function(v,k){
     const r=rows.get(k)||{name:v.name,release:'',kind:'live',count:0,last:''};
     r.count=v.count; r.last=v.dates.slice().sort().pop()||''; rows.set(k,r);
   });
@@ -728,33 +813,34 @@ function renderSongs(){
   const unheard=all.filter(r=>r.count===0).sort((a,b)=>(a.release||'9').localeCompare(b.release||'9'));
   const total=heard.reduce((s,r)=>s+r.count,0);
   if(!total){
-    wrap.innerHTML=`<div class="list-empty"><div class="big">🎵</div><p>まだセットリストの記録がありません</p><p style="font-size:12px">公演の詳細画面から曲を追加すると、ここに集計されます</p></div>`;
+    wrap.innerHTML='<div class="list-empty"><div class="big">🎵</div><p>まだセットリストの記録がありません</p></div>';
     return;
   }
   const max=heard[0].count;
-  let h=`<div class="cal-summary">
-    <div class="chip"><b>${heard.length}</b><span>聴いた曲</span></div>
-    <div class="chip"><b>${unheard.length}</b><span>未聴の曲</span></div>
-    <div class="chip rate"><b>${total}</b><span>のべ回数</span></div>
-  </div>`;
-  h+='<ol class="song-stats">'+heard.map((r,i)=>`<li>
-      <span class="rank">${i+1}</span>
-      <span class="sname">${esc(r.name)}${r.kind==='live'?'<i class="tagx">記録のみ</i>':''}</span>
-      <span class="bar"><i style="width:${Math.round(r.count/max*100)}%"></i></span>
-      <span class="cnt">${r.count}<small>回</small></span>
-      <span class="last">最後: ${r.last||'—'}</span>
-    </li>`).join('')+'</ol>';
+  let h='<div class="cal-summary">'
+    +'<div class="chip"><b>'+heard.length+'</b><span>聴いた曲</span></div>'
+    +'<div class="chip"><b>'+unheard.length+'</b><span>未聴の曲</span></div>'
+    +'<div class="chip rate"><b>'+total+'</b><span>のべ回数</span></div>'
+    +'</div>';
+  h+='<ol class="song-stats">'+heard.map(function(r,i){
+    return '<li>'
+      +'<span class="rank">'+(i+1)+'</span>'
+      +'<span class="sname">'+esc(r.name)+(r.kind==='live'?'<i class="tagx">記録のみ</i>':'')+'</span>'
+      +'<span class="bar"><i style="width:'+Math.round(r.count/max*100)+'%"></i></span>'
+      +'<span class="cnt">'+r.count+'<small>回</small></span>'
+      +'<span class="last">最後: '+(r.last||'—')+'</span>'
+      +'</li>';
+  }).join('')+'</ol>';
   if(unheard.length){
     h+='<label style="display:block;margin:18px 0 6px">まだ聴いていない曲</label>';
-    h+='<ol class="song-stats dim">'+unheard.map(r=>`<li>
-      <span class="rank">—</span>
-      <span class="sname">${esc(r.name)}</span>
-      <span class="last">${r.release||''}</span>
-    </li>`).join('')+'</ol>';
+    h+='<ol class="song-stats dim">'+unheard.map(function(r){
+      return '<li><span class="rank">—</span><span class="sname">'+esc(r.name)+'</span><span class="last">'+(r.release||'')+'</span></li>';
+    }).join('')+'</ol>';
   }
-  h+=`<div class="footer-note">曲名は表記の揺れを吸収して集計しています（記号・全角半角・大小文字を無視）。公式マスタ${SONGS.length}曲 ＋ 自分で入力した曲。</div>`;
+  h+='<div class="footer-note">曲名は表記の揺れを吸収して集計しています。公式マスタ'+SONGS.length+'曲 ＋ 自分で入力した曲。</div>';
   wrap.innerHTML=h;
 }
+
 /* ---- チェキ: メンバー×種別の記録と集計 ---- */
 const MEMBERS = (window.LOGYOU_MEMBERS||[]);
 const CHEKI_TYPES = ['チェキ','ランチェキ','写メ','その他'];
@@ -844,6 +930,10 @@ function chekiRange(){
   const pfx=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
   return {label:d.getFullYear()+'年 '+(d.getMonth()+1)+'月', match:function(x){return x.startsWith(pfx);}, nav:true};
 }
+/* 合計とランキングは「チェキ」だけを数える方針。
+   ランチェキ・写メ・その他は記録しつつ、内訳として参照するだけで合計には含めない。 */
+const COUNTED_TYPES=['チェキ'];
+function isCounted(t){ return COUNTED_TYPES.indexOf(t)>=0; }
 function chekiStats(){
   const dateOf={}; allEvents().forEach(e=>{ dateOf[e.id]=e.date; });
   const r=chekiRange();
@@ -856,15 +946,20 @@ function chekiStats(){
       Object.keys(c[name]).forEach(t=>{
         const v=+c[name][t]||0; if(v<=0) return;
         if(!(t in byType)) byType[t]=0;
-        byType[t]+=v; evIds.add(id);
+        byType[t]+=v;
         const cur=byMember.get(name)||{name:name,count:0,types:{},last:''};
-        cur.count+=v; cur.types[t]=(cur.types[t]||0)+v; if(d>cur.last) cur.last=d;
+        cur.types[t]=(cur.types[t]||0)+v;
+        if(isCounted(t)){
+          cur.count+=v; evIds.add(id);
+          if(d>cur.last) cur.last=d;
+        }
         byMember.set(name,cur);
       });
     });
   });
-  const total=Object.keys(byType).reduce((a,k)=>a+byType[k],0);
-  return {range:r, byMember:byMember, byType:byType, total:total, events:evIds.size};
+  const total=Object.keys(byType).filter(isCounted).reduce((a,k)=>a+byType[k],0);
+  const refTotal=Object.keys(byType).filter(k=>!isCounted(k)).reduce((a,k)=>a+byType[k],0);
+  return {range:r, byMember:byMember, byType:byType, total:total, refTotal:refTotal, events:evIds.size};
 }
 function renderCheki(){
   const wrap=$('#chekiBody'); if(!wrap) return;
@@ -888,7 +983,7 @@ function renderCheki(){
     +'<div class="chip"><b>'+avg+'</b><span>1公演あたり</span></div>'
     +'</div>';
   h+='<label style="display:block;margin:0 0 6px">種別の内訳</label><div class="type-breakdown">'
-    + Object.keys(st.byType).map(t=>'<div class="tb-chip"><span class="tn">'+esc(t)+'</span><span class="tv">'+st.byType[t]+'<small>枚</small></span></div>').join('')
+    + Object.keys(st.byType).map(t=>'<div class="tb-chip'+(isCounted(t)?'':' off')+'"><span class="tn">'+esc(t)+(isCounted(t)?'':' <small>(対象外)</small>')+'</span><span class="tv">'+st.byType[t]+'<small>枚</small></span></div>').join('')
     + '</div>';
   h+='<label style="display:block;margin:0 0 6px">メンバーランキング</label>';
   h+='<ol class="song-stats">'+rows.map(function(r,i){
@@ -901,7 +996,7 @@ function renderCheki(){
       +'<span class="last">'+(r.last?'最後: '+r.last:'まだ撮っていません')+'</span>'
       +'</li>';
   }).join('')+'</ol>';
-  h+='<div class="footer-note">'+esc(st.range.label)+' / 対象 '+st.events+'公演。種別が未設定の古い記録は「チェキ」として集計しています。</div>';
+  h+='<div class="footer-note">'+esc(st.range.label)+' / 対象 '+st.events+'公演。合計とランキングは「チェキ」のみを集計しています（ランチェキ・写メ・その他は内訳として表示するだけで'+(st.refTotal?'、計'+st.refTotal+'枚が':'')+'合計には含めません）。種別が未設定の古い記録は「チェキ」として扱います。</div>';
   wrap.innerHTML=h;
 }
 
@@ -982,6 +1077,8 @@ function switchView(v){
   $('#viewCheki').classList.toggle('active', v==='cheki');
   /* ＋（予定追加）はホームでだけ意味があるので他では隠す */
   $('#addBtn').style.display = home?'':'none';
+  /* 参加率などの参戦統計はホーム固有の情報。曲/チェキでは出さない */
+  $('#headerStats').style.display = home?'':'none';
   window.scrollTo(0,0);
 }
 function switchSub(sub){
@@ -998,6 +1095,11 @@ $('#listPrev').addEventListener('click',()=>shiftMonth(-1));
 $('#listNext').addEventListener('click',()=>shiftMonth(1));
 document.querySelectorAll('.bn-item').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
 document.querySelectorAll('#homeTabs .tab').forEach(t=>t.addEventListener('click',()=>switchSub(t.dataset.sub)));
+document.querySelectorAll('#songSeg button').forEach(b=>b.addEventListener('click',()=>{
+  songSub=b.dataset.s;
+  document.querySelectorAll('#songSeg button').forEach(x=>x.classList.toggle('on',x===b));
+  renderSongs();
+}));
 document.querySelectorAll('#chekiPeriod button').forEach(b=>b.addEventListener('click',()=>{
   chekiPeriod=b.dataset.p; chekiOffset=0;
   document.querySelectorAll('#chekiPeriod button').forEach(x=>x.classList.toggle('on',x===b));
