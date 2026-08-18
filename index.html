@@ -35,7 +35,7 @@
   button,.cell,.ev,.s,.tab,.stp,.photo-item,.cchip,.chip,.song-row,.cheki-row,.attend-toggle,.segmented{touch-action:manipulation}
   html,body{margin:0;padding:0}
   html{overflow-x:hidden}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif; background:var(--bg); color:var(--text); padding-bottom:calc(90px + env(safe-area-inset-bottom)); min-height:100vh; line-height:1.5; overflow-x:hidden; width:100%; max-width:100%;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif; background:var(--bg); color:var(--text); padding-bottom:calc(140px + env(safe-area-inset-bottom)); min-height:100vh; line-height:1.5; overflow-x:hidden; width:100%; max-width:100%;}
   h1,h2,h3,p{overflow-wrap:anywhere}
   *{min-width:0}
   .app-header{position:sticky; top:0; z-index:20; background:var(--surface); color:var(--text); padding:calc(14px + env(safe-area-inset-top)) 18px 12px; border-bottom:1px solid var(--border);}
@@ -125,7 +125,7 @@
   .type-filter{display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap}
   .type-filter button{border:1px solid var(--border); background:var(--surface); color:var(--muted); border-radius:20px; padding:6px 12px; font-size:12px; font-weight:700; cursor:pointer}
   .type-filter button.on{background:var(--accent); color:#fff; border-color:var(--accent)}
-  .fab{position:fixed; right:20px; bottom:calc(24px + env(safe-area-inset-bottom)); z-index:30; width:56px; height:56px; border-radius:50%; border:0; background:var(--accent); color:#fff; font-size:28px; box-shadow:0 4px 14px rgba(0,0,0,.18); cursor:pointer; display:flex; align-items:center; justify-content:center;}
+  .fab{position:fixed; right:20px; bottom:calc(76px + env(safe-area-inset-bottom)); z-index:30; width:56px; height:56px; border-radius:50%; border:0; background:var(--accent); color:#fff; font-size:28px; box-shadow:0 4px 14px rgba(0,0,0,.18); cursor:pointer; display:flex; align-items:center; justify-content:center;}
   .fab:active{transform:scale(.92)}
   .sheet-backdrop{position:fixed; inset:0; z-index:40; background:rgba(0,0,0,.55); display:none; align-items:flex-end; justify-content:center;}
   .sheet-backdrop.open{display:flex}
@@ -167,10 +167,40 @@
   .cheki-chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px}
   .cchip{display:inline-flex; align-items:center; gap:5px; background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:5px 11px; font-size:13px; font-weight:700}
   .cchip b{color:var(--accent); font-size:14px}
-  /* タブが4つでも折り返さない。狭ければ横スクロール */
+  /* ホーム内のカレンダー/リスト切替 */
   .tabs{overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tab{flex:1 0 auto; white-space:nowrap; font-size:13px; padding:8px 6px}
+  /* 下部のアプリ風ナビゲーション */
+  .bottom-nav{position:fixed; left:0; right:0; bottom:0; z-index:35; display:flex;
+    background:var(--surface); border-top:1px solid var(--border);
+    padding-bottom:env(safe-area-inset-bottom); box-shadow:0 -1px 8px rgba(20,20,40,.06)}
+  .bn-item{flex:1; border:0; background:transparent; color:var(--muted); cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 2px 7px;
+    font-size:10.5px; font-weight:700; touch-action:manipulation}
+  .bn-item .ic{font-size:21px; line-height:1.1; filter:grayscale(1) opacity(.55)}
+  .bn-item.active{color:var(--accent)}
+  .bn-item.active .ic{filter:none}
+  /* 期間切替（月別/年別/全期間） */
+  .seg-period{display:flex; gap:4px; background:var(--surface2); padding:3px; border-radius:10px; margin-bottom:12px}
+  .seg-period button{flex:1; border:0; background:transparent; color:var(--muted); border-radius:8px;
+    padding:8px 4px; font-size:13px; font-weight:700; cursor:pointer; touch-action:manipulation}
+  .seg-period button.on{background:var(--surface); color:var(--accent); box-shadow:var(--shadow)}
+  /* チェキ種別の選択（入力時） */
+  .cheki-types{display:flex; gap:4px; background:var(--surface2); padding:3px; border-radius:10px; margin:0 0 8px}
+  .cheki-types button{flex:1; border:0; background:transparent; color:var(--muted); border-radius:8px;
+    padding:8px 2px; font-size:12px; font-weight:700; cursor:pointer; touch-action:manipulation; white-space:nowrap}
+  .cheki-types button.on{background:var(--surface); color:var(--accent); box-shadow:var(--shadow)}
+  .cheki-types button .n{display:block; font-size:10px; color:var(--muted); font-weight:800}
+  .cheki-types button.on .n{color:var(--accent)}
+  /* 種別ごとの内訳 */
+  .type-breakdown{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px}
+  .tb-chip{flex:1 1 calc(50% - 3px); background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:8px 10px; display:flex; align-items:baseline; justify-content:space-between}
+  .tb-chip .tn{font-size:12px; font-weight:700; color:var(--muted)}
+  .tb-chip .tv{font-size:16px; font-weight:800}
+  .tb-chip .tv small{font-size:10px; margin-left:1px}
+  .mini-types{font-size:10px; color:var(--muted); margin-top:2px}
   .sheet .grip{cursor:grab}
   .song-row .del{background:none; border:0; color:var(--danger); font-size:22px; cursor:pointer; padding:0 4px; flex-shrink:0;}
   .encore-row{display:flex; align-items:center; gap:8px; margin:12px 0 8px}
@@ -227,11 +257,9 @@
     <div class="stat"><b id="stRate">—</b><span>通算 参加率</span></div>
     <div class="stat"><b id="stMonth">0</b><span>今月 参戦</span></div>
   </div>
-  <div class="tabs">
-    <button class="tab active" data-view="cal">📅 カレンダー</button>
-    <button class="tab" data-view="list">📋 リスト</button>
-    <button class="tab" data-view="songs">🎵 楽曲</button>
-    <button class="tab" data-view="cheki">📸 チェキ</button>
+  <div class="tabs" id="homeTabs">
+    <button class="tab active" data-sub="cal">📅 カレンダー</button>
+    <button class="tab" data-sub="list">📋 リスト</button>
   </div>
 </header>
 
@@ -290,9 +318,25 @@
 
   <!-- CHEKI -->
   <section class="view" id="viewCheki">
+    <div class="seg-period" id="chekiPeriod">
+      <button class="on" data-p="month">月別</button>
+      <button data-p="year">年別</button>
+      <button data-p="all">全期間</button>
+    </div>
+    <div class="month-nav" id="chekiNav">
+      <button id="chekiPrev">‹</button>
+      <div class="mlabel" id="chekiLabel"></div>
+      <button id="chekiNext">›</button>
+    </div>
     <div id="chekiBody"></div>
   </section>
 </main>
+
+<nav class="bottom-nav" id="bottomNav">
+  <button class="bn-item active" data-view="home"><span class="ic">🏠</span><span class="lb">ホーム</span></button>
+  <button class="bn-item" data-view="songs"><span class="ic">🎵</span><span class="lb">曲</span></button>
+  <button class="bn-item" data-view="cheki"><span class="ic">📸</span><span class="lb">チェキ</span></button>
+</nav>
 
 <button class="fab" id="addBtn" aria-label="予定を追加">+</button>
 
@@ -330,6 +374,7 @@
       <button class="mini-btn" id="addEncore">＋ アンコール区切り</button>
     </div>
     <label>チェキ枚数 <span id="chekiSum" class="cheki-sum"></span></label>
+    <div class="cheki-types" id="chekiTypes"></div>
     <div class="cheki-grid" id="chekiGrid"></div>
     <label>メモ（同行者・座席・感想など）</label>
     <textarea id="fMemo" placeholder="自由に記録..."></textarea>
@@ -557,8 +602,13 @@ function openDetail(id){
     </div>`:`<p style="color:var(--muted);font-size:13px;margin:10px 0 0">${e.type==='TV'?'TV出演':e.type==='RADIO'?'ラジオ出演':'イベント/配信'}（参加率の対象外）</p>`}
     ${gal}
     ${n.memo?`<label>メモ</label><div class="memo-box">${esc(n.memo)}</div>`:''}
-    ${chekiTotal(n)?`<div class="sl-title">📸 チェキ <span class="count">合計${chekiTotal(n)}枚</span></div>
-      <div class="cheki-chips">${Object.keys(chekiOf(n)).sort((a,b)=>chekiOf(n)[b]-chekiOf(n)[a]).map(k=>`<span class="cchip">${emojiOf(k)} ${esc(k)}<b>${chekiOf(n)[k]}</b></span>`).join('')}</div>`:''}
+    ${(()=>{ const c=chekiOf(n), tot=chekiTotal(n); if(!tot) return '';
+      const names=Object.keys(c).sort((a,b)=>memberTotal(c[b])-memberTotal(c[a]));
+      const types={}; names.forEach(k=>Object.keys(c[k]).forEach(t=>types[t]=(types[t]||0)+c[k][t]));
+      return `<div class="sl-title">📸 チェキ <span class="count">合計${tot}枚</span></div>
+      <p class="mini-types" style="margin:0 0 6px">${esc(Object.keys(types).map(t=>`${t} ${types[t]}`).join(' / '))}</p>
+      <div class="cheki-chips">${names.map(k=>`<span class="cchip">${emojiOf(k)} ${esc(k)}<b>${memberTotal(c[k])}</b></span>`).join('')}</div>`;
+    })()}
     ${(e.type==='LIVE'||slH)?`<div class="sl-title">🎵 セットリスト ${slH?`<span class="count">全${songCount(n)}曲</span>`:''}</div>${slH||'<p class="no-set">まだ記録がありません。下の「記録を編集」から追加できます。</p>'}`:''}
     <div class="actions">
       <button id="dEdit">✏️ 記録を編集</button>
@@ -705,92 +755,156 @@ function renderSongs(){
   h+=`<div class="footer-note">曲名は表記の揺れを吸収して集計しています（記号・全角半角・大小文字を無視）。公式マスタ${SONGS.length}曲 ＋ 自分で入力した曲。</div>`;
   wrap.innerHTML=h;
 }
-/* ---- チェキ: メンバー別枚数の記録と集計 ---- */
+/* ---- チェキ: メンバー×種別の記録と集計 ---- */
 const MEMBERS = (window.LOGYOU_MEMBERS||[]);
+const CHEKI_TYPES = ['チェキ','ランチェキ','写メ','その他'];
 function emojiOf(name){ const m=MEMBERS.find(x=>x.name===name); return m?m.emoji:'📸'; }
-function chekiOf(n){ return (n&&n.cheki)||{}; }
-function chekiTotal(n){ return Object.values(chekiOf(n)).reduce((a,b)=>a+(+b||0),0); }
-/* 編集画面のメンバー別カウンタを描画 */
+/* 保存形式は {メンバー:{種別:枚数}}。
+   旧形式 {メンバー:枚数}（種別なし）は「チェキ」として読み替える。
+   ストレージは書き換えず読み取り時だけ正規化するので、編集するまで旧データはそのまま残る。 */
+function chekiOf(n){
+  const raw=(n&&n.cheki)||{}; const out={};
+  Object.keys(raw).forEach(name=>{
+    const v=raw[name];
+    if(typeof v==='number'){ if(v>0) out[name]={'チェキ':v}; }
+    else if(v&&typeof v==='object'){
+      const t={}; Object.keys(v).forEach(k=>{ const c=+v[k]||0; if(c>0) t[k]=c; });
+      if(Object.keys(t).length) out[name]=t;
+    }
+  });
+  return out;
+}
+function memberTotal(byType){ return Object.values(byType||{}).reduce((a,b)=>a+(+b||0),0); }
+function chekiTotal(n){ const c=chekiOf(n); return Object.keys(c).reduce((s,k)=>s+memberTotal(c[k]),0); }
+
+/* ---- 入力UI: 種別を選んでからメンバーごとに増減する ---- */
+let editCheki={};
+let editType=CHEKI_TYPES[0];
 function fillCheki(cheki){
+  if(!$('#chekiGrid')) return;
+  editCheki = chekiOf({cheki:cheki});
+  editType = CHEKI_TYPES[0];
+  renderChekiTypes(); renderChekiRows();
+}
+function renderChekiTypes(){
+  const w=$('#chekiTypes'); if(!w) return;
+  w.innerHTML=CHEKI_TYPES.map(t=>{
+    let n=0; Object.keys(editCheki).forEach(m=>n+=(+((editCheki[m]||{})[t])||0));
+    return '<button type="button" data-t="'+esc(t)+'" class="'+(t===editType?'on':'')+'">'+esc(t)+'<span class="n">'+n+'</span></button>';
+  }).join('');
+  w.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    editType=b.dataset.t; renderChekiTypes(); renderChekiRows();
+  }));
+}
+function renderChekiRows(){
   const g=$('#chekiGrid'); if(!g) return;
-  const c=cheki||{};
-  /* マスタに無い名前（卒業・ゲスト等）も記録済みなら残して表示する */
-  const extra=Object.keys(c).filter(k=>!MEMBERS.some(m=>m.name===k)).map(k=>({name:k,emoji:'📸'}));
-  g.innerHTML=MEMBERS.concat(extra).map(m=>`
-    <div class="cheki-row" data-name="${esc(m.name)}">
-      <span class="cm">${m.emoji} ${esc(m.name)}</span>
-      <button type="button" class="stp minus" aria-label="減らす">−</button>
-      <span class="cnum">${+c[m.name]||0}</span>
-      <button type="button" class="stp plus" aria-label="増やす">＋</button>
-    </div>`).join('');
+  const extra=Object.keys(editCheki).filter(k=>!MEMBERS.some(m=>m.name===k)).map(k=>({name:k,emoji:'📸'}));
+  g.innerHTML=MEMBERS.concat(extra).map(m=>{
+    const cur=(editCheki[m.name]||{})[editType]||0;
+    const other=memberTotal(editCheki[m.name])-cur;
+    return '<div class="cheki-row '+(cur>0?'has':'')+'" data-name="'+esc(m.name)+'">'
+      +'<span class="cm">'+m.emoji+' '+esc(m.name)+(other>0?'<span class="mini-types">他の種別 計'+other+'枚</span>':'')+'</span>'
+      +'<button type="button" class="stp minus" aria-label="減らす">−</button>'
+      +'<span class="cnum">'+cur+'</span>'
+      +'<button type="button" class="stp plus" aria-label="増やす">＋</button>'
+      +'</div>';
+  }).join('');
   g.querySelectorAll('.cheki-row').forEach(r=>{
-    const out=r.querySelector('.cnum');
-    const bump=d=>{ const v=Math.max(0,Math.min(99,(+out.textContent||0)+d)); out.textContent=v; r.classList.toggle('has',v>0); updateChekiSum(); };
+    const name=r.dataset.name, out=r.querySelector('.cnum');
+    const bump=d=>{
+      const v=Math.max(0,Math.min(99,(+out.textContent||0)+d));
+      out.textContent=v; r.classList.toggle('has',v>0);
+      if(!editCheki[name]) editCheki[name]={};
+      if(v>0) editCheki[name][editType]=v; else delete editCheki[name][editType];
+      if(!Object.keys(editCheki[name]).length) delete editCheki[name];
+      renderChekiTypes(); updateChekiSum();
+    };
     r.querySelector('.minus').addEventListener('click',()=>bump(-1));
     r.querySelector('.plus').addEventListener('click',()=>bump(1));
-    r.classList.toggle('has',(+out.textContent||0)>0);
   });
   updateChekiSum();
 }
 function updateChekiSum(){
   const el=$('#chekiSum'); if(!el) return;
-  let t=0; $('#chekiGrid').querySelectorAll('.cnum').forEach(x=>t+=(+x.textContent||0));
-  el.textContent=t?`合計 ${t}枚`:'';
+  const t=Object.keys(editCheki).reduce((s,k)=>s+memberTotal(editCheki[k]),0);
+  el.textContent=t?('合計 '+t+'枚'):'';
 }
-function readCheki(){
-  const out={}; const g=$('#chekiGrid'); if(!g) return out;
-  g.querySelectorAll('.cheki-row').forEach(r=>{
-    const v=+r.querySelector('.cnum').textContent||0;
-    if(v>0) out[r.dataset.name]=v;   /* 0枚は保存しない */
-  });
-  return out;
+function readCheki(){ return JSON.parse(JSON.stringify(editCheki||{})); }
+
+/* ---- 集計: 月別 / 年別 / 全期間 ---- */
+let chekiPeriod='month', chekiOffset=0;
+function chekiRange(){
+  if(chekiPeriod==='all') return {label:'全期間', match:function(){return true;}, nav:false};
+  const base=new Date(todayISO()+'T00:00:00');
+  if(chekiPeriod==='year'){
+    const y=base.getFullYear()+chekiOffset;
+    return {label:y+'年', match:function(d){return d.slice(0,4)===String(y);}, nav:true};
+  }
+  const d=new Date(base.getFullYear(), base.getMonth()+chekiOffset, 1);
+  const pfx=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+  return {label:d.getFullYear()+'年 '+(d.getMonth()+1)+'月', match:function(x){return x.startsWith(pfx);}, nav:true};
 }
-/* 全記録を走査して メンバー -> {枚数, 公演数, 最終日} を作る */
-function chekiLog(){
+function chekiStats(){
   const dateOf={}; allEvents().forEach(e=>{ dateOf[e.id]=e.date; });
-  const m=new Map();
+  const r=chekiRange();
+  const byMember=new Map(), byType={}, evIds=new Set();
+  CHEKI_TYPES.forEach(t=>byType[t]=0);
   Object.keys(store.notes||{}).forEach(id=>{
-    const d=dateOf[id]; if(!d) return;
+    const d=dateOf[id]; if(!d||!r.match(d)) return;
     const c=chekiOf(store.notes[id]);
     Object.keys(c).forEach(name=>{
-      const v=+c[name]||0; if(v<=0) return;
-      const cur=m.get(name)||{name,count:0,events:0,last:''};
-      cur.count+=v; cur.events++; if(d>cur.last) cur.last=d;
-      m.set(name,cur);
+      Object.keys(c[name]).forEach(t=>{
+        const v=+c[name][t]||0; if(v<=0) return;
+        if(!(t in byType)) byType[t]=0;
+        byType[t]+=v; evIds.add(id);
+        const cur=byMember.get(name)||{name:name,count:0,types:{},last:''};
+        cur.count+=v; cur.types[t]=(cur.types[t]||0)+v; if(d>cur.last) cur.last=d;
+        byMember.set(name,cur);
+      });
     });
   });
-  return m;
+  const total=Object.keys(byType).reduce((a,k)=>a+byType[k],0);
+  return {range:r, byMember:byMember, byType:byType, total:total, events:evIds.size};
 }
 function renderCheki(){
   const wrap=$('#chekiBody'); if(!wrap) return;
-  const log=chekiLog();
-  const rows=MEMBERS.map(m=>Object.assign({name:m.name,emoji:m.emoji,count:0,events:0,last:''},log.get(m.name)||{}));
-  log.forEach((v,k)=>{ if(!MEMBERS.some(m=>m.name===k)) rows.push(Object.assign({emoji:'📸'},v)); });
-  const total=rows.reduce((s,r)=>s+r.count,0);
-  if(!total){
-    wrap.innerHTML=`<div class="list-empty"><div class="big">📸</div><p>まだチェキの記録がありません</p><p style="font-size:12px">公演の詳細画面 →「記録を編集」から枚数を入力できます</p></div>`;
+  const nav=$('#chekiNav'), lab=$('#chekiLabel');
+  const st=chekiStats();
+  if(nav) nav.style.display = st.range.nav?'':'none';
+  if(lab) lab.textContent = st.range.label;
+  if(!st.total){
+    wrap.innerHTML='<div class="list-empty"><div class="big">📸</div><p>'+esc(st.range.label)+'のチェキ記録はありません</p><p style="font-size:12px">公演の詳細画面 →「記録を編集」から枚数を入力できます</p></div>';
     return;
   }
+  const rows=MEMBERS.map(m=>Object.assign({name:m.name,emoji:m.emoji,count:0,types:{},last:''}, st.byMember.get(m.name)||{}));
+  st.byMember.forEach(function(v,k){ if(!MEMBERS.some(m=>m.name===k)) rows.push(Object.assign({emoji:'📸'},v)); });
   rows.sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,'ja'));
-  const max=rows[0].count;
+  const max=rows[0].count||1;
   const shot=rows.filter(r=>r.count>0).length;
-  const evCount=Object.keys(store.notes||{}).filter(id=>chekiTotal(store.notes[id])>0).length;
-  const avg=evCount?(total/evCount).toFixed(1):'0';
-  let h=`<div class="cal-summary">
-    <div class="chip rate"><b>${total}</b><span>合計枚数</span></div>
-    <div class="chip"><b>${shot}</b><span>撮った人数</span></div>
-    <div class="chip"><b>${avg}</b><span>1公演あたり</span></div>
-  </div>`;
-  h+='<ol class="song-stats">'+rows.map((r,i)=>`<li>
-      <span class="rank">${r.count?i+1:'—'}</span>
-      <span class="sname">${r.emoji} ${esc(r.name)}</span>
-      <span class="bar"><i style="width:${max?Math.round(r.count/max*100):0}%"></i></span>
-      <span class="cnt">${r.count}<small>枚</small></span>
-      <span class="last">${r.events?`${r.events}公演 / 最後: ${r.last}`:'まだ撮っていません'}</span>
-    </li>`).join('')+'</ol>';
-  h+=`<div class="footer-note">メンバーは公式PROFILEの8名（${MEMBERS.length}名）。0枚の記録は保存されません。</div>`;
+  const avg=st.events?(st.total/st.events).toFixed(1):'0';
+  let h='<div class="cal-summary">'
+    +'<div class="chip rate"><b>'+st.total+'</b><span>合計枚数</span></div>'
+    +'<div class="chip"><b>'+shot+'</b><span>撮った人数</span></div>'
+    +'<div class="chip"><b>'+avg+'</b><span>1公演あたり</span></div>'
+    +'</div>';
+  h+='<label style="display:block;margin:0 0 6px">種別の内訳</label><div class="type-breakdown">'
+    + Object.keys(st.byType).map(t=>'<div class="tb-chip"><span class="tn">'+esc(t)+'</span><span class="tv">'+st.byType[t]+'<small>枚</small></span></div>').join('')
+    + '</div>';
+  h+='<label style="display:block;margin:0 0 6px">メンバーランキング</label>';
+  h+='<ol class="song-stats">'+rows.map(function(r,i){
+    const brk=Object.keys(r.types).map(t=>t+r.types[t]).join(' / ');
+    return '<li>'
+      +'<span class="rank">'+(r.count?i+1:'—')+'</span>'
+      +'<span class="sname">'+r.emoji+' '+esc(r.name)+(brk?'<span class="mini-types">'+esc(brk)+'</span>':'')+'</span>'
+      +'<span class="bar"><i style="width:'+Math.round(r.count/max*100)+'%"></i></span>'
+      +'<span class="cnt">'+r.count+'<small>枚</small></span>'
+      +'<span class="last">'+(r.last?'最後: '+r.last:'まだ撮っていません')+'</span>'
+      +'</li>';
+  }).join('')+'</ol>';
+  h+='<div class="footer-note">'+esc(st.range.label)+' / 対象 '+st.events+'公演。種別が未設定の古い記録は「チェキ」として集計しています。</div>';
   wrap.innerHTML=h;
 }
+
 function setStars(v){ edit.rating=v; $('#starInput').querySelectorAll('.s').forEach(s=>s.classList.toggle('on',+s.dataset.n<=v)); }
 function saveEdit(){
   const id=edit.id;
@@ -855,14 +969,42 @@ function importData(file){ const fr=new FileReader(); fr.onload=e=>{ try{ const 
 function openSheet(s){ $(s).classList.add('open'); document.body.style.overflow='hidden'; }
 function closeSheet(s){ const bd=$(s); bd.classList.remove('open'); const sh=bd.querySelector('.sheet'); if(sh){ sh.style.transition=''; sh.style.transform=''; } document.body.style.overflow=''; }
 function refresh(){ setMonthLabels(); updateStats(); renderCalendar(); renderList(); renderSongs(); renderCheki(); renderBackupNotice(); }
-function switchView(v){ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v)); $('#viewCal').classList.toggle('active',v==='cal'); $('#viewList').classList.toggle('active',v==='list'); $('#viewSongs').classList.toggle('active',v==='songs'); $('#viewCheki').classList.toggle('active',v==='cheki'); }
+/* 下部ナビ: ホーム / 曲 / チェキ。カレンダーとリストはホームの中の切替 */
+let curView='home', curSub='cal';
+function switchView(v){
+  curView=v;
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+  const home=(v==='home');
+  $('#homeTabs').style.display = home?'':'none';
+  $('#viewCal').classList.toggle('active', home && curSub==='cal');
+  $('#viewList').classList.toggle('active', home && curSub==='list');
+  $('#viewSongs').classList.toggle('active', v==='songs');
+  $('#viewCheki').classList.toggle('active', v==='cheki');
+  /* ＋（予定追加）はホームでだけ意味があるので他では隠す */
+  $('#addBtn').style.display = home?'':'none';
+  window.scrollTo(0,0);
+}
+function switchSub(sub){
+  curSub=sub;
+  document.querySelectorAll('#homeTabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.sub===sub));
+  $('#viewCal').classList.toggle('active', curView==='home' && sub==='cal');
+  $('#viewList').classList.toggle('active', curView==='home' && sub==='list');
+}
 
 /* ---- events ---- */
 $('#calPrev').addEventListener('click',()=>shiftMonth(-1));
 $('#calNext').addEventListener('click',()=>shiftMonth(1));
 $('#listPrev').addEventListener('click',()=>shiftMonth(-1));
 $('#listNext').addEventListener('click',()=>shiftMonth(1));
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchView(t.dataset.view)));
+document.querySelectorAll('.bn-item').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
+document.querySelectorAll('#homeTabs .tab').forEach(t=>t.addEventListener('click',()=>switchSub(t.dataset.sub)));
+document.querySelectorAll('#chekiPeriod button').forEach(b=>b.addEventListener('click',()=>{
+  chekiPeriod=b.dataset.p; chekiOffset=0;
+  document.querySelectorAll('#chekiPeriod button').forEach(x=>x.classList.toggle('on',x===b));
+  renderCheki();
+}));
+$('#chekiPrev').addEventListener('click',()=>{ chekiOffset--; renderCheki(); });
+$('#chekiNext').addEventListener('click',()=>{ chekiOffset++; renderCheki(); });
 $('#typeFilter').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{ typeFilter=b.dataset.t; $('#typeFilter').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); renderList(); }));
 $('#addBtn').addEventListener('click',()=>openCustom());
 $('#saveBtn').addEventListener('click',saveEdit);
