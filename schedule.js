@@ -6,7 +6,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-08-21";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-08-24";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -180,7 +180,6 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-09-09-1", date:"2026-09-09", type:"LIVE",  title:"赤レンガスプラッシュ祭-Day2-", venue:"横浜赤レンガ倉庫イベント広場B（横浜）" },
   { id:"2026-09-10-1", date:"2026-09-10", type:"LIVE",  title:"BEEEEM FES Vol.8 Supported by michellMacaron", venue:"Spotify O-EAST" },
   { id:"2026-09-16-1", date:"2026-09-16", type:"LIVE",  title:"MARQUEE Fes day2", venue:"渋谷O-EAST" },
-  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
   { id:"2026-09-19-1", date:"2026-09-19", type:"LIVE",  title:"sound stock Vol.16", venue:"Veats Shibuya" },
   { id:"2026-09-22-1", date:"2026-09-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.10", venue:"Zepp Shinjuku" },
   { id:"2026-09-28-1", date:"2026-09-28", type:"LIVE",  title:"iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～", venue:"Zepp Shinjuku" },
@@ -191,8 +190,7 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）" },
   { id:"2026-10-05-1", date:"2026-10-05", type:"LIVE",  title:"松本玲奈 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-05-2", date:"2026-10-05", type:"OTHER", title:"💜松本玲奈 BIRTHDAY💜", venue:"" },
-  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
-  { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）" },
+  { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）" },  // 公式未掲載（要確認）
   { id:"2026-10-24-1", date:"2026-10-24", type:"LIVE",  title:"井出叶 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-24-2", date:"2026-10-24", type:"LIVE",  title:"山下うみ 生誕祭2026", venue:"Spotify O-WEST" },
 
