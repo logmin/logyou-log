@@ -153,6 +153,11 @@
   .song-row .pick{flex:1; min-width:0}
   .song-row .freetext{flex:0 0 100%; margin-left:34px; width:auto}
   .song-row .freetext[hidden]{display:none}
+  /* 尺の切替（定常 / ワンハーフ）— 曲ごとに選ぶ */
+  .song-row .len-seg{display:flex; flex:0 0 auto; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--surface)}
+  .song-row .len-seg button{border:0; background:transparent; color:var(--muted); font-family:inherit; font-size:12px; font-weight:800; line-height:1; padding:13px 7px; cursor:pointer}
+  .song-row .len-seg button.on{background:var(--accent2); color:#fff}
+  .setlist-hint{color:var(--muted); font-size:11px; margin:-2px 0 8px 34px}
   .no-set{color:var(--muted); font-size:13px; margin:0 0 4px}
   /* チェキ入力（メンバー別ステッパー） */
   .cheki-sum{font-weight:800; color:var(--accent); margin-left:6px}
@@ -230,6 +235,9 @@
   ol.setlist li.song{counter-increment:s; display:flex; gap:12px; padding:10px 12px; align-items:baseline; background:var(--surface); border:1px solid var(--border); border-radius:10px; margin-bottom:6px;}
   ol.setlist li.song::before{content:counter(s); color:var(--accent); font-weight:800; font-size:13px; min-width:22px; text-align:right;}
   ol.setlist li.enc{margin:14px 0 8px; text-align:center; font-size:12px; font-weight:800; color:var(--accent2); letter-spacing:.1em;}
+  ol.setlist li.song .nm{flex:1; min-width:0; overflow-wrap:anywhere}
+  .half-badge.tagh{margin-left:6px; align-self:auto; vertical-align:middle}
+  .half-badge{flex-shrink:0; align-self:center; font-style:normal; font-size:10px; font-weight:800; letter-spacing:.04em; color:var(--accent2); border:1px solid var(--accent2); border-radius:20px; padding:2px 7px; white-space:nowrap}
   .memo-box{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:13px; font-size:14px; white-space:pre-wrap; margin-top:6px}
   .actions{display:flex; gap:10px; margin-top:24px}
   .actions button{flex:1; border-radius:12px; padding:13px; font-size:14px; font-weight:700; cursor:pointer; border:1px solid var(--border); background:var(--surface); color:var(--text)}
@@ -377,6 +385,7 @@
     <input type="file" id="photoInput" accept="image/*" multiple style="display:none">
     <label>セットリスト</label>
     <div class="setlist-editor" id="setlistEditor"></div>
+    <p class="setlist-hint">曲ごとに尺を選べます：<b>定常</b>＝フル尺 ／ <b>½</b>＝ワンハーフ（短縮尺）</p>
     <div class="mini-btns">
       <button class="mini-btn" id="addSong">＋ 曲を追加</button>
       <button class="mini-btn" id="addEncore">＋ アンコール区切り</button>
@@ -514,7 +523,7 @@ function setlistHTML(n){
   let h='<ol class="setlist">';
   sl.forEach(s=>{
     if(s.type==='encore') h+='<li class="enc">— ENCORE —</li>';
-    else if((s.name||'').trim()) h+=`<li class="song">${esc(s.name)}</li>`;
+    else if((s.name||'').trim()) h+=`<li class="song"><span class="nm">${esc(s.name)}</span>${s.half?'<i class="half-badge">½ ワンハーフ</i>':''}</li>`;
   });
   return h+'</ol>';
 }
@@ -636,8 +645,9 @@ function openDetail(id){
 }
 
 /* ---- setlist editor ---- */
-/* 曲は原則プルダウンで選ぶ。マスタに無い曲（ライブ限定曲など）は「自由入力」で打てる */
-function songRowEl(name=''){
+/* 曲は原則プルダウンで選ぶ。マスタに無い曲（ライブ限定曲など）は「自由入力」で打てる。
+   尺は曲ごとに 定常 / ワンハーフ を選ぶ（同じ曲でも公演によって変わるため曲マスタには持たせない） */
+function songRowEl(name='', half=false){
   const d=document.createElement('div'); d.className='song-row'; d.dataset.type='song';
   const opts=songOptions();
   const known=name && opts.some(o=>normSong(o)===normSong(name));
@@ -648,6 +658,10 @@ function songRowEl(name=''){
       ${opts.map(o=>`<option value="${esc(o)}"${known&&normSong(o)===normSong(name)?' selected':''}>${esc(o)}</option>`).join('')}
       <option value="__free__"${free?' selected':''}>✏️ 自由入力…</option>
     </select>
+    <div class="len-seg">
+      <button type="button" data-len="full" class="${half?'':'on'}" title="定常（フル尺）">定常</button>
+      <button type="button" data-len="half" class="${half?'on':''}" title="ワンハーフ（短縮尺）">½</button>
+    </div>
     <button class="del">×</button>
     <input type="text" class="freetext" value="${esc(free?name:'')}" placeholder="曲名を入力" ${free?'':'hidden'}>`;
   const sel=d.querySelector('.pick'), tx=d.querySelector('.freetext');
@@ -655,6 +669,9 @@ function songRowEl(name=''){
     const f=sel.value==='__free__';
     tx.hidden=!f; if(f) tx.focus(); else tx.value='';
   });
+  d.querySelectorAll('.len-seg button').forEach(b=>b.addEventListener('click',()=>{
+    d.querySelectorAll('.len-seg button').forEach(x=>x.classList.toggle('on', x===b));
+  }));
   d.querySelector('.del').addEventListener('click',()=>{d.remove();renumber();});
   return d;
 }
@@ -667,8 +684,8 @@ function songOptions(){
 }
 function encoreRowEl(){ const d=document.createElement('div'); d.className='encore-row'; d.dataset.type='encore'; d.innerHTML=`<span class="line"></span><span class="lbl">ENCORE</span><span class="line"></span><button class="del">×</button>`; d.querySelector('.del').addEventListener('click',()=>{d.remove();renumber();}); return d; }
 function renumber(){ let n=0; $('#setlistEditor').querySelectorAll('.song-row,.encore-row').forEach(r=>{ if(r.dataset.type!=='encore'){ n++; r.querySelector('.num').textContent=n; } }); }
-function readSetlist(){ const out=[]; $('#setlistEditor').querySelectorAll('.song-row,.encore-row').forEach(r=>{ if(r.dataset.type==='encore') out.push({type:'encore'}); else { const sel=r.querySelector('.pick'); const v=sel.value==='__free__'?r.querySelector('.freetext').value:sel.value; out.push({type:'song',name:(v||'').trim()}); } }); while(out.length&&out[out.length-1].type==='song'&&!out[out.length-1].name) out.pop(); return out; }
-function fillSetlist(items){ const ed=$('#setlistEditor'); ed.innerHTML=''; (items||[]).forEach(s=>ed.appendChild(s.type==='encore'?encoreRowEl():songRowEl(s.name))); if(!ed.children.length){ ed.appendChild(songRowEl()); ed.appendChild(songRowEl()); } renumber(); }
+function readSetlist(){ const out=[]; $('#setlistEditor').querySelectorAll('.song-row,.encore-row').forEach(r=>{ if(r.dataset.type==='encore') out.push({type:'encore'}); else { const sel=r.querySelector('.pick'); const v=sel.value==='__free__'?r.querySelector('.freetext').value:sel.value; const it={type:'song',name:(v||'').trim()}; if(r.querySelector('.len-seg button[data-len=half]').classList.contains('on')) it.half=true; out.push(it); } }); while(out.length&&out[out.length-1].type==='song'&&!out[out.length-1].name) out.pop(); return out; }
+function fillSetlist(items){ const ed=$('#setlistEditor'); ed.innerHTML=''; (items||[]).forEach(s=>ed.appendChild(s.type==='encore'?encoreRowEl():songRowEl(s.name,!!s.half))); if(!ed.children.length){ ed.appendChild(songRowEl()); ed.appendChild(songRowEl()); } renumber(); }
 
 /* ---- photos ---- */
 function renderPhotos(){ const g=$('#photoGrid'); g.innerHTML=''; edit.photos.forEach((src,i)=>{ const d=document.createElement('div'); d.className='photo-item'; d.innerHTML=`<img src="${src}"><button class="rm" data-i="${i}">×</button>`; d.querySelector('.rm').addEventListener('click',()=>{edit.photos.splice(i,1);renderPhotos();}); g.appendChild(d); }); const a=document.createElement('button'); a.type='button'; a.className='photo-add'; a.textContent='＋'; a.addEventListener('click',()=>$('#photoInput').click()); g.appendChild(a); }
@@ -705,7 +722,8 @@ function normSong(s){
     .replace(/[’'`´]/g,'').replace(/[\s　]/g,'')
     .replace(/[!！?？・･,、.。~〜ー\-–—:：;；()（）\[\]「」『』"“”]/g,'');
 }
-/* 記録済みセトリを走査して 正規化キー -> {name, count, dates[]} を作る */
+/* 記録済みセトリを走査して 正規化キー -> {name, count, half, dates[]} を作る
+   half = ワンハーフで演奏された公演数（count の内訳。同一公演で複数回なら最初の1回を採用） */
 function songLog(){
   const dateOf={}; allEvents().forEach(e=>{ dateOf[e.id]=e.date; });
   const m=new Map();
@@ -717,12 +735,16 @@ function songLog(){
       const nm=(s.name||'').trim(); if(!nm) return;
       const k=normSong(nm); if(!k||seen.has(k)) return;  /* 同一公演の重複は1回と数える */
       seen.add(k);
-      const cur=m.get(k)||{name:nm,count:0,dates:[]};
-      cur.count++; cur.dates.push(d); m.set(k,cur);
+      const cur=m.get(k)||{name:nm,count:0,half:0,dates:[]};
+      cur.count++; if(s.half) cur.half++; cur.dates.push(d); m.set(k,cur);
     });
   });
   return m;
 }
+/* 集計行に付ける「½ N」バッジ。0 のときは何も出さない */
+function halfTag(n){ return n>0 ? '<i class="half-badge tagh">½ '+n+'</i>' : ''; }
+/* その公演のセトリのうちワンハーフだった曲数 */
+function halfCount(n){ return ((n&&n.setlist)||[]).filter(s=>s.type!=='encore'&&(s.name||'').trim()&&s.half).length; }
 let songSub='lives';
 /* セトリを記録した公演の一覧。ここが曲タブの基本表示 */
 function setlistLives(){
@@ -732,7 +754,7 @@ function setlistLives(){
     const ev=byId[id]; if(!ev) return;
     const n=store.notes[id];
     const c=songCount(n);
-    if(c>0) out.push({ev:ev,note:n,songs:c});
+    if(c>0) out.push({ev:ev,note:n,songs:c,half:halfCount(n)});
   });
   out.sort((a,b)=>b.ev.date.localeCompare(a.ev.date));
   return out;
@@ -761,7 +783,7 @@ function renderSongLives(wrap){
       +'<div class="ev-body">'
         +'<span class="tp tp-LIVE">'+x.ev.date.slice(0,7).replace('-','.')+'</span>'
         +'<h3>'+esc(x.ev.title)+'</h3>'
-        +'<p class="vn">🎵 全'+x.songs+'曲'+(x.ev.venue?' ・ 📍 '+esc(x.ev.venue):'')+'</p>'
+        +'<p class="vn">🎵 全'+x.songs+'曲'+(x.half?'（½ '+x.half+'）':'')+(x.ev.venue?' ・ 📍 '+esc(x.ev.venue):'')+'</p>'
       +'</div></div>';
   }).join('')+'</div>';
   wrap.innerHTML=h;
@@ -777,10 +799,10 @@ function renderSongRate(wrap){
     return;
   }
   const rows=new Map();
-  SONGS.forEach(x=>rows.set(normSong(x.title),{name:x.title,release:x.release,count:0,last:'',live:false}));
+  SONGS.forEach(x=>rows.set(normSong(x.title),{name:x.title,release:x.release,count:0,half:0,last:'',live:false}));
   log.forEach(function(v,k){
-    const r=rows.get(k)||{name:v.name,release:'',count:0,last:'',live:true};
-    r.count=v.count; r.last=v.dates.slice().sort().pop()||''; rows.set(k,r);
+    const r=rows.get(k)||{name:v.name,release:'',count:0,half:0,last:'',live:true};
+    r.count=v.count; r.half=v.half||0; r.last=v.dates.slice().sort().pop()||''; rows.set(k,r);
   });
   const arr=[...rows.values()].sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,'ja'));
   let h='<div class="cal-summary">'
@@ -792,21 +814,21 @@ function renderSongRate(wrap){
     const pct=Math.round(r.count/denom*100);
     return '<li>'
       +'<span class="rank">'+pct+'<small style="font-size:9px">%</small></span>'
-      +'<span class="sname">'+esc(r.name)+(r.live?'<i class="tagx">記録のみ</i>':'')+'</span>'
+      +'<span class="sname">'+esc(r.name)+(r.live?'<i class="tagx">記録のみ</i>':'')+halfTag(r.half)+'</span>'
       +'<span class="bar"><i style="width:'+pct+'%"></i></span>'
       +'<span class="cnt">'+r.count+'<small>/'+denom+'</small></span>'
       +'<span class="last">'+(r.last?'最後: '+r.last:'まだ聴いていません')+'</span>'
       +'</li>';
   }).join('')+'</ol>';
-  h+='<div class="footer-note">実施率は「セトリを記録した'+denom+'公演」のうち何公演で演奏されたかです。記録していない公演は母数に入りません。</div>';
+  h+='<div class="footer-note">実施率は「セトリを記録した'+denom+'公演」のうち何公演で演奏されたかです。記録していない公演は母数に入りません。<br>½ の数字はそのうちワンハーフだった公演数です（実施率にはフル尺と同じく1公演として数えます）。</div>';
   wrap.innerHTML=h;
 }
 function renderSongRank(wrap){
   const log=songLog(); const rows=new Map();
-  SONGS.forEach(x=>rows.set(normSong(x.title),{name:x.title,release:x.release,kind:x.kind,count:0,last:''}));
+  SONGS.forEach(x=>rows.set(normSong(x.title),{name:x.title,release:x.release,kind:x.kind,count:0,half:0,last:''}));
   log.forEach(function(v,k){
-    const r=rows.get(k)||{name:v.name,release:'',kind:'live',count:0,last:''};
-    r.count=v.count; r.last=v.dates.slice().sort().pop()||''; rows.set(k,r);
+    const r=rows.get(k)||{name:v.name,release:'',kind:'live',count:0,half:0,last:''};
+    r.count=v.count; r.half=v.half||0; r.last=v.dates.slice().sort().pop()||''; rows.set(k,r);
   });
   const all=[...rows.values()];
   const heard=all.filter(r=>r.count>0).sort((a,b)=>b.count-a.count||(b.last||'').localeCompare(a.last||''));
@@ -822,10 +844,11 @@ function renderSongRank(wrap){
     +'<div class="chip"><b>'+unheard.length+'</b><span>未聴の曲</span></div>'
     +'<div class="chip rate"><b>'+total+'</b><span>のべ回数</span></div>'
     +'</div>';
+  const halfTotal=heard.reduce((s,r)=>s+(r.half||0),0);
   h+='<ol class="song-stats">'+heard.map(function(r,i){
     return '<li>'
       +'<span class="rank">'+(i+1)+'</span>'
-      +'<span class="sname">'+esc(r.name)+(r.kind==='live'?'<i class="tagx">記録のみ</i>':'')+'</span>'
+      +'<span class="sname">'+esc(r.name)+(r.kind==='live'?'<i class="tagx">記録のみ</i>':'')+halfTag(r.half)+'</span>'
       +'<span class="bar"><i style="width:'+Math.round(r.count/max*100)+'%"></i></span>'
       +'<span class="cnt">'+r.count+'<small>回</small></span>'
       +'<span class="last">最後: '+(r.last||'—')+'</span>'
@@ -837,7 +860,8 @@ function renderSongRank(wrap){
       return '<li><span class="rank">—</span><span class="sname">'+esc(r.name)+'</span><span class="last">'+(r.release||'')+'</span></li>';
     }).join('')+'</ol>';
   }
-  h+='<div class="footer-note">曲名は表記の揺れを吸収して集計しています。公式マスタ'+SONGS.length+'曲 ＋ 自分で入力した曲。</div>';
+  h+='<div class="footer-note">曲名は表記の揺れを吸収して集計しています。公式マスタ'+SONGS.length+'曲 ＋ 自分で入力した曲。'
+    +(halfTotal?'<br>のべ回数'+total+'回のうち'+halfTotal+'回はワンハーフ（½）です。':'')+'</div>';
   wrap.innerHTML=h;
 }
 
