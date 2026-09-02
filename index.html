@@ -482,6 +482,18 @@ let selectedDay=null;        // ISO of day selected in calendar
 let typeFilter='ALL';
 let edit={id:null, custom:false, rating:0, photos:[], setlistItems:[]};
 
+/* メンバーの表示順はメンバーカラーの色相順にして、一覧がグラデーションになるようにする。
+   色相環を赤から一周する順（赤→橙→黄→緑→水→青→紫→桃）で、最後の桃から先頭の赤へ
+   自然に戻る。members.js 側は公式PROFILEの掲載順のまま（出典どおり）にして、
+   並べ替えは表示だけの話にしてある。
+   この表に無い絵文字（新メンバーや色が未判明の人）は末尾に、元の並び順を保って置く。 */
+const HUE_ORDER = ['❤️','🧡','💛','💚','🩵','💙','💜','🩷'].map(e=>e.replace(/️/g,''));
+function byHue(list){
+  /* ❤️ のように異体字セレクタ(U+FE0F)が付く絵文字があるので、比較時は外して揃える */
+  const rank=m=>{ const i=HUE_ORDER.indexOf((m.emoji||'').replace(/️/g,'')); return i<0?HUE_ORDER.length:i; };
+  return list.map((m,i)=>({m,i})).sort((a,b)=>rank(a.m)-rank(b.m)||a.i-b.i).map(x=>x.m);
+}
+
 function storeKeyOf(g){ return 'live-log-v1:'+g.id; }
 function groupById(id){ return GROUPS.find(g=>g.id===id); }
 function normStore(o){ o=o||{}; return {attend:o.attend||{}, notes:o.notes||{}, custom:o.custom||[], hidden:o.hidden||{}, lastBackup:o.lastBackup||''}; }
@@ -513,7 +525,7 @@ function setGroup(id, render){
   group=g; KEY=storeKeyOf(g);
   OFFICIAL=(window[g.ns+'_SCHEDULE']||[]).map(e=>({...e, official:true}));
   SONGS=(window[g.ns+'_SONGS']||[]);
-  MEMBERS=(window[g.ns+'_MEMBERS']||[]);
+  MEMBERS=byHue(window[g.ns+'_MEMBERS']||[]);
   store=loadFor(g);
   try{ localStorage.setItem(GSEL,g.id); }catch(e){}
   applyAccent(g);

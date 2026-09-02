@@ -73,6 +73,8 @@
 | `groups/<id>/songs.js` | 楽曲マスタ（公式 DISCOGRAPHY） |
 | `groups/<id>/members.js` | メンバー（公式 PROFILE） |
 
+`members.js` の配列は**公式PROFILEの掲載順**ですが、**画面上の並びはメンバーカラーの色相順**です（赤→橙→黄→緑→水→青→紫→桃で一周するのでグラデーションになる）。並べ替えは `index.html` の `byHue()` が表示時に行うので、`members.js` 側は出典どおりの順序を保ってください。`HUE_ORDER` に無い絵文字のメンバーは末尾に回ります。
+
 | id | グループ | 出典 |
 |---|---|---|
 | `logyou` | log you | https://logyou.asobisystem.com/ |

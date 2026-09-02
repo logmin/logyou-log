@@ -1,7 +1,7 @@
 // 参戦ログ - Service Worker
 // network-first: オンライン時は常に最新を取得し、オフライン時のみキャッシュを使う
 // グループを増やしたら ASSETS に groups/<id>/ の3ファイルを足して CACHE を上げる
-const CACHE = 'live-log-v25';
+const CACHE = 'live-log-v26';
 const ASSETS = [
   './',
   './index.html',
