@@ -6,7 +6,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-09-01";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-09-02";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -179,12 +179,14 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-09-07-1", date:"2026-09-07", type:"LIVE",  title:"LadySteady supported by BUZZチケ", venue:"Spotify O-EAST" },
   { id:"2026-09-09-1", date:"2026-09-09", type:"LIVE",  title:"赤レンガスプラッシュ祭-Day2-", venue:"横浜赤レンガ倉庫イベント広場B（横浜）" },
   { id:"2026-09-10-1", date:"2026-09-10", type:"LIVE",  title:"BEEEEM FES Vol.8 Supported by michellMacaron", venue:"Spotify O-EAST" },
+  { id:"2026-09-12-1", date:"2026-09-12", type:"OTHER", title:"POP UP SHOP BY iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～ 来店イベント", venue:"ラフォーレ原宿5F MAKE THE STAGE" },
   { id:"2026-09-15-1", date:"2026-09-15", type:"LIVE",  title:"ONE AND ONLY Vol.40", venue:"Veats Shibuya" },
   { id:"2026-09-16-1", date:"2026-09-16", type:"LIVE",  title:"MARQUEE Fes day2", venue:"渋谷O-EAST" },
   { id:"2026-09-19-1", date:"2026-09-19", type:"LIVE",  title:"sound stock Vol.16", venue:"Veats Shibuya" },
   { id:"2026-09-19-2", date:"2026-09-19", type:"LIVE",  title:"log you単独公演『ろぐゆーふぉーゆー 〜 幸せは無限大 〜』", venue:"Veats Shibuya" },
   { id:"2026-09-20-1", date:"2026-09-20", type:"LIVE",  title:"IDOL RUNWAY COLLECTION 2026 A/W", venue:"横浜アリーナ" },
   { id:"2026-09-22-1", date:"2026-09-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.10", venue:"Zepp Shinjuku" },
+  { id:"2026-09-26-1", date:"2026-09-26", type:"LIVE",  title:"LadyPOP", venue:"Spotify O-NEST" },
   { id:"2026-09-28-1", date:"2026-09-28", type:"LIVE",  title:"iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～", venue:"Zepp Shinjuku" },
 
 
@@ -194,7 +196,6 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-10-05-1", date:"2026-10-05", type:"LIVE",  title:"松本玲奈 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-05-2", date:"2026-10-05", type:"OTHER", title:"💜松本玲奈 BIRTHDAY💜", venue:"" },
   { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）" },
-  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
   { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY" },
   { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）" },  // 公式未掲載（要確認）
   { id:"2026-10-24-1", date:"2026-10-24", type:"LIVE",  title:"井出叶 生誕祭2026", venue:"Spotify O-WEST" },
