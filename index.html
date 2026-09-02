@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141619" media="(prefers-color-scheme: dark)">
-<title>log you 参戦ログ</title>
+<title>参戦ログ</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="log you ログ">
+<meta name="apple-mobile-web-app-title" content="参戦ログ">
 <style>
   :root{
     --bg:#f5f6f8; --surface:#ffffff; --surface2:#eceef1;
@@ -257,11 +257,54 @@
   .bn-btns button.ghost{flex:0 0 auto; background:transparent; color:var(--muted); border:1px solid var(--border); padding:10px 14px}
   .settings-row{margin-top:14px; display:flex; gap:10px}
   .settings-row button{flex:1; border:1px solid var(--border); background:var(--surface); color:var(--muted); border-radius:10px; padding:11px; font-size:13px; font-weight:700; cursor:pointer}
+  /* ===== グループ切替ドロワー（左からスライド） ===== */
+  .drawer-btn{flex-shrink:0; width:34px; height:34px; margin:-2px 0 -2px -4px; border:0; border-radius:10px;
+    background:var(--surface2); color:var(--text); font-size:17px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; touch-action:manipulation}
+  .drawer-btn:active{transform:scale(.94)}
+  .drawer-backdrop{position:fixed; inset:0; z-index:50; background:rgba(0,0,0,.45);
+    opacity:0; pointer-events:none; transition:opacity .2s}
+  .drawer-backdrop.open{opacity:1; pointer-events:auto}
+  .drawer{position:fixed; top:0; left:0; bottom:0; z-index:51; width:280px; max-width:84vw;
+    background:var(--surface); border-right:1px solid var(--border); box-shadow:2px 0 16px rgba(20,20,40,.10);
+    transform:translateX(-101%); transition:transform .24s ease; overflow-y:auto; overscroll-behavior:contain;
+    padding:calc(18px + env(safe-area-inset-top)) 0 calc(20px + env(safe-area-inset-bottom))}
+  .drawer.open{transform:none}
+  .dw-head{padding:2px 18px 14px}
+  .dw-head b{display:block; font-size:17px; font-weight:800}
+  .dw-head span{font-size:11.5px; color:var(--muted)}
+  .dw-sec{padding:6px 18px 6px; font-size:10.5px; font-weight:800; color:var(--muted); letter-spacing:.06em}
+  .dw-sep{height:1px; background:var(--border); margin:10px 0}
+  .dw-group{display:flex; align-items:center; gap:11px; width:100%; border:0; background:transparent;
+    color:var(--text); text-align:left; padding:10px 18px; cursor:pointer; font-family:inherit;
+    touch-action:manipulation; border-left:3px solid transparent}
+  .dw-group .av{width:38px; height:38px; flex-shrink:0; border-radius:12px; background:var(--surface2);
+    display:flex; align-items:center; justify-content:center; font-size:19px; font-style:normal}
+  .dw-group .nm{flex:1; min-width:0}
+  .dw-group .nm b{display:block; font-size:14.5px; font-weight:800; overflow-wrap:anywhere; line-height:1.3}
+  .dw-group .nm span{font-size:11px; color:var(--muted)}
+  .dw-group .ck{font-style:normal; font-size:15px; font-weight:800; color:var(--accent); opacity:0; flex-shrink:0}
+  .dw-group.on{background:var(--surface2); border-left-color:var(--accent)}
+  .dw-group.on .av{background:var(--accent); color:#fff}
+  .dw-group.on .ck{opacity:1}
+  .dw-link{display:block; width:100%; border:0; background:transparent; color:var(--text); font-family:inherit;
+    text-align:left; padding:11px 18px; font-size:13.5px; font-weight:700; cursor:pointer; touch-action:manipulation}
+  .dw-link:active{background:var(--surface2)}
+  .dw-foot{padding:16px 18px 0; font-size:10.5px; color:var(--muted); line-height:1.7}
+  /* 広い画面では常設サイドバーにする（ハンバーガーは不要になる） */
+  @media (min-width:1000px){
+    .drawer{transform:none; box-shadow:none}
+    .drawer-backdrop{display:none}
+    .drawer-btn{display:none}
+    body{padding-left:280px}
+    .bottom-nav{left:280px}
+    .toast{left:calc(50% + 140px)}
+  }
 </style>
 </head>
 <body>
 <header class="app-header">
-  <h1>🎤 log you 参戦ログ</h1>
+  <h1><button class="drawer-btn" id="drawerBtn" aria-label="グループを切り替え">☰</button><span id="appTitle">参戦ログ</span></h1>
   <p class="sub">公式スケジュールから、参戦を記録</p>
   <div class="stats" id="headerStats">
     <div class="stat"><b id="stWent">0</b><span>通算 参戦</span></div>
@@ -356,6 +399,20 @@
 
 <button class="fab" id="addBtn" aria-label="予定を追加">+</button>
 
+<!-- グループ切替ドロワー -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="drawer">
+  <div class="dw-head"><b>参戦ログ</b><span>グループを選んで記録する</span></div>
+  <div class="dw-sec">グループ</div>
+  <div id="dwGroups"></div>
+  <div class="dw-sep"></div>
+  <div class="dw-sec">データ</div>
+  <button class="dw-link" id="dwExport">⬇ バックアップ（全グループ）</button>
+  <button class="dw-link" id="dwImport">⬆ 復元</button>
+  <button class="dw-link" id="dwHidden">🚫 非表示の予定</button>
+  <div class="dw-foot" id="dwFoot"></div>
+</aside>
+
 <!-- Detail sheet -->
 <div class="sheet-backdrop" id="detailSheet"><div class="sheet" id="detailContent"></div></div>
 <!-- Day sheet -->
@@ -403,23 +460,97 @@
 <div class="lightbox" id="lightbox"><img id="lightboxImg" alt=""></div>
 <div class="toast" id="toast"></div>
 
-<script src="schedule.js"></script>
-<script src="songs.js"></script>
-<script src="members.js"></script>
+<script src="groups.js"></script>
+<script src="groups/logyou/schedule.js"></script>
+<script src="groups/logyou/songs.js"></script>
+<script src="groups/logyou/members.js"></script>
+<script src="groups/toitoitoi/schedule.js"></script>
+<script src="groups/toitoitoi/songs.js"></script>
+<script src="groups/toitoitoi/members.js"></script>
 <script>
-const KEY='logyou-log-v1';
 const $=s=>document.querySelector(s);
 const ATT={went:'参加',skip:'不参加',plan:'予定'};
-const OFFICIAL = (window.LOGYOU_SCHEDULE||[]).map(e=>({...e, official:true}));
 
-let store=load();            // {attend:{}, notes:{}, custom:[]}
+/* ---- グループ ----
+   全グループのデータは最初に読み込んでおき、切替はメモリ上で差し替える。
+   OFFICIAL/SONGS/MEMBERS はすべて描画時に参照されるので let で足りる。 */
+const GROUPS = window.LIVE_LOG_GROUPS || [];
+const GSEL='live-log:group';   // 最後に見ていたグループ
+let group = GROUPS[0];
+let KEY='';
+let OFFICIAL=[], SONGS=[], MEMBERS=[];
+
+let store={attend:{},notes:{},custom:[],hidden:{},lastBackup:''};
 let calY, calM;              // displayed month
 let selectedDay=null;        // ISO of day selected in calendar
 let typeFilter='ALL';
 let edit={id:null, custom:false, rating:0, photos:[], setlistItems:[]};
 
-function load(){ try{ const o=JSON.parse(localStorage.getItem(KEY))||{}; return {attend:o.attend||{}, notes:o.notes||{}, custom:o.custom||[], hidden:o.hidden||{}, lastBackup:o.lastBackup||''}; }catch(e){ return {attend:{},notes:{},custom:[],hidden:{},lastBackup:''}; } }
+function storeKeyOf(g){ return 'live-log-v1:'+g.id; }
+function groupById(id){ return GROUPS.find(g=>g.id===id); }
+function normStore(o){ o=o||{}; return {attend:o.attend||{}, notes:o.notes||{}, custom:o.custom||[], hidden:o.hidden||{}, lastBackup:o.lastBackup||''}; }
+/* 統合前の単体アプリの記録を引き継ぐ。新キーが空のときだけ旧キーを読む。
+   旧キーは消さない（万一のときに戻せるようにしておくため） */
+function loadFor(g){
+  let raw=null;
+  try{ raw=localStorage.getItem(storeKeyOf(g)); }catch(e){}
+  if(raw==null && g.legacyKey){ try{ raw=localStorage.getItem(g.legacyKey); }catch(e){} }
+  try{ return normStore(JSON.parse(raw)); }catch(e){ return normStore(null); }
+}
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(store)); return true; }catch(e){ toast('⚠ 保存容量が上限です。写真を減らすかバックアップを'); return false; } }
+
+/* 今どのグループを見ているかが一目で分かるように、テーマ色を切り替える */
+function applyAccent(g){
+  const dark = !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const c = (g.accent||[])[dark?1:0] || (g.accent||[])[0];
+  if(!c) return;
+  document.documentElement.style.setProperty('--accent',c);
+  document.documentElement.style.setProperty('--accent2',c);
+}
+function resolveGroup(){
+  let q=null; try{ q=new URLSearchParams(location.search).get('g'); }catch(e){}
+  let last=null; try{ last=localStorage.getItem(GSEL); }catch(e){}
+  return groupById(q) || groupById(last) || GROUPS[0];
+}
+function setGroup(id, render){
+  const g=groupById(id)||GROUPS[0];
+  group=g; KEY=storeKeyOf(g);
+  OFFICIAL=(window[g.ns+'_SCHEDULE']||[]).map(e=>({...e, official:true}));
+  SONGS=(window[g.ns+'_SONGS']||[]);
+  MEMBERS=(window[g.ns+'_MEMBERS']||[]);
+  store=loadFor(g);
+  try{ localStorage.setItem(GSEL,g.id); }catch(e){}
+  applyAccent(g);
+  document.title=`${g.name} 参戦ログ`;
+  $('#appTitle').textContent=`${g.emoji} ${g.name} 参戦ログ`;
+  /* グループをまたぐと意味が変わる表示状態はここで戻す */
+  selectedDay=null; typeFilter='ALL'; chekiOffset=0;
+  $('#typeFilter').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.t==='ALL'));
+  if(render!==false){ renderDrawer(); refresh(); }
+}
+
+/* ---- ドロワー ---- */
+function openDrawer(){ renderDrawer(); $('#drawer').classList.add('open'); $('#drawerBackdrop').classList.add('open'); }
+function closeDrawer(){ $('#drawer').classList.remove('open'); $('#drawerBackdrop').classList.remove('open'); }
+function renderDrawer(){
+  $('#dwGroups').innerHTML = GROUPS.map(g=>{
+    /* 切替先の参戦数も出しておくと、開いた時点でどっちがどっちか分かる */
+    const st = g.id===group.id ? store : loadFor(g);
+    const live=(window[g.ns+'_SCHEDULE']||[]).concat(st.custom).filter(e=>e.type==='LIVE' && !st.hidden[e.id]);
+    const went=live.filter(e=>st.attend[e.id]==='went').length;
+    return `<button class="dw-group${g.id===group.id?' on':''}" data-g="${esc(g.id)}">`
+      +`<i class="av">${esc(g.emoji)}</i>`
+      +`<span class="nm"><b>${esc(g.name)}</b><span>参戦 ${went}件 ／ 公演 ${live.length}件</span></span>`
+      +`<i class="ck">✓</i></button>`;
+  }).join('');
+  $('#dwGroups').querySelectorAll('.dw-group').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.g!==group.id){ setGroup(b.dataset.g); toast(`${group.name} に切り替えました`); }
+    closeDrawer();
+  }));
+  const u=window[group.ns+'_SCHEDULE_UPDATED'];
+  $('#dwFoot').innerHTML=`いま見ているのは <b>${esc(group.name)}</b><br>公式スケジュール${OFFICIAL.length}件${u?`／最終更新 ${esc(u)}`:''}`
+    +`<br>記録はグループごとに別で保存されます`;
+}
 function uid(){ return 'c'+Math.random().toString(36).slice(2,8)+Date.now().toString(36); }
 function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2200); }
 function esc(s){ return (s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
@@ -445,8 +576,8 @@ function updateStats(){
   $('#stMonth').textContent=went.filter(e=>e.date.startsWith(ym)).length;
   const hc=Object.keys(store.hidden).filter(id=>store.hidden[id]).length;
   const hb=$('#btnHidden'); if(hb) hb.textContent = hc ? `🚫 非表示の予定（${hc}）` : '🚫 非表示の予定';
-  const u=window.LOGYOU_SCHEDULE_UPDATED;
-  $('#updNote').innerHTML = `公式スケジュール${OFFICIAL.length}件を収録${u?`（最終更新 ${u}）`:''}<br>スケジュールの最新化はClaudeに「log youの予定を更新して」と頼んでね`;
+  const u=window[group.ns+'_SCHEDULE_UPDATED'];
+  $('#updNote').innerHTML = `公式スケジュール${OFFICIAL.length}件を収録${u?`（最終更新 ${u}）`:''}<br>スケジュールの最新化はClaudeに「${esc(group.name)}の予定を更新して」と頼んでね`;
 }
 
 /* ---- month helpers ---- */
@@ -715,7 +846,7 @@ function fillVenueList(){
   $('#venueList').innerHTML=set.map(v=>`<option value="${esc(v)}"></option>`).join('');
 }
 /* ---- songs: master + 履歴サジェスト + 曲別集計 ---- */
-const SONGS = (window.LOGYOU_SONGS||[]);
+/* SONGS はグループ切替で差し替わる（上の setGroup を参照） */
 /* 表記揺れ吸収: 全角半角・大小・記号(・！’空白等)を落として比較する */
 function normSong(s){
   return (s||'').normalize('NFKC').toLowerCase()
@@ -866,7 +997,7 @@ function renderSongRank(wrap){
 }
 
 /* ---- チェキ: メンバー×種別の記録と集計 ---- */
-const MEMBERS = (window.LOGYOU_MEMBERS||[]);
+/* MEMBERS はグループ切替で差し替わる（上の setGroup を参照） */
 const CHEKI_TYPES = ['チェキ','ランチェキ','写メ','その他'];
 function emojiOf(name){ const m=MEMBERS.find(x=>x.name===name); return m?m.emoji:'📸'; }
 /* 保存形式は {メンバー:{種別:枚数}}。
@@ -1081,8 +1212,51 @@ function renderBackupNotice(){
 }
 
 /* ---- backup ---- */
-function exportData(){ const blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); const t=new Date(); a.download=`logyou-log_${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}.json`; a.click(); URL.revokeObjectURL(a.href); store.lastBackup=todayISO(); save(); renderBackupNotice(); toast('バックアップを書き出しました'); }
-function importData(file){ const fr=new FileReader(); fr.onload=e=>{ try{ const o=JSON.parse(e.target.result); if(typeof o!=='object') throw 0; if(!confirm('記録を読み込みます。現在のデータは置き換えられます。よろしいですか？')) return; store={attend:o.attend||{},notes:o.notes||{},custom:o.custom||[],hidden:o.hidden||{},lastBackup:o.lastBackup||todayISO()}; save(); refresh(); toast('復元しました'); }catch(err){ toast('ファイルを読み込めませんでした'); } }; fr.readAsText(file); }
+/* バックアップは全グループまとめて1ファイル。グループが増えても取り忘れが起きない */
+function exportData(){
+  const t=new Date();
+  const payload={version:2, exportedAt:todayISO(), groups:{}};
+  GROUPS.forEach(g=>{ payload.groups[g.id] = (g.id===group.id ? store : loadFor(g)); });
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`live-log_${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+  /* 全グループ分を書き出したので、督促も全グループ分止める */
+  const d=todayISO();
+  GROUPS.forEach(g=>{
+    if(g.id===group.id){ store.lastBackup=d; save(); return; }
+    const s=loadFor(g); s.lastBackup=d;
+    try{ localStorage.setItem(storeKeyOf(g),JSON.stringify(s)); }catch(e){}
+  });
+  renderBackupNotice(); toast('バックアップを書き出しました');
+}
+function importData(file){
+  const fr=new FileReader();
+  fr.onload=e=>{
+    try{
+      const o=JSON.parse(e.target.result);
+      if(!o || typeof o!=='object') throw 0;
+      if(o.version===2 && o.groups && typeof o.groups==='object'){
+        const ids=Object.keys(o.groups).filter(groupById);
+        if(!ids.length) throw 0;
+        const names=ids.map(i=>groupById(i).name).join('・');
+        if(!confirm(`${names} の記録を読み込みます。現在のデータは置き換えられます。よろしいですか？`)) return;
+        ids.forEach(id=>{
+          const s=normStore(o.groups[id]); if(!s.lastBackup) s.lastBackup=todayISO();
+          try{ localStorage.setItem(storeKeyOf(groupById(id)),JSON.stringify(s)); }catch(err){}
+        });
+        setGroup(group.id);
+        toast(`${ids.length}グループ分を復元しました`);
+      }else{
+        /* 統合前の単体アプリが書き出した形式。今見ているグループの記録として入れる */
+        if(!confirm(`旧形式のバックアップです。「${group.name}」の記録として読み込みます。現在のデータは置き換えられます。よろしいですか？`)) return;
+        store=normStore(o); if(!store.lastBackup) store.lastBackup=todayISO();
+        save(); renderDrawer(); refresh(); toast('復元しました');
+      }
+    }catch(err){ toast('ファイルを読み込めませんでした'); }
+  };
+  fr.readAsText(file);
+}
 
 /* ---- sheets / view ---- */
 function openSheet(s){ $(s).classList.add('open'); document.body.style.overflow='hidden'; }
@@ -1173,12 +1347,47 @@ $('#btnExport').addEventListener('click',exportData);
 $('#btnImport').addEventListener('click',()=>$('#importInput').click());
 $('#importInput').addEventListener('change',e=>{ if(e.target.files[0]) importData(e.target.files[0]); e.target.value=''; });
 
+/* ---- ドロワーの開閉 ---- */
+$('#drawerBtn').addEventListener('click',openDrawer);
+$('#drawerBackdrop').addEventListener('click',closeDrawer);
+$('#dwExport').addEventListener('click',()=>{ closeDrawer(); exportData(); });
+$('#dwImport').addEventListener('click',()=>{ closeDrawer(); $('#importInput').click(); });
+$('#dwHidden').addEventListener('click',()=>{ closeDrawer(); openHidden(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+
+/* 左端からのスワイプでも開く（スマホで片手で切り替えられるように） */
+(function(){
+  let x0=0, y0=0, tracking=false;
+  document.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1) return;
+    const t=e.touches[0];
+    /* 開いているシートの上や、画面左端以外からは反応させない */
+    if(document.querySelector('.sheet-backdrop.open')) return;
+    if($('#drawer').classList.contains('open')) return;
+    if(t.clientX>26) return;
+    x0=t.clientX; y0=t.clientY; tracking=true;
+  },{passive:true});
+  document.addEventListener('touchmove',e=>{
+    if(!tracking) return;
+    const t=e.touches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+    if(Math.abs(dy)>Math.abs(dx)){ tracking=false; return; }  /* 縦スクロールの意図 */
+    if(dx>44){ tracking=false; openDrawer(); }
+  },{passive:true});
+  document.addEventListener('touchend',()=>{ tracking=false; },{passive:true});
+})();
+
 /* データを消えにくくする：OSにストレージ永続化を要求（iOS等の自動削除対策） */
 if(navigator.storage && navigator.storage.persist){ navigator.storage.persist().catch(()=>{}); }
 
 /* init: jump to current month, or nearest month with events */
 const _t=new Date(); calY=_t.getFullYear(); calM=_t.getMonth();
-refresh();
+setGroup(resolveGroup().id);   /* データ読み込み → renderDrawer → refresh まで実行される */
+/* OSのダーク/ライト切替に追従してグループ色を塗り直す */
+if(window.matchMedia){
+  const mq=window.matchMedia('(prefers-color-scheme: dark)');
+  if(mq.addEventListener) mq.addEventListener('change',()=>applyAccent(group));
+  else if(mq.addListener) mq.addListener(()=>applyAccent(group));
+}
 if('serviceWorker' in navigator){
   let refreshing=false;
   navigator.serviceWorker.addEventListener('controllerchange',()=>{ if(refreshing)return; refreshing=true; location.reload(); });

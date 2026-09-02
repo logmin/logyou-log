@@ -1,7 +1,7 @@
 {
-  "name": "log you 参戦ログ",
-  "short_name": "log you ログ",
-  "description": "log you の公式スケジュールから参戦を記録するアプリ",
+  "name": "参戦ログ",
+  "short_name": "参戦ログ",
+  "description": "推しグループの公式スケジュールから参戦を記録するアプリ（log you / Toi Toi Toi）",
   "id": "logyou-log",
   "start_url": "./index.html",
   "scope": "./",
@@ -12,5 +12,9 @@
   "lang": "ja",
   "icons": [
     { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "log you", "url": "./index.html?g=logyou" },
+    { "name": "Toi Toi Toi", "url": "./index.html?g=toitoitoi" }
   ]
 }

@@ -1,12 +1,17 @@
-// log you 参戦ログ - Service Worker
+// 参戦ログ - Service Worker
 // network-first: オンライン時は常に最新を取得し、オフライン時のみキャッシュを使う
-const CACHE = 'logyou-log-v22';
+// グループを増やしたら ASSETS に groups/<id>/ の3ファイルを足して CACHE を上げる
+const CACHE = 'live-log-v23';
 const ASSETS = [
   './',
   './index.html',
-  './schedule.js',
-  './songs.js',
-  './members.js',
+  './groups.js',
+  './groups/logyou/schedule.js',
+  './groups/logyou/songs.js',
+  './groups/logyou/members.js',
+  './groups/toitoitoi/schedule.js',
+  './groups/toitoitoi/songs.js',
+  './groups/toitoitoi/members.js',
   './manifest.webmanifest',
   './icon.svg'
 ];

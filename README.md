@@ -1,10 +1,17 @@
-# log you 参戦ログ
+# 参戦ログ
 
-アイドルグループ **log you** の参戦記録アプリ。公式スケジュールを取り込んで、参加/予定/不参加、セットリスト、チェキ枚数、写真、メモを記録できます。
+アイドルグループの参戦記録アプリ。公式スケジュールを取り込んで、参加/予定/不参加、セットリスト、チェキ枚数、写真、メモを記録できます。
 
 **公開URL: https://logmin.github.io/logyou-log/**
 
-非公式のファン制作アプリです。log you・アソビシステム・PEAK SPOT とは関係ありません。
+対応グループ（左のメニューから切り替え）:
+
+| グループ | 直リンク |
+|---|---|
+| 🎤 log you | [`?g=logyou`](https://logmin.github.io/logyou-log/?g=logyou) |
+| 🍀 Toi Toi Toi | [`?g=toitoitoi`](https://logmin.github.io/logyou-log/?g=toitoitoi) |
+
+非公式のファン制作アプリです。log you・Toi Toi Toi・アソビシステム・PEAK SPOT とは関係ありません。
 
 ---
 
@@ -17,7 +24,13 @@
 - **iPhone (Safari)**: 共有ボタン → 「ホーム画面に追加」
 - **Android (Chrome)**: メニュー → 「アプリをインストール」
 
-インストールしなくてもブラウザのままで全機能使えます。
+インストールしなくてもブラウザのままで全機能使えます。アプリは1つで、中でグループを切り替えます。
+
+### グループの切り替え
+
+左上の **☰** でメニューが開きます（画面左端から右へスワイプでも開く）。グループを選ぶとカレンダー・楽曲・チェキがまるごとそのグループのものに入れ替わり、テーマ色も変わります（log you は青、Toi Toi Toi はピンク）。いま見ているグループは次に開いたときも保たれます。
+
+**記録はグループごとに完全に別で保存されます。** 参加記録・チェキ枚数・写真が混ざることはありません。
 
 ### いちばん大事な注意：記録は消えることがあります
 
@@ -27,7 +40,9 @@
 - 機種を変えた、別のブラウザで開いた
 - iOSがストレージを自動整理した
 
-**定期的に「⬇ バックアップ」でJSONを書き出してください。** リストタブの下にボタンがあります。しばらく取っていないと画面上部で促されます。復元は「⬆ 復元」から書き出したJSONを選びます。
+**定期的に「⬇ バックアップ（全グループ）」でJSONを書き出してください。** 左メニューとリストタブの下にボタンがあります。しばらく取っていないと画面上部で促されます。復元は「⬆ 復元」から書き出したJSONを選びます。
+
+バックアップは**全グループ分が1ファイルにまとまります**。統合前の単体アプリが書き出した旧形式のJSONも復元できます（そのときは「いま見ているグループ」の記録として読み込まれます）。
 
 記録は端末ごとに独立しているので、あなたの記録が他の人に見えることはありません。逆に、複数端末で同じ記録を見ることもできません。
 
@@ -48,21 +63,30 @@
 
 ## データについて
 
-| ファイル | 中身 | 出典 |
+グループごとに `groups/<id>/` の3ファイルに入っています。
+
+| ファイル | 中身 |
+|---|---|
+| `groups/<id>/schedule.js` | 公演スケジュール（公式のスケジュール一覧と各詳細ページ） |
+| `groups/<id>/songs.js` | 楽曲マスタ（公式 DISCOGRAPHY） |
+| `groups/<id>/members.js` | メンバー（公式 PROFILE） |
+
+| id | グループ | 出典 |
 |---|---|---|
-| `schedule.js` | 公演スケジュール | [log you 公式](https://logyou.asobisystem.com/) のスケジュール一覧と各詳細ページ |
-| `songs.js` | 楽曲マスタ | 公式 DISCOGRAPHY（表題曲＋Coupling with 記載分） |
-| `members.js` | メンバー8名 | 公式 PROFILE |
+| `logyou` | log you | https://logyou.asobisystem.com/ |
+| `toitoitoi` | Toi Toi Toi | https://toitoitoi.asobisystem.com/ |
 
 会場は公式詳細ページに明記されたものだけを入れています。推測は入れていません。
 
 一部、公式スケジュールに未掲載で外部情報（Eventernote 等）から補ったものがあり、該当行には `// ↓公式サイト未掲載` のコメントを付けています。**出演可否は確定情報ではないので、チケットを取る前に公式で確認してください。**
 
-`songs.js` は公式が収録曲一覧を出していないため、表題曲とカップリングのみです。ライブ限定曲は入っていませんが、セトリに手入力すれば以降サジェストに出ます。
+`songs.js` はライブ限定曲・未音源化曲を含みません。セトリに手入力すれば以降サジェストに出ます。
+
+公式カテゴリの `LIVE` と `EVENT` はどちらもライブ出演なので `LIVE` に寄せ、`MAGAZINE`（誌面掲載のみ）は収録していません。リリースイベント・特典会・POP UP は `OTHER` です。
 
 ### 更新
 
-`schedule.js` は前月〜6ヶ月先を対象に自動更新しています。既存の項目は削除も並べ替えもせず、`id` を固定したまま追加のみ行います（記録が `id` に紐づいているため）。
+`schedule.js` は前月〜6ヶ月先を対象に、全グループまとめて自動更新しています。既存の項目は削除も並べ替えもせず、`id` を固定したまま追加のみ行います（記録が `id` に紐づいているため）。
 
 ---
 
@@ -71,7 +95,7 @@
 ビルド不要のバニラHTML/CSS/JS。依存パッケージなし。
 
 ```bash
-python -m http.server 4173
+python -m http.server 4173 --directory .
 ```
 
 `http://localhost:4173` を開く。`file://` で直接開くと Service Worker と外部JSが読めないので、必ずHTTP経由で。
@@ -79,14 +103,33 @@ python -m http.server 4173
 | ファイル | 役割 |
 |---|---|
 | `index.html` | 本体（CSS・JSすべて同梱） |
+| `groups.js` | グループ登録簿（id・表示名・テーマ色・グローバル接頭辞） |
+| `groups/<id>/*.js` | グループごとのデータ |
 | `sw.js` | Service Worker。network-first |
 | `manifest.webmanifest` | PWAマニフェスト |
 
 `index.html` を変更したら **`sw.js` の `CACHE` を必ず上げてください。** 上げないと古いキャッシュが残ります。データファイルを追加したら `ASSETS` にも足します。
 
-記録は `localStorage` のキー `logyou-log-v1` に `{attend, notes, custom, hidden, lastBackup}` で入っています。`notes[イベントid]` が `{rating, memo, photos[], setlist[], cheki{}}`。イベントidは `YYYY-MM-DD-N`。
+### グループを増やす手順
+
+1. `groups/<新id>/{schedule,songs,members}.js` を作る。グローバルは `window.<NS>_SCHEDULE` / `_SONGS` / `_MEMBERS` / `_SCHEDULE_UPDATED`
+2. `groups.js` に1件追記（`id` / `name` / `emoji` / `ns` / `accent[light,dark]` / `legacyKey` / `site`）
+3. `index.html` に `<script src="groups/<新id>/*.js">` を3行追記
+4. `sw.js` の `ASSETS` に3行追記して `CACHE` を上げる
+5. `manifest.webmanifest` の `shortcuts` に追記（任意）
+
+**`id` は一度決めたら変えないこと。** 記録が `live-log-v1:<id>` に紐づいています。
+
+### 保存の仕組み
+
+記録は `localStorage` のキー `live-log-v1:<グループid>` に `{attend, notes, custom, hidden, lastBackup}` で入っています。`notes[イベントid]` が `{rating, memo, photos[], setlist[], cheki{}}`。イベントidは `YYYY-MM-DD-N`。
+
+最後に見ていたグループは `live-log:group` に入ります。`?g=<id>` を付けるとそれが優先されます。
+
+統合前は log you / Toi Toi Toi が別アプリで、それぞれ `logyou-log-v1` / `toitoitoi-log-v1` に保存していました。新キーが空のときだけ旧キーから読み込みます（移行のため）。**旧キーは消していません**（万一のときに戻せるように残してあります）。
 
 ### 既知の課題
 
 - **アイコンがSVGのみ。** iOSの `apple-touch-icon` はSVG非対応なので、ホーム画面のアイコンが綺麗に出ません。192/512のPNGを追加すべき。
-- 写真をたくさん入れると localStorage の容量上限（5MB前後）に当たります。上限時は保存に失敗してトーストが出ます。
+- 写真をたくさん入れると localStorage の容量上限（5MB前後）に当たります。上限は**オリジン単位**なので、グループを増やすほど1グループあたりに使える容量は減ります。上限時は保存に失敗してトーストが出ます。
+- 「予定」の色（`--plan`）はグループのテーマ色と連動しません。「参加」と見分けるための固定色です。
