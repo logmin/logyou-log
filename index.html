@@ -259,9 +259,12 @@
   .settings-row button{flex:1; border:1px solid var(--border); background:var(--surface); color:var(--muted); border-radius:10px; padding:11px; font-size:13px; font-weight:700; cursor:pointer}
   /* ===== グループ切替ドロワー（左からスライド） ===== */
   .drawer-btn{flex-shrink:0; width:34px; height:34px; margin:-2px 0 -2px -4px; border:0; border-radius:10px;
-    background:var(--surface2); color:var(--text); font-size:17px; line-height:1; cursor:pointer;
+    background:var(--surface2); color:var(--text); cursor:pointer; padding:0;
     display:flex; align-items:center; justify-content:center; touch-action:manipulation}
   .drawer-btn:active{transform:scale(.94)}
+  /* よくある三本線。文字の ☰ はフォントによって細さや位置が変わるのでSVGで描く */
+  .drawer-btn svg{display:block; width:19px; height:19px; fill:none;
+    stroke:currentColor; stroke-width:2; stroke-linecap:round}
   .drawer-backdrop{position:fixed; inset:0; z-index:50; background:rgba(0,0,0,.45);
     opacity:0; pointer-events:none; transition:opacity .2s}
   .drawer-backdrop.open{opacity:1; pointer-events:auto}
@@ -291,20 +294,13 @@
     text-align:left; padding:11px 18px; font-size:13.5px; font-weight:700; cursor:pointer; touch-action:manipulation}
   .dw-link:active{background:var(--surface2)}
   .dw-foot{padding:16px 18px 0; font-size:10.5px; color:var(--muted); line-height:1.7}
-  /* 広い画面では常設サイドバーにする（ハンバーガーは不要になる） */
-  @media (min-width:1000px){
-    .drawer{transform:none; box-shadow:none}
-    .drawer-backdrop{display:none}
-    .drawer-btn{display:none}
-    body{padding-left:280px}
-    .bottom-nav{left:280px}
-    .toast{left:calc(50% + 140px)}
-  }
+  /* 画面幅にかかわらず、三本線を押したときだけ出るオーバーレイに統一している。
+     常設サイドバーにはしない（狭い画面と挙動が変わって迷うため） */
 </style>
 </head>
 <body>
 <header class="app-header">
-  <h1><button class="drawer-btn" id="drawerBtn" aria-label="グループを切り替え">☰</button><span id="appTitle">参戦ログ</span></h1>
+  <h1><button class="drawer-btn" id="drawerBtn" aria-label="グループを切り替え" aria-controls="drawer" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7h17M3.5 12h17M3.5 17h17"/></svg></button><span id="appTitle">参戦ログ</span></h1>
   <p class="sub">公式スケジュールから、参戦を記録</p>
   <div class="stats" id="headerStats">
     <div class="stat"><b id="stWent">0</b><span>通算 参戦</span></div>
@@ -530,8 +526,8 @@ function setGroup(id, render){
 }
 
 /* ---- ドロワー ---- */
-function openDrawer(){ renderDrawer(); $('#drawer').classList.add('open'); $('#drawerBackdrop').classList.add('open'); }
-function closeDrawer(){ $('#drawer').classList.remove('open'); $('#drawerBackdrop').classList.remove('open'); }
+function openDrawer(){ renderDrawer(); $('#drawer').classList.add('open'); $('#drawerBackdrop').classList.add('open'); $('#drawerBtn').setAttribute('aria-expanded','true'); }
+function closeDrawer(){ $('#drawer').classList.remove('open'); $('#drawerBackdrop').classList.remove('open'); $('#drawerBtn').setAttribute('aria-expanded','false'); }
 function renderDrawer(){
   $('#dwGroups').innerHTML = GROUPS.map(g=>{
     /* 切替先の参戦数も出しておくと、開いた時点でどっちがどっちか分かる */
