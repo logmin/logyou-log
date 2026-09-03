@@ -7,7 +7,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-08-27";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-03";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -257,12 +257,16 @@ window.TOITOITOI_SCHEDULE = [
   // ===== 2026-09 =====
   { id:"2026-09-05-1", date:"2026-09-05", type:"LIVE",  title:"MARQUEE祭mini Vol.343", venue:"Spotify O-nest" },
   { id:"2026-09-06-1", date:"2026-09-06", type:"LIVE",  title:"🩵谷屋杏香 生誕祭2026", venue:"SHIBUYA DIVE" },
-  { id:"2026-09-15-1", date:"2026-09-15", type:"LIVE",  title:"ONE AND ONLY Vol.40", venue:"" },
+  { id:"2026-09-06-2", date:"2026-09-06", type:"LIVE",  title:"Toi Toi Toi主催LIVE", venue:"SHIBUYA DIVE" },
+  { id:"2026-09-15-1", date:"2026-09-15", type:"LIVE",  title:"ONE AND ONLY Vol.40", venue:"Veats Shibuya" },
   { id:"2026-09-19-1", date:"2026-09-19", type:"LIVE",  title:"キャラフルアイドルフェス", venue:"1000CLUB（神奈川）" },
   { id:"2026-09-22-1", date:"2026-09-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.10", venue:"Zepp Shinjuku" },
   { id:"2026-09-26-1", date:"2026-09-26", type:"LIVE",  title:"Toi Toi Toi無銭単独公演", venue:"飛行船シアター" },
+  { id:"2026-09-27-1", date:"2026-09-27", type:"LIVE",  title:"LIVE & PEACE!", venue:"六本木ハリウッドホール" },
+  { id:"2026-09-28-1", date:"2026-09-28", type:"LIVE",  title:"ONE AND ONLY Vol.42 Pickup Edition", venue:"Spotify O-nest" },
 
   // ===== 2026-10 =====
   { id:"2026-10-03-1", date:"2026-10-03", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" },
-  { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" }
+  { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" },
+  { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"MARQUEE祭 Vol.182", venue:"duo MUSIC EXCHANGE" }
 ];
