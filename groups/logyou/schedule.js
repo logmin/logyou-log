@@ -6,7 +6,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-09-02";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-09-07";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -198,8 +198,11 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）" },
   { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY" },
   { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）" },  // 公式未掲載（要確認）
+  { id:"2026-10-18-1", date:"2026-10-18", type:"LIVE",  title:"きゅあかわ！えぼりゅーしょん！！inアニメイトシアター", venue:"アニメイトシアター" },
   { id:"2026-10-24-1", date:"2026-10-24", type:"LIVE",  title:"井出叶 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-24-2", date:"2026-10-24", type:"LIVE",  title:"山下うみ 生誕祭2026", venue:"Spotify O-WEST" },
+  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
+  { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
 
 
   // ===== 2026-11 =====
@@ -208,6 +211,8 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-11-19-1", date:"2026-11-19", type:"OTHER", title:"🩵竹内月音 BIRTHDAY🩵", venue:"" },
   { id:"2026-11-20-1", date:"2026-11-20", type:"LIVE",  title:"log you 1st ANNIVERSARY LIVE 〜 Beyond the log 〜", venue:"Zepp Shinjuku" },
   { id:"2026-11-20-2", date:"2026-11-20", type:"OTHER", title:"❤️久保怜音 BIRTHDAY❤️", venue:"" },
+  { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）" },
+  { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）" },
   { id:"2026-11-29-1", date:"2026-11-29", type:"LIVE",  title:"久保怜音 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-11-29-2", date:"2026-11-29", type:"LIVE",  title:"竹内月音 生誕祭2026", venue:"Spotify O-WEST" },
 

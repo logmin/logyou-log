@@ -7,7 +7,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-03";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-07";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -268,5 +268,11 @@ window.TOITOITOI_SCHEDULE = [
   // ===== 2026-10 =====
   { id:"2026-10-03-1", date:"2026-10-03", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" },
   { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" },
-  { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"MARQUEE祭 Vol.182", venue:"duo MUSIC EXCHANGE" }
+  { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"MARQUEE祭 Vol.182", venue:"duo MUSIC EXCHANGE" },
+  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
+  { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
+
+  // ===== 2026-11 =====
+  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
+  { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" }
 ];
