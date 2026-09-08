@@ -6,7 +6,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-09-07";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-09-08";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -202,6 +202,8 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-10-24-1", date:"2026-10-24", type:"LIVE",  title:"井出叶 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-24-2", date:"2026-10-24", type:"LIVE",  title:"山下うみ 生誕祭2026", venue:"Spotify O-WEST" },
   // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
+  { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール" },
+
   { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
 
 
