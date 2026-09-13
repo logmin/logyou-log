@@ -7,7 +7,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-08";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-13";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -260,6 +260,7 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-09-06-2", date:"2026-09-06", type:"LIVE",  title:"Toi Toi Toi主催LIVE", venue:"SHIBUYA DIVE" },
   { id:"2026-09-15-1", date:"2026-09-15", type:"LIVE",  title:"ONE AND ONLY Vol.40", venue:"Veats Shibuya" },
   { id:"2026-09-19-1", date:"2026-09-19", type:"LIVE",  title:"キャラフルアイドルフェス", venue:"1000CLUB（神奈川）" },
+  { id:"2026-09-20-1", date:"2026-09-20", type:"LIVE",  title:"AGESTOCK2026 in 横浜アリーナ", venue:"横浜アリーナ（神奈川）" },
   { id:"2026-09-21-1", date:"2026-09-21", type:"LIVE",  title:"sound stock Vol.17", venue:"Spotify O-nest" },
   { id:"2026-09-22-1", date:"2026-09-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.10", venue:"Zepp Shinjuku" },
   { id:"2026-09-26-1", date:"2026-09-26", type:"LIVE",  title:"Toi Toi Toi無銭単独公演", venue:"飛行船シアター" },
@@ -267,14 +268,24 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-09-28-1", date:"2026-09-28", type:"LIVE",  title:"ONE AND ONLY Vol.42 Pickup Edition", venue:"Spotify O-nest" },
 
   // ===== 2026-10 =====
+  { id:"2026-10-02-1", date:"2026-10-02", type:"LIVE",  title:"sound stock Vol.18", venue:"Spotify O-nest" },
   { id:"2026-10-03-1", date:"2026-10-03", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" },
   { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" },
   { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"MARQUEE祭 Vol.182", venue:"duo MUSIC EXCHANGE" },
+  { id:"2026-10-09-1", date:"2026-10-09", type:"LIVE",  title:"俺フェス！ Vol.3", venue:"白金高輪SELENE b2" },
+  { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-10-16-1", date:"2026-10-16", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-10-20-1", date:"2026-10-20", type:"LIVE",  title:"対バン出演予定", venue:"" },
   { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール" },
-  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
   { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
+  { id:"2026-10-31-1", date:"2026-10-31", type:"LIVE",  title:"イベント出演予定", venue:"" },
 
   // ===== 2026-11 =====
-  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
-  { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" }
+  { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
+  { id:"2026-11-16-1", date:"2026-11-16", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）" },
+  { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）" },
+
+  // ===== 2026-12 =====
+  { id:"2026-12-02-1", date:"2026-12-02", type:"LIVE",  title:"対バン出演予定", venue:"" }
 ];
