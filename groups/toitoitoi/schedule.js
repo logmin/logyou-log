@@ -7,7 +7,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-13";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-15";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -273,7 +273,7 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"金沢会場（石川）" },
   { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"MARQUEE祭 Vol.182", venue:"duo MUSIC EXCHANGE" },
   { id:"2026-10-09-1", date:"2026-10-09", type:"LIVE",  title:"俺フェス！ Vol.3", venue:"白金高輪SELENE b2" },
-  { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"ONE AND ONLY Vol.43", venue:"スタァライト劇場" },
   { id:"2026-10-16-1", date:"2026-10-16", type:"LIVE",  title:"対バン出演予定", venue:"" },
   { id:"2026-10-20-1", date:"2026-10-20", type:"LIVE",  title:"対バン出演予定", venue:"" },
   { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール" },
