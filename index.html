@@ -748,7 +748,9 @@ function openDetail(id){
   const d=new Date(e.date+'T00:00:00');
   const slH=setlistHTML(n);
   const gal=(n.photos&&n.photos.length)?`<div class="detail-gallery">${n.photos.map(p=>`<img src="${p}" data-full="${p}" alt="">`).join('')}</div>`:'';
-  const fly=e.image?`<div class="flyer"><img src="${e.image}" data-full="${e.image}" alt="${esc(e.title)}のフライヤー" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.flyer').remove()"><p class="src">画像: 公式サイトより</p></div>`:'';
+  // loading="lazy" は付けない。シートを開いた時点で必ず最上部に出る画像なので遅延の利点がなく、
+  // ビューポートの交差判定が起きない状況（非表示タブ等）で読み込みが保留されたままになる
+  const fly=e.image?`<div class="flyer"><img src="${e.image}" data-full="${e.image}" alt="${esc(e.title)}のフライヤー" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('.flyer').remove()"><p class="src">画像: 公式サイトより</p></div>`:'';
   $('#detailContent').innerHTML=`
     <div class="grip"></div>
     <div class="detail-head">
