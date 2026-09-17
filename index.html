@@ -229,6 +229,10 @@
   .detail-head .tl{color:var(--muted); margin:0; font-size:14px}
   .detail-gallery{display:flex; gap:8px; overflow-x:auto; margin:14px 0; padding-bottom:4px}
   .detail-gallery img{height:130px; border-radius:12px; border:1px solid var(--border); cursor:pointer; flex-shrink:0}
+  /* 公式フライヤー（公式サイトの画像を直リンクで表示。落ちたら onerror で消える） */
+  .flyer{margin:14px 0 2px}
+  .flyer img{width:100%; border-radius:12px; border:1px solid var(--border); cursor:pointer; display:block}
+  .flyer .src{font-size:11px; color:var(--muted); margin:6px 0 0; text-align:right}
   .sl-title{font-size:15px; font-weight:800; margin:20px 0 10px; display:flex; align-items:center; gap:8px}
   .sl-title .count{font-size:12px; color:var(--muted); font-weight:600}
   ol.setlist{list-style:none; padding:0; margin:0; counter-reset:s}
@@ -669,6 +673,8 @@ function setlistHTML(n){
 function evRow(e){
   const st=attendOf(e.id); const n=noteOf(e.id);
   const d=new Date(e.date+'T00:00:00');
+  // サムネは自分の写真のみ。公式フライヤーは原寸が重い（中央値356KB・最大3MB）ので
+  // 一覧には出さず、詳細シートで1枚だけ読み込む
   const thumb=(n.photos&&n.photos[0])?`<img class="ev-thumb" src="${n.photos[0]}" alt="">`:'';
   return `<div class="ev ${st}" data-id="${e.id}">
     ${thumb}
@@ -742,6 +748,7 @@ function openDetail(id){
   const d=new Date(e.date+'T00:00:00');
   const slH=setlistHTML(n);
   const gal=(n.photos&&n.photos.length)?`<div class="detail-gallery">${n.photos.map(p=>`<img src="${p}" data-full="${p}" alt="">`).join('')}</div>`:'';
+  const fly=e.image?`<div class="flyer"><img src="${e.image}" data-full="${e.image}" alt="${esc(e.title)}のフライヤー" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.flyer').remove()"><p class="src">画像: 公式サイトより</p></div>`:'';
   $('#detailContent').innerHTML=`
     <div class="grip"></div>
     <div class="detail-head">
@@ -750,6 +757,7 @@ function openDetail(id){
       <h2>${esc(e.title)}</h2>
       ${e.venue?`<p class="tl">📍 ${esc(e.venue)}</p>`:''}
     </div>
+    ${fly}
     ${e.type==='LIVE'?`<label>参加ステータス</label>
     <div class="segmented" id="dStatus">
       <button data-v="went" class="${st==='went'?'on':''}">参加した</button>
@@ -776,7 +784,7 @@ function openDetail(id){
     const v=b.dataset.v; if(store.attend[id]===v) delete store.attend[id]; else store.attend[id]=v;
     save(); ds.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.v===store.attend[id])); refresh();
   }));
-  $('#detailContent').querySelectorAll('.detail-gallery img').forEach(im=>im.addEventListener('click',()=>{ $('#lightboxImg').src=im.dataset.full; $('#lightbox').classList.add('open'); }));
+  $('#detailContent').querySelectorAll('.detail-gallery img, .flyer img').forEach(im=>im.addEventListener('click',()=>{ $('#lightboxImg').src=im.dataset.full; $('#lightbox').classList.add('open'); }));
   $('#dEdit').addEventListener('click',()=>{ closeSheet('#detailSheet'); setTimeout(()=>openEdit(id),120); });
   const del=$('#dDel'); if(del) del.addEventListener('click',()=>{ if(confirm('この予定を削除しますか？')){ store.custom=store.custom.filter(x=>x.id!==id); delete store.attend[id]; delete store.notes[id]; save(); refresh(); closeSheet('#detailSheet'); toast('削除しました'); } });
   const hide=$('#dHide'); if(hide) hide.addEventListener('click',()=>{ if(confirm('この予定を一覧から削除しますか？\n（あとで「非表示の予定」から戻せます）')){ store.hidden[id]=true; save(); refresh(); closeSheet('#detailSheet'); toast('一覧から削除しました'); } });

@@ -2,6 +2,9 @@
    出典: https://logyou.asobisystem.com/live_information/schedule/list/ 各公演の詳細ページ
    更新方法: この配列を書き換えるだけ。id は「YYYY-MM-DD-N」（同日内の通し番号）で固定。
    type: LIVE / TV / RADIO / OTHER（特典会・お渡し会などは OTHER）
+   image: 公式詳細ページのフライヤー画像URL（任意）。公式CDNへの直リンクで、
+     画像ファイルはこのリポジトリに置かない。URLが差し替わって404になったら
+     アプリ側の onerror で非表示になり、次回の自動更新で拾い直される。
    ※参加率の計算は type:"LIVE" のみが対象。会場は公式詳細ページの記載に基づく。
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
@@ -153,65 +156,65 @@ window.LOGYOU_SCHEDULE = [
 
 
   // ===== 2026-08 =====
-  { id:"2026-08-02-1", date:"2026-08-02", type:"LIVE",  title:"TOKYO IDOL FESTIVAL 2026 (Day3)", venue:"お台場" },
+  { id:"2026-08-02-1", date:"2026-08-02", type:"LIVE",  title:"TOKYO IDOL FESTIVAL 2026 (Day3)", venue:"お台場", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/c5d98d905cba1088df7756ffab758467.jpeg" },
   { id:"2026-08-02-2", date:"2026-08-02", type:"RADIO", title:"原口あきまさとlog youのそれ！頂きっ", venue:"" },
-  { id:"2026-08-08-1", date:"2026-08-08", type:"LIVE",  title:"IDOL SUMMER JUNGLE 2026", venue:"お台場R地区" },
-  { id:"2026-08-08-2", date:"2026-08-08", type:"OTHER", title:"#8 fav meの今日もふぁぼっちゃう？", venue:"" },
-  { id:"2026-08-09-1", date:"2026-08-09", type:"LIVE",  title:"月代来実生誕祭2026〜月代学園〜", venue:"Spotify O-WEST" },
+  { id:"2026-08-08-1", date:"2026-08-08", type:"LIVE",  title:"IDOL SUMMER JUNGLE 2026", venue:"お台場R地区", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/5e0f6347031b2a7bf18f82271feb69ed.jpeg" },
+  { id:"2026-08-08-2", date:"2026-08-08", type:"OTHER", title:"#8 fav meの今日もふぁぼっちゃう？", venue:"", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/information/1955/98e35e3d135649758ea3da0ce48c4eb2.png" },
+  { id:"2026-08-09-1", date:"2026-08-09", type:"LIVE",  title:"月代来実生誕祭2026〜月代学園〜", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/31b1627e34e2605a7d9dfeda4a59c42f.jpeg" },
   { id:"2026-08-09-2", date:"2026-08-09", type:"OTHER", title:"💙月代来実 BIRTHDAY💙", venue:"" },
-  { id:"2026-08-10-1", date:"2026-08-10", type:"LIVE",  title:"NEO KASSEN 2026", venue:"Spotify O-EAST（他全12会場）" },
-  { id:"2026-08-11-1", date:"2026-08-11", type:"LIVE",  title:"STARNOTE★デビュー祭", venue:"神田明神ホール" },
-  { id:"2026-08-15-1", date:"2026-08-15", type:"LIVE",  title:"TOKYO GIRLS GIRLS", venue:"ステラボール" },
-  { id:"2026-08-16-1", date:"2026-08-16", type:"LIVE",  title:"超宴祭！", venue:"Spotify O-WEST／duo／WOMB／SHIBUYA RING" },
-  { id:"2026-08-18-1", date:"2026-08-18", type:"LIVE",  title:"ASOBIEXPO 2026", venue:"TOYOTA ARENA TOKYO" },
-  { id:"2026-08-19-1", date:"2026-08-19", type:"LIVE",  title:"ONE AND ONLY vol.39 SP", venue:"LIQUIDROOM" },
-  { id:"2026-08-21-1", date:"2026-08-21", type:"LIVE",  title:"俺フェス！ Vol.2", venue:"白金高輪SELENE b2" },
-  { id:"2026-08-22-1", date:"2026-08-22", type:"LIVE",  title:"ふぁぼフェス♡", venue:"Zepp Shinjuku" },
-  { id:"2026-08-23-1", date:"2026-08-23", type:"LIVE",  title:"Fruits Showcase Vol.12", venue:"Spotify O-WEST" },
-  { id:"2026-08-25-1", date:"2026-08-25", type:"LIVE",  title:"エンドレスサマー2026", venue:"Spotify O-EAST／O-WEST（他8会場）" },
-  { id:"2026-08-28-1", date:"2026-08-28", type:"LIVE",  title:"HANiKAMi vol.5", venue:"Zepp Shinjuku" },
-  { id:"2026-08-30-1", date:"2026-08-30", type:"LIVE",  title:"@JAM EXPO 2026 supported by UP-T Day2", venue:"横浜アリーナ" },
+  { id:"2026-08-10-1", date:"2026-08-10", type:"LIVE",  title:"NEO KASSEN 2026", venue:"Spotify O-EAST（他全12会場）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/7cf55f12609fcab003f3b5fecfe2adfc.jpeg" },
+  { id:"2026-08-11-1", date:"2026-08-11", type:"LIVE",  title:"STARNOTE★デビュー祭", venue:"神田明神ホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/60f2efa395b19036c59bd2cc758a2fac.jpeg" },
+  { id:"2026-08-15-1", date:"2026-08-15", type:"LIVE",  title:"TOKYO GIRLS GIRLS", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/ee1667abb5b5ee1b77063191c792f451.jpeg" },
+  { id:"2026-08-16-1", date:"2026-08-16", type:"LIVE",  title:"超宴祭！", venue:"Spotify O-WEST／duo／WOMB／SHIBUYA RING", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/349db525185a5a308a32a87fe585c63a.JPG" },
+  { id:"2026-08-18-1", date:"2026-08-18", type:"LIVE",  title:"ASOBIEXPO 2026", venue:"TOYOTA ARENA TOKYO", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/9fa80430714f0cce6b2bcdda79119c78.jpeg" },
+  { id:"2026-08-19-1", date:"2026-08-19", type:"LIVE",  title:"ONE AND ONLY vol.39 SP", venue:"LIQUIDROOM", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/3259a80901773cf39ee77ecfbb2d5967.jpeg" },
+  { id:"2026-08-21-1", date:"2026-08-21", type:"LIVE",  title:"俺フェス！ Vol.2", venue:"白金高輪SELENE b2", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/a1e898f36fa4136f1b52f28308f27ff4.jpeg" },
+  { id:"2026-08-22-1", date:"2026-08-22", type:"LIVE",  title:"ふぁぼフェス♡", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/cb9f0960bbc00eae22fe0f31650b1ecb.jpeg" },
+  { id:"2026-08-23-1", date:"2026-08-23", type:"LIVE",  title:"Fruits Showcase Vol.12", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/4254708b3b179935aa150d39a37271e6.jpeg" },
+  { id:"2026-08-25-1", date:"2026-08-25", type:"LIVE",  title:"エンドレスサマー2026", venue:"Spotify O-EAST／O-WEST（他8会場）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/c5300ae4d18179f5eef35c6d3f357c31.jpeg" },
+  { id:"2026-08-28-1", date:"2026-08-28", type:"LIVE",  title:"HANiKAMi vol.5", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/114f83842c1ff7ea85d3962e9051eb74.jpeg" },
+  { id:"2026-08-30-1", date:"2026-08-30", type:"LIVE",  title:"@JAM EXPO 2026 supported by UP-T Day2", venue:"横浜アリーナ", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/ede6f18665b6e2e0520318b9d4258d60.jpeg" },
 
 
   // ===== 2026-09 =====
-  { id:"2026-09-01-1", date:"2026-09-01", type:"LIVE",  title:"ONE AND ONLY Vol.41 Pickup Edition", venue:"Spotify O-nest" },
+  { id:"2026-09-01-1", date:"2026-09-01", type:"LIVE",  title:"ONE AND ONLY Vol.41 Pickup Edition", venue:"Spotify O-nest", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/0c6501ad2880abacc189a6483a9cb106.jpeg" },
   { id:"2026-09-05-1", date:"2026-09-05", type:"LIVE",  title:"ナナフェス2026 supported by「SUNTORY オールフリー」", venue:"なんばHatch（大阪）" },
-  { id:"2026-09-07-1", date:"2026-09-07", type:"LIVE",  title:"LadySteady supported by BUZZチケ", venue:"Spotify O-EAST" },
-  { id:"2026-09-09-1", date:"2026-09-09", type:"LIVE",  title:"赤レンガスプラッシュ祭-Day2-", venue:"横浜赤レンガ倉庫イベント広場B（横浜）" },
-  { id:"2026-09-10-1", date:"2026-09-10", type:"LIVE",  title:"BEEEEM FES Vol.8 Supported by michellMacaron", venue:"Spotify O-EAST" },
-  { id:"2026-09-12-1", date:"2026-09-12", type:"OTHER", title:"POP UP SHOP BY iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～ 来店イベント", venue:"ラフォーレ原宿5F MAKE THE STAGE" },
-  { id:"2026-09-15-1", date:"2026-09-15", type:"LIVE",  title:"ONE AND ONLY Vol.40", venue:"Veats Shibuya" },
-  { id:"2026-09-16-1", date:"2026-09-16", type:"LIVE",  title:"MARQUEE Fes day2", venue:"渋谷O-EAST" },
-  { id:"2026-09-19-1", date:"2026-09-19", type:"LIVE",  title:"sound stock Vol.16", venue:"Veats Shibuya" },
-  { id:"2026-09-19-2", date:"2026-09-19", type:"LIVE",  title:"log you単独公演『ろぐゆーふぉーゆー 〜 幸せは無限大 〜』", venue:"Veats Shibuya" },
-  { id:"2026-09-20-1", date:"2026-09-20", type:"LIVE",  title:"IDOL RUNWAY COLLECTION 2026 A/W", venue:"横浜アリーナ" },
-  { id:"2026-09-22-1", date:"2026-09-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.10", venue:"Zepp Shinjuku" },
-  { id:"2026-09-26-1", date:"2026-09-26", type:"LIVE",  title:"LadyPOP", venue:"Spotify O-NEST" },
-  { id:"2026-09-28-1", date:"2026-09-28", type:"LIVE",  title:"iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～", venue:"Zepp Shinjuku" },
+  { id:"2026-09-07-1", date:"2026-09-07", type:"LIVE",  title:"LadySteady supported by BUZZチケ", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/eb7cbe79ce9118970ff18cb053ce3733.jpg" },
+  { id:"2026-09-09-1", date:"2026-09-09", type:"LIVE",  title:"赤レンガスプラッシュ祭-Day2-", venue:"横浜赤レンガ倉庫イベント広場B（横浜）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/2d019c989bcf84affd988cd85eaa80c7.jpeg" },
+  { id:"2026-09-10-1", date:"2026-09-10", type:"LIVE",  title:"BEEEEM FES Vol.8 Supported by michellMacaron", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/4d602a20b977b83a601e3059eaf1cfd4.jpeg" },
+  { id:"2026-09-12-1", date:"2026-09-12", type:"OTHER", title:"POP UP SHOP BY iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～ 来店イベント", venue:"ラフォーレ原宿5F MAKE THE STAGE", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/a6647bb2ed86e4f8895a9895771f0209.jpeg" },
+  { id:"2026-09-15-1", date:"2026-09-15", type:"LIVE",  title:"ONE AND ONLY Vol.40", venue:"Veats Shibuya", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/6f4ea6b068d9bb9ec91700683c3ae3fa.jpeg" },
+  { id:"2026-09-16-1", date:"2026-09-16", type:"LIVE",  title:"MARQUEE Fes day2", venue:"渋谷O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/00d917a89fbc79ac8a9a8bf74f0f931d.jpeg" },
+  { id:"2026-09-19-1", date:"2026-09-19", type:"LIVE",  title:"sound stock Vol.16", venue:"Veats Shibuya", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/dfe9f77b13700253175c44a4ca96547e.jpeg" },
+  { id:"2026-09-19-2", date:"2026-09-19", type:"LIVE",  title:"log you単独公演『ろぐゆーふぉーゆー 〜 幸せは無限大 〜』", venue:"Veats Shibuya", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/a774cc27fa2730010a01fd6a97916b5b.jpg" },
+  { id:"2026-09-20-1", date:"2026-09-20", type:"LIVE",  title:"IDOL RUNWAY COLLECTION 2026 A/W", venue:"横浜アリーナ", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/3c8829f5e1cff8e401aa8b0d108ec3a2.jpeg" },
+  { id:"2026-09-22-1", date:"2026-09-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.10", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/a451b6c4720475aef86f3472bc5f3628.jpeg" },
+  { id:"2026-09-26-1", date:"2026-09-26", type:"LIVE",  title:"LadyPOP", venue:"Spotify O-NEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/9363d2e69c4565e47237babbb15a8c36.jpeg" },
+  { id:"2026-09-28-1", date:"2026-09-28", type:"LIVE",  title:"iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/583e1dc605ee946e1b02451831b8c258.jpeg" },
 
 
   // ===== 2026-10 =====
-  { id:"2026-10-03-1", date:"2026-10-03", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）" },
-  { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）" },
+  { id:"2026-10-03-1", date:"2026-10-03", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/8054c5875045a8d220489606e9e1428f.jpeg" },
+  { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/1ee044fceff64d04e60b86556e6dd0e7.jpeg" },
   { id:"2026-10-05-1", date:"2026-10-05", type:"LIVE",  title:"松本玲奈 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-05-2", date:"2026-10-05", type:"OTHER", title:"💜松本玲奈 BIRTHDAY💜", venue:"" },
-  { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）" },
-  { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY" },
+  { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/ced59668ddc07e7526a953408c591750.jpeg" },
+  { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/d6584b21bef40d1f96e0803c2af16dbf.jpeg" },
   { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）" },  // 公式未掲載（要確認）
-  { id:"2026-10-18-1", date:"2026-10-18", type:"LIVE",  title:"きゅあかわ！えぼりゅーしょん！！inアニメイトシアター", venue:"アニメイトシアター" },
+  { id:"2026-10-18-1", date:"2026-10-18", type:"LIVE",  title:"きゅあかわ！えぼりゅーしょん！！inアニメイトシアター", venue:"アニメイトシアター", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/81388c3bcc218bb5c727c8d70768ef64.jpg" },
   { id:"2026-10-24-1", date:"2026-10-24", type:"LIVE",  title:"井出叶 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-24-2", date:"2026-10-24", type:"LIVE",  title:"山下うみ 生誕祭2026", venue:"Spotify O-WEST" },
-  { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール" },
-  { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
+  { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/44a5b4c6cae7e3a6cb52d680e6fffaad.png" },
+  { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/e7087b8dba3e2e5cc7e1ddf99b25a07b.jpg" },
 
 
   // ===== 2026-11 =====
   { id:"2026-11-02-1", date:"2026-11-02", type:"OTHER", title:"💚井出叶 BIRTHDAY💚", venue:"" },
   { id:"2026-11-05-1", date:"2026-11-05", type:"OTHER", title:"🧡山下うみ BIRTHDAY🧡", venue:"" },
   { id:"2026-11-19-1", date:"2026-11-19", type:"OTHER", title:"🩵竹内月音 BIRTHDAY🩵", venue:"" },
-  { id:"2026-11-20-1", date:"2026-11-20", type:"LIVE",  title:"log you 1st ANNIVERSARY LIVE 〜 Beyond the log 〜", venue:"Zepp Shinjuku" },
+  { id:"2026-11-20-1", date:"2026-11-20", type:"LIVE",  title:"log you 1st ANNIVERSARY LIVE 〜 Beyond the log 〜", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/672769f0eebc35ee0a0221948dcfe285.jpg" },
   { id:"2026-11-20-2", date:"2026-11-20", type:"OTHER", title:"❤️久保怜音 BIRTHDAY❤️", venue:"" },
-  { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）" },
+  { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/600ab7aff2f9cef80673076041207751.jpg" },
   { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）" },
   { id:"2026-11-29-1", date:"2026-11-29", type:"LIVE",  title:"久保怜音 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-11-29-2", date:"2026-11-29", type:"LIVE",  title:"竹内月音 生誕祭2026", venue:"Spotify O-WEST" },

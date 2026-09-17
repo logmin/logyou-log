@@ -1,7 +1,7 @@
 // 参戦ログ - Service Worker
 // network-first: オンライン時は常に最新を取得し、オフライン時のみキャッシュを使う
 // グループを増やしたら ASSETS に groups/<id>/ の3ファイルを足して CACHE を上げる
-const CACHE = 'live-log-v26';
+const CACHE = 'live-log-v27';
 const ASSETS = [
   './',
   './index.html',
@@ -29,6 +29,9 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  // 別オリジン（公式フライヤー画像のCDN等）はSWを通さずブラウザに任せる。
+  // 通すとオフライン時に index.html が画像として返り、壊れた画像になるため。
+  if (new URL(e.request.url).origin !== self.location.origin) return;
   e.respondWith(
     fetch(e.request)
       .then(res => {
