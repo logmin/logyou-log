@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-09-13";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-09-28";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -190,22 +190,25 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-09-20-1", date:"2026-09-20", type:"LIVE",  title:"IDOL RUNWAY COLLECTION 2026 A/W", venue:"横浜アリーナ", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/3c8829f5e1cff8e401aa8b0d108ec3a2.jpeg" },
   { id:"2026-09-22-1", date:"2026-09-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.10", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/a451b6c4720475aef86f3472bc5f3628.jpeg" },
   { id:"2026-09-26-1", date:"2026-09-26", type:"LIVE",  title:"LadyPOP", venue:"Spotify O-NEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/9363d2e69c4565e47237babbb15a8c36.jpeg" },
+  { id:"2026-09-26-2", date:"2026-09-26", type:"TV",    title:"わっきゃいのゴールデンかまし魂- CHARITY TELEVISION-", venue:"", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/information/1955/6f6b9ea890ca70a02b8a7c6cdaeb0bc1.jpeg" },
   { id:"2026-09-28-1", date:"2026-09-28", type:"LIVE",  title:"iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/583e1dc605ee946e1b02451831b8c258.jpeg" },
 
 
   // ===== 2026-10 =====
   { id:"2026-10-03-1", date:"2026-10-03", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/8054c5875045a8d220489606e9e1428f.jpeg" },
   { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/1ee044fceff64d04e60b86556e6dd0e7.jpeg" },
-  { id:"2026-10-05-1", date:"2026-10-05", type:"LIVE",  title:"松本玲奈 生誕祭2026", venue:"Spotify O-WEST" },
+  { id:"2026-10-05-1", date:"2026-10-05", type:"LIVE",  title:"松本玲奈 生誕祭2026", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/97c9f25c561a582c5fb2e2a45af728f4.jpeg" },
   { id:"2026-10-05-2", date:"2026-10-05", type:"OTHER", title:"💜松本玲奈 BIRTHDAY💜", venue:"" },
   { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/ced59668ddc07e7526a953408c591750.jpeg" },
   { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/d6584b21bef40d1f96e0803c2af16dbf.jpeg" },
-  { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）" },  // 公式未掲載（要確認）
+  { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/f78b097a8e31c5b22d1ebc72e82ebbf0.png" },
+  { id:"2026-10-16-1", date:"2026-10-16", type:"LIVE",  title:"うるトラすフェスタSP", venue:"豊洲PIT", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/b26010f7ca99ec338603d8434f010e77.png" },
   { id:"2026-10-18-1", date:"2026-10-18", type:"LIVE",  title:"きゅあかわ！えぼりゅーしょん！！inアニメイトシアター", venue:"アニメイトシアター", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/81388c3bcc218bb5c727c8d70768ef64.jpg" },
   { id:"2026-10-24-1", date:"2026-10-24", type:"LIVE",  title:"井出叶 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-24-2", date:"2026-10-24", type:"LIVE",  title:"山下うみ 生誕祭2026", venue:"Spotify O-WEST" },
   { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/44a5b4c6cae7e3a6cb52d680e6fffaad.png" },
   { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/e7087b8dba3e2e5cc7e1ddf99b25a07b.jpg" },
+  { id:"2026-10-31-1", date:"2026-10-31", type:"LIVE",  title:"PEAK SPOT JOIN Vol.11", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/024c5a88c0a15f27ff93dc16d067bf71.jpeg" },
 
 
   // ===== 2026-11 =====
