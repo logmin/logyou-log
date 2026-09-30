@@ -5,7 +5,7 @@
          両版のカップリングをすべて収録している。
          ライブ限定曲・未音源化曲は含まれない（入力すれば候補に自動学習される）。
 */
-window.TOITOITOI_SONGS_UPDATED = "2026-08-27";
+window.TOITOITOI_SONGS_UPDATED = "2026-09-30";
 window.TOITOITOI_SONGS = [
   { title:"Toi Toi Toi",                    release:"2025-10-22", kind:"single" },
   { title:"涙のストーリーテラー",              release:"2025-10-22", kind:"coupling" },
@@ -21,5 +21,6 @@ window.TOITOITOI_SONGS = [
   { title:"咲いてなくたって",                 release:"2026-04-10", kind:"digital" },
   { title:"モノクロノスタシス",                release:"2026-06-14", kind:"digital" },
   { title:"えくぼにトイッ！",                 release:"2026-06-28", kind:"digital" },
-  { title:"さまびばとい！",                   release:"2026-07-11", kind:"digital" }
+  { title:"さまびばとい！",                   release:"2026-07-11", kind:"digital" },
+  { title:"終わらないtreasure",               release:"2026-09-27", kind:"digital" }
 ];

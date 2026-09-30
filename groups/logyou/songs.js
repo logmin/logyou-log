@@ -5,7 +5,7 @@
          詳細ページ本文の「Coupling with」記載から抽出している。
          ライブ限定曲・未音源化曲は含まれない（入力すれば候補に自動学習される）。
 */
-window.LOGYOU_SONGS_UPDATED = "2026-08-17";
+window.LOGYOU_SONGS_UPDATED = "2026-09-30";
 window.LOGYOU_SONGS = [
   { title:"Beyond the Dream",      release:"2025-11-14", kind:"single" },
   { title:"あんぐりーガール",        release:"2025-12-05", kind:"single" },
@@ -17,5 +17,7 @@ window.LOGYOU_SONGS = [
   { title:"LET’S GO TO THE TOP",   release:"2026-04-05", kind:"coupling" },
   { title:"青春のベールをまとって",   release:"2026-06-11", kind:"single" },
   { title:"ナツコイ",               release:"2026-06-26", kind:"single" },
-  { title:"推しサマDAYS",           release:"2026-07-20", kind:"single" }
+  { title:"推しサマDAYS",           release:"2026-07-20", kind:"single" },
+  { title:"大天才フェスティバル",     release:"2026-08-23", kind:"single" },
+  { title:"幸福論",                release:"2026-09-14", kind:"single" }
 ];
