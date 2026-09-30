@@ -69,7 +69,8 @@
   .cell .dnum{font-weight:700; color:var(--muted); font-size:14px}
   .cell.has .dnum{color:var(--text)}
   .cell .dnum.sun{color:var(--danger)}
-  .cell.today .dnum.sun{color:#fff}
+  .cell .dnum.sat{color:var(--plan)}
+  .cell.today .dnum.sun, .cell.today .dnum.sat{color:#fff}
   .cell .dots{display:flex; gap:3px; margin-top:auto; margin-bottom:2px; flex-wrap:wrap; justify-content:center; max-width:100%}
   .dot{width:8px; height:8px; border-radius:50%; border:1.5px solid var(--muted)}
   .dot.went{background:var(--accent); border-color:var(--accent)}
@@ -82,6 +83,9 @@
   .agenda-head{display:flex; align-items:baseline; gap:8px; margin:0 2px 10px; padding-top:14px; border-top:1px solid var(--border)}
   .agenda-head .ad{font-size:17px; font-weight:800}
   .agenda-head .aw{font-size:13px; color:var(--muted)}
+  .agenda-head .aw.sun, .agenda-head .ah{color:var(--danger)}
+  .agenda-head .aw.sat{color:var(--plan)}
+  .agenda-head .ah{font-size:12px; font-weight:700}
   .agenda-head .ac{margin-left:auto; font-size:12px; color:var(--muted); font-weight:700}
   .agenda-empty{text-align:center; color:var(--muted); padding:18px 10px; font-size:14px}
   .cal-legend{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:12px 0 0; font-size:11px; color:var(--muted)}
@@ -217,6 +221,9 @@
   .encore-row .del{background:none;border:0;color:var(--danger);font-size:18px;cursor:pointer}
   .mini-btns{display:flex; gap:8px; margin-top:6px}
   .mini-btn{flex:1; border:1px dashed var(--border); background:var(--surface); color:var(--muted); border-radius:10px; padding:9px; font-size:13px; font-weight:700; cursor:pointer;}
+  .mini-btn.primary{border-style:solid; border-color:var(--accent); background:var(--accent); color:#fff}
+  .paste-box{margin-top:8px}
+  .paste-box[hidden]{display:none}
   .photo-grid{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
   .photo-item{position:relative; width:78px; height:78px; border-radius:10px; overflow:hidden; border:1px solid var(--border)}
   .photo-item img{width:100%; height:100%; object-fit:cover}
@@ -447,6 +454,14 @@
       <button class="mini-btn" id="addSong">＋ 曲を追加</button>
       <button class="mini-btn" id="addEncore">＋ アンコール区切り</button>
     </div>
+    <div class="mini-btns"><button class="mini-btn" id="pasteSet">📋 テキストから貼り付け</button></div>
+    <div class="paste-box" id="pasteBox" hidden>
+      <textarea id="pasteText" rows="7" placeholder="公式のセトリ投稿をコピーしてここに貼り付け&#10;例）&#10;1. 曲名A&#10;2. 曲名B&#10;EN&#10;3. 曲名C"></textarea>
+      <div class="mini-btns">
+        <button class="mini-btn" id="pasteCancel">やめる</button>
+        <button class="mini-btn primary" id="pasteApply">取り込む</button>
+      </div>
+    </div>
     <label>チェキ枚数 <span id="chekiSum" class="cheki-sum"></span></label>
     <div class="cheki-types" id="chekiTypes"></div>
     <div class="cheki-grid" id="chekiGrid"></div>
@@ -597,6 +612,34 @@ function monthPrefix(){ return `${calY}-${String(calM+1).padStart(2,'0')}`; }
 function shiftMonth(d){ calM+=d; if(calM<0){calM=11;calY--;} if(calM>11){calM=0;calY++;} refresh(); }
 function setMonthLabels(){ $('#calLabel').textContent=$('#listLabel').textContent=`${calY}年 ${calM+1}月`; }
 
+/* ---- 日本の祝日（祝日法に基づいて計算。外部APIに頼らずオフラインでも動く） ---- */
+function nthMonday(y,m,n){ const w=new Date(y,m-1,1).getDay(); return 1+((8-w)%7)+(n-1)*7; }
+function baseHoliday(dt){
+  const y=dt.getFullYear(), m=dt.getMonth()+1, d=dt.getDate(), k=y-1980;
+  const spring=Math.floor(20.8431+0.242194*k-Math.floor(k/4));
+  const autumn=Math.floor(23.2488+0.242194*k-Math.floor(k/4));
+  const fixed={'1-1':'元日','2-11':'建国記念の日','2-23':'天皇誕生日','4-29':'昭和の日','5-3':'憲法記念日',
+    '5-4':'みどりの日','5-5':'こどもの日','8-11':'山の日','11-3':'文化の日','11-23':'勤労感謝の日'};
+  if(fixed[`${m}-${d}`]) return fixed[`${m}-${d}`];
+  if(m===1&&d===nthMonday(y,1,2)) return '成人の日';
+  if(m===3&&d===spring) return '春分の日';
+  if(m===7&&d===nthMonday(y,7,3)) return '海の日';
+  if(m===9&&d===nthMonday(y,9,3)) return '敬老の日';
+  if(m===9&&d===autumn) return '秋分の日';
+  if(m===10&&d===nthMonday(y,10,2)) return 'スポーツの日';
+  return '';
+}
+function jpHoliday(dt){
+  const h=baseHoliday(dt); if(h) return h;
+  const shift=n=>new Date(dt.getFullYear(),dt.getMonth(),dt.getDate()+n);
+  // 振替休日: 日曜の祝日から連続する祝日の翌日
+  for(let n=1;;n++){ const p=shift(-n); if(!baseHoliday(p)) break; if(p.getDay()===0) return '振替休日'; }
+  // 国民の休日: 祝日に挟まれた平日（例: 敬老の日と秋分の日の間）
+  if(dt.getDay()!==0 && baseHoliday(shift(-1)) && baseHoliday(shift(1))) return '国民の休日';
+  return '';
+}
+function dayClass(dow,hol){ return (dow===0||hol)?'sun':dow===6?'sat':''; }
+
 /* ---- calendar ---- */
 function renderCalendar(){
   const first=new Date(calY,calM,1), startW=first.getDay();
@@ -633,10 +676,11 @@ function renderCalendar(){
   for(let day=1;day<=daysIn;day++){
     const evs=byDay[day]||[];
     const dow=new Date(calY,calM,day).getDay();
+    const hol=jpHoliday(new Date(calY,calM,day));
     const dots=evs.slice(0,4).map(e=>`<span class="dot ${e.type==='LIVE'?(attendOf(e.id)||'none'):'info'}"></span>`).join('');
     const cls=`${evs.length?'has':''} ${thisM&&t.getDate()===day?'today':''} ${day===selDay?'sel':''}`;
-    html+=`<div class="cell ${cls}" data-day="${day}">
-      <span class="dnum ${dow===0?'sun':''}">${day}</span><div class="dots">${dots}</div></div>`;
+    html+=`<div class="cell ${cls}" data-day="${day}"${hol?` title="${hol}"`:''}>
+      <span class="dnum ${dayClass(dow,hol)}">${day}</span><div class="dots">${dots}</div></div>`;
   }
   const g=$('#calGrid'); g.innerHTML=html;
   g.querySelectorAll('.cell[data-day]').forEach(c=>c.addEventListener('click',()=>{
@@ -650,7 +694,8 @@ function renderAgenda(){
   if(!iso){ a.innerHTML=''; return; }
   const d=new Date(iso+'T00:00:00');
   const evs=visibleEvents().filter(e=>e.date===iso).sort((x,y)=>x.id>y.id?1:-1);
-  let html=`<div class="agenda-head"><span class="ad">${d.getMonth()+1}月${d.getDate()}日</span><span class="aw">(${WD[d.getDay()]})</span><span class="ac">${evs.length?evs.length+'件':''}</span></div>`;
+  const hol=jpHoliday(d);
+  let html=`<div class="agenda-head"><span class="ad">${d.getMonth()+1}月${d.getDate()}日</span><span class="aw ${dayClass(d.getDay(),hol)}">(${WD[d.getDay()]})</span>${hol?`<span class="ah">${hol}</span>`:''}<span class="ac">${evs.length?evs.length+'件':''}</span></div>`;
   html += evs.length ? evs.map(evRow).join('') : `<div class="agenda-empty">この日の予定はありません</div>`;
   html += `<button class="btn-ghost" id="agendaAdd" style="margin-top:4px">＋ この日に予定を手動追加</button>`;
   a.innerHTML=html;
@@ -834,6 +879,36 @@ function songOptions(){
 function encoreRowEl(){ const d=document.createElement('div'); d.className='encore-row'; d.dataset.type='encore'; d.innerHTML=`<span class="line"></span><span class="lbl">ENCORE</span><span class="line"></span><button class="del">×</button>`; d.querySelector('.del').addEventListener('click',()=>{d.remove();renumber();}); return d; }
 function renumber(){ let n=0; $('#setlistEditor').querySelectorAll('.song-row,.encore-row').forEach(r=>{ if(r.dataset.type!=='encore'){ n++; r.querySelector('.num').textContent=n; } }); }
 function readSetlist(){ const out=[]; $('#setlistEditor').querySelectorAll('.song-row,.encore-row').forEach(r=>{ if(r.dataset.type==='encore') out.push({type:'encore'}); else { const sel=r.querySelector('.pick'); const v=sel.value==='__free__'?r.querySelector('.freetext').value:sel.value; const it={type:'song',name:(v||'').trim()}; if(r.querySelector('.len-seg button[data-len=half]').classList.contains('on')) it.half=true; out.push(it); } }); while(out.length&&out[out.length-1].type==='song'&&!out[out.length-1].name) out.pop(); return out; }
+/* 公式のセトリ投稿（Xなど）のテキストを setlist 配列に変換する。
+   番号・記号・ハッシュタグ・URL・見出し行を落とし、EN/アンコール行を区切りにする。
+   曲名は曲マスタ・過去の入力と表記揺れ込みで照合し、一致すれば正式表記に揃える */
+function parseSetlistText(text){
+  const opts=songOptions(), byKey=new Map(opts.map(o=>[normSong(o),o]));
+  const ENC=/^(?:en(?:core)?|アンコール)\s*\d*$/i;
+  const out=[]; let unknown=0;
+  for(let line of (text||'').split(/\r?\n/)){
+    line=line.trim().replace(/^[①-⑳⓪❶-❿]\s*/,'').normalize('NFKC').trim();  /* ①② は NFKC で数字化される前に落とす */
+    if(!line || /^#|https?:\/\//.test(line)) continue;
+    if(/セットリスト|セトリ|set\s*list/i.test(line)) continue;            /* 見出し */
+    if(/^\d{1,4}[.\/]\d{1,2}([.\/]\d{1,2})?/.test(line)) continue;       /* 日付行 */
+    line=line.replace(/^[\s\-–—=_*•●○◆◇■□▶▷►♪♫・\u{1F300}-\u{1FAFF}☀-➿️【\[〈<]+/u,'').replace(/[】\]〉>\s]+$/,'');
+    const encHead=line.match(/^(?:en(?:core)?|アンコール)\s*\d*\s*[.:)\-]?\s*/i);
+    if(ENC.test(line.replace(/[.:)\-]/g,'').trim())){ if(out.length&&out[out.length-1].type!=='encore') out.push({type:'encore'}); continue; }
+    if(encHead && encHead[0].length<line.length && /^(?:en|アンコール)/i.test(line)){
+      if(!out.some(s=>s.type==='encore')) out.push({type:'encore'});
+      line=line.slice(encHead[0].length);
+    }
+    line=line.replace(/^m?\s*\d{1,2}\s*[.:)\-、]?\s+|^m?\d{1,2}[.:)\-、]\s*/i,'').trim();
+    if(!line || /^(mc|se|overture)$/i.test(line)) continue;
+    let half=false;
+    line=line.replace(/[(（]?\s*(ワンハーフ|1\s*half|one\s*half|short|½)\s*[)）]?/ig,()=>{ half=true; return ''; }).trim();
+    if(!line) continue;
+    const hit=byKey.get(normSong(line)); if(!hit) unknown++;
+    const it={type:'song',name:hit||line}; if(half) it.half=true; out.push(it);
+  }
+  while(out.length&&out[out.length-1].type==='encore') out.pop();
+  return {items:out, unknown};
+}
 function fillSetlist(items){ const ed=$('#setlistEditor'); ed.innerHTML=''; (items||[]).forEach(s=>ed.appendChild(s.type==='encore'?encoreRowEl():songRowEl(s.name,!!s.half))); if(!ed.children.length){ ed.appendChild(songRowEl()); ed.appendChild(songRowEl()); } renumber(); }
 
 /* ---- photos ---- */
@@ -1329,6 +1404,16 @@ $('#saveBtn').addEventListener('click',saveEdit);
 $('#cancelBtn').addEventListener('click',()=>closeSheet('#editSheet'));
 $('#addSong').addEventListener('click',()=>{ $('#setlistEditor').appendChild(songRowEl()); renumber(); });
 $('#addEncore').addEventListener('click',()=>{ $('#setlistEditor').appendChild(encoreRowEl()); renumber(); });
+$('#pasteSet').addEventListener('click',()=>{ const b=$('#pasteBox'); b.hidden=!b.hidden; if(!b.hidden) $('#pasteText').focus(); });
+$('#pasteCancel').addEventListener('click',()=>{ $('#pasteText').value=''; $('#pasteBox').hidden=true; });
+$('#pasteApply').addEventListener('click',()=>{
+  const {items,unknown}=parseSetlistText($('#pasteText').value);
+  const songs=items.filter(s=>s.type==='song').length;
+  if(!songs){ toast('曲名が見つかりませんでした'); return; }
+  if(readSetlist().some(s=>s.type==='song'&&s.name) && !confirm('今のセトリを貼り付けた内容で置き換えますか？')) return;
+  fillSetlist(items); $('#pasteText').value=''; $('#pasteBox').hidden=true;
+  toast(`${songs}曲を取り込みました`+(unknown?`（うち${unknown}曲は未登録の曲名→自由入力）`:''));
+});
 $('#starInput').querySelectorAll('.s').forEach(s=>s.addEventListener('click',()=>{ const n=+s.dataset.n; setStars(edit.rating===n?0:n); }));
 $('#photoInput').addEventListener('change',e=>{ handlePhotos(e.target.files); e.target.value=''; });
 document.querySelectorAll('.sheet-backdrop').forEach(bd=>bd.addEventListener('click',e=>{ if(e.target===bd) closeSheet('#'+bd.id); }));
