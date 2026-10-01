@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-09-30";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-10-01";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -201,6 +201,7 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-10-05-2", date:"2026-10-05", type:"OTHER", title:"💜松本玲奈 BIRTHDAY💜", venue:"" },
   { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/ced59668ddc07e7526a953408c591750.jpeg" },
   { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/d6584b21bef40d1f96e0803c2af16dbf.jpeg" },
+  { id:"2026-10-10-2", date:"2026-10-10", type:"LIVE",  title:"LadySteady×WEGO", venue:"イオンレイクタウン店（KAZE内）（埼玉）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/e891df4ddac7336d68e0c7cdc4cc17af.png" },
   { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/f78b097a8e31c5b22d1ebc72e82ebbf0.png" },
   { id:"2026-10-16-1", date:"2026-10-16", type:"LIVE",  title:"うるトラすフェスタSP", venue:"豊洲PIT", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/b26010f7ca99ec338603d8434f010e77.png" },
   { id:"2026-10-18-1", date:"2026-10-18", type:"LIVE",  title:"きゅあかわ！えぼりゅーしょん！！inアニメイトシアター", venue:"アニメイトシアター", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/81388c3bcc218bb5c727c8d70768ef64.jpg" },
@@ -225,5 +226,9 @@ window.LOGYOU_SCHEDULE = [
 
 
   // ===== 2027-02 =====
-  { id:"2027-02-12-1", date:"2027-02-12", type:"OTHER", title:"🩷小浜菜摘 BIRTHDAY🩷", venue:"" }
+  { id:"2027-02-12-1", date:"2027-02-12", type:"OTHER", title:"🩷小浜菜摘 BIRTHDAY🩷", venue:"" },
+
+
+  // ===== 2027-04 =====
+  { id:"2027-04-26-1", date:"2027-04-26", type:"OTHER", title:"💛福本れみ BIRTHDAY💛", venue:"" }
 ];
