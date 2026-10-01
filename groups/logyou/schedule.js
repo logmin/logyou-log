@@ -13,6 +13,7 @@ window.LOGYOU_SCHEDULE_UPDATED = "2026-10-01";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
+  { id:"2025-11-15-2", date:"2025-11-15", type:"LIVE",  title:"sound stock Vol.5", venue:"恵比寿LIQUIDROOM" },  // 公式未掲載（本人確認済み）
 
   { id:"2025-11-18-1", date:"2025-11-18", type:"LIVE",   title:"MARQUEE Fes. Day2", venue:"Spotify O-EAST" },  // 公式未掲載（要確認）
   { id:"2025-11-24-1", date:"2025-11-24", type:"LIVE",   title:"マスカレイド・アイドル vol.14", venue:"神田スクエアホール" },  // 公式未掲載（要確認）
@@ -81,6 +82,7 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-03-16-1", date:"2026-03-16", type:"LIVE",   title:"sound stock Vol.8 × iCON DOLL LOUNGE 2026", venue:"Spotify O-EAST" },  // 公式未掲載（要確認）
   { id:"2026-03-21-1", date:"2026-03-21", type:"LIVE",  title:"BEEEEM FES Vol.2", venue:"BLAZE GOTANDA" },
   { id:"2026-03-22-1", date:"2026-03-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.6 -東名阪 PEAK SPOT TOUR- 東京公演", venue:"池袋harevutai" },
+  { id:"2026-03-22-2", date:"2026-03-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.7 -東京公演-", venue:"池袋harevutai" },  // 公式未掲載（本人確認済み）
   { id:"2026-03-26-1", date:"2026-03-26", type:"LIVE",  title:"MARQUEE祭 Vol.172", venue:"Spotify O-WEST" },
   { id:"2026-03-29-1", date:"2026-03-29", type:"LIVE",  title:"sound stock Vol.9", venue:"BLAZE GOTANDA" },
   { id:"2026-03-31-1", date:"2026-03-31", type:"LIVE",  title:"LadySteady Premium 1周年SP", venue:"EX THEATER ROPPONGI" },
