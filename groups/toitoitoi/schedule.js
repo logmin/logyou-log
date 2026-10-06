@@ -10,7 +10,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-09-29";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-05";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -287,7 +287,7 @@ window.TOITOITOI_SCHEDULE = [
   // ===== 2026-11 =====
   { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
   { id:"2026-11-15-1", date:"2026-11-15", type:"LIVE",  title:"Toi Toi Toi 主催単独ライブ", venue:"スタァライト劇場（旧飛行船シアター）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/7bea7b9a57722bc11936f2755ea31f1f.png" },
-  { id:"2026-11-16-1", date:"2026-11-16", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-11-16-1", date:"2026-11-16", type:"LIVE",  title:"MARQUEE Fes.-day1-", venue:"Spotify O-EAST" },  // 公式未掲載（本人確認済み）
   { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/5fce2c1f6d729c238fc7207174d88484.png" },
   { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/92296dee1aba84f2c98f570799ec4fa5.png" },
 
