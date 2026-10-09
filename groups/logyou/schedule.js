@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-10-05";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-10-09";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -211,7 +211,7 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-10-22-1", date:"2026-10-22", type:"OTHER", title:"アイふた vol.79", venue:"", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/information/1955/743ef0eb66c053cef791fac430c9a5ac.jpeg" },
   { id:"2026-10-24-1", date:"2026-10-24", type:"LIVE",  title:"井出叶 生誕祭2026", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/5ab29ca18a07a3b8e5494eaf62147e72.jpg" },
   { id:"2026-10-24-2", date:"2026-10-24", type:"LIVE",  title:"山下うみ 生誕祭2026", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/7be78d807fdb5ab3666e29aa485712c3.jpg" },
-  { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/44a5b4c6cae7e3a6cb52d680e6fffaad.png" },
+  { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/fbacc8f73e71bb0e0171f78267428cac.png" },
   { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/e7087b8dba3e2e5cc7e1ddf99b25a07b.jpg" },
   { id:"2026-10-31-1", date:"2026-10-31", type:"LIVE",  title:"PEAK SPOT JOIN Vol.11", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/024c5a88c0a15f27ff93dc16d067bf71.jpeg" },
 
