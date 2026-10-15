@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-10-13";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-10-15";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -217,6 +217,7 @@ window.LOGYOU_SCHEDULE = [
 
 
   // ===== 2026-11 =====
+  { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"千葉開府900年記念 千葉日報アイドルフェス", venue:"千葉県文化会館 大ホール（千葉）" },
   { id:"2026-11-02-1", date:"2026-11-02", type:"OTHER", title:"💚井出叶 BIRTHDAY💚", venue:"" },
   { id:"2026-11-05-1", date:"2026-11-05", type:"OTHER", title:"🧡山下うみ BIRTHDAY🧡", venue:"" },
   { id:"2026-11-17-1", date:"2026-11-17", type:"LIVE",  title:"MARQUEE Fes.-day2-", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/33f22bd1ce019df905cc5baa7b70c497.jpg" },
