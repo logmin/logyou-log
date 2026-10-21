@@ -10,7 +10,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-08";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-21";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -286,7 +286,7 @@ window.TOITOITOI_SCHEDULE = [
 
   // ===== 2026-11 =====
   { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
-  { id:"2026-11-03-1", date:"2026-11-03", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-11-03-1", date:"2026-11-03", type:"LIVE",  title:"sound stock Vol.20", venue:"Spotify O-nest", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/f81eea602da6b1bb4ddac6de671f03ac.png" },
   { id:"2026-11-15-1", date:"2026-11-15", type:"LIVE",  title:"Toi Toi Toi 主催単独ライブ", venue:"スタァライト劇場（旧飛行船シアター）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/7bea7b9a57722bc11936f2755ea31f1f.png" },
   { id:"2026-11-16-1", date:"2026-11-16", type:"LIVE",  title:"MARQUEE Fes.-day1-", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/394d55f6a8b5ca32133078067752eb63.jpg" },
   { id:"2026-11-17-1", date:"2026-11-17", type:"LIVE",  title:"対バン出演予定", venue:"" },
@@ -295,7 +295,7 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/92296dee1aba84f2c98f570799ec4fa5.png" },
 
   // ===== 2026-12 =====
-  { id:"2026-12-02-1", date:"2026-12-02", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-12-02-1", date:"2026-12-02", type:"LIVE",  title:"MARQUEE祭 Vol.185", venue:"duo MUSIC EXCHANGE", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/9e959a6cc88307ea95f623a75dfd3a04.png" },
   { id:"2026-12-07-1", date:"2026-12-07", type:"LIVE",  title:"対バン予定", venue:"" },
   { id:"2026-12-16-1", date:"2026-12-16", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 大阪公演", venue:"Yogibo META VALLEY（大阪）" },
   { id:"2026-12-17-1", date:"2026-12-17", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 名古屋公演", venue:"ell.FITS ALL（愛知）" },
