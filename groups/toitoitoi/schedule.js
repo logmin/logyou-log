@@ -286,11 +286,12 @@ window.TOITOITOI_SCHEDULE = [
 
   // ===== 2026-11 =====
   { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
+  { id:"2026-11-01-2", date:"2026-11-01", type:"LIVE",  title:"東洋大学 第62回白山祭 特別企画TOYO IDOL FESTIVAL", venue:"東洋大学白山キャンパス 2号館16階スカイホール" },
   { id:"2026-11-03-1", date:"2026-11-03", type:"LIVE",  title:"sound stock Vol.20", venue:"Spotify O-nest", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/f81eea602da6b1bb4ddac6de671f03ac.png" },
   { id:"2026-11-15-1", date:"2026-11-15", type:"LIVE",  title:"Toi Toi Toi 主催単独ライブ", venue:"スタァライト劇場（旧飛行船シアター）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/7bea7b9a57722bc11936f2755ea31f1f.png" },
   { id:"2026-11-16-1", date:"2026-11-16", type:"LIVE",  title:"MARQUEE Fes.-day1-", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/394d55f6a8b5ca32133078067752eb63.jpg" },
   { id:"2026-11-17-1", date:"2026-11-17", type:"LIVE",  title:"対バン出演予定", venue:"" },
-  { id:"2026-11-21-1", date:"2026-11-21", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-11-21-1", date:"2026-11-21", type:"LIVE",  title:"対バン出演予定", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/1b07d5b5991b29dad45c7253d14114ff.png" },
   { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/5fce2c1f6d729c238fc7207174d88484.png" },
   { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/92296dee1aba84f2c98f570799ec4fa5.png" },
 
