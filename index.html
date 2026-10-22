@@ -310,6 +310,7 @@
   /* ===== チケット（申込期間・当落・受け渡しと精算） ===== */
   input[type=datetime-local]{min-height:48px; -webkit-appearance:none; appearance:none}
   .bn-item{position:relative}
+  .bn-item.bn-sep::before{content:""; position:absolute; left:0; top:12px; bottom:12px; width:1px; background:var(--border)}
   .bn-badge{position:absolute; top:3px; left:50%; margin-left:5px; min-width:17px; height:17px; padding:0 5px; border-radius:9px;
     background:var(--danger); color:#fff; font-size:10px; font-style:normal; font-weight:800; line-height:17px; text-align:center}
   .bn-badge[hidden]{display:none}
@@ -461,9 +462,10 @@
 
 <nav class="bottom-nav" id="bottomNav">
   <button class="bn-item active" data-view="home"><span class="ic">🏠</span><span class="lb">ホーム</span></button>
-  <button class="bn-item" data-view="tickets"><span class="ic">🎫</span><span class="lb">チケット</span><i class="bn-badge" id="tkBadge" hidden></i></button>
   <button class="bn-item" data-view="songs"><span class="ic">🎵</span><span class="lb">曲</span></button>
   <button class="bn-item" data-view="cheki"><span class="ic">📸</span><span class="lb">チェキ</span></button>
+  <!-- チケットは「記録を振り返る」曲・チェキとは性格が違う（これからの段取り）ので、右端に区切って置く -->
+  <button class="bn-item bn-sep" data-view="tickets"><span class="ic">🎫</span><span class="lb">チケット</span><i class="bn-badge" id="tkBadge" hidden></i></button>
 </nav>
 
 <button class="fab" id="addBtn" aria-label="予定を追加">+</button>
@@ -1784,7 +1786,7 @@ function importData(file){
 function openSheet(s){ $(s).classList.add('open'); document.body.style.overflow='hidden'; }
 function closeSheet(s){ const bd=$(s); bd.classList.remove('open'); const sh=bd.querySelector('.sheet'); if(sh){ sh.style.transition=''; sh.style.transform=''; } document.body.style.overflow=''; }
 function refresh(){ setMonthLabels(); updateStats(); renderCalendar(); renderList(); renderTickets(); renderSongs(); renderCheki(); renderBackupNotice(); }
-/* 下部ナビ: ホーム / チケット / 曲 / チェキ。カレンダーとリストはホームの中の切替 */
+/* 下部ナビ: ホーム / 曲 / チェキ ｜ チケット。カレンダーとリストはホームの中の切替 */
 let curView='home', curSub='cal';
 function switchView(v){
   curView=v;
