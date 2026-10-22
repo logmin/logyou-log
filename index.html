@@ -138,7 +138,7 @@
   .sheet .grip{width:40px; height:5px; background:var(--border); border-radius:3px; margin:8px auto 14px}
   .sheet h2{margin:0 0 4px; font-size:20px; font-weight:800}
   label{display:block; font-size:13px; font-weight:700; color:var(--muted); margin:14px 0 6px}
-  input[type=text],input[type=date],textarea,select{width:100%; border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:12px; padding:12px 14px; font-size:16px; font-family:inherit; outline:none;}
+  input[type=text],input[type=date],input[type=number],input[type=datetime-local],textarea,select{width:100%; border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:12px; padding:12px 14px; font-size:16px; font-family:inherit; outline:none;}
   input:focus,textarea:focus{border-color:var(--accent)}
   textarea{resize:vertical; min-height:70px}
   .segmented{display:flex; gap:6px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:4px}
@@ -158,9 +158,9 @@
   .song-row .freetext{flex:0 0 100%; margin-left:34px; width:auto}
   .song-row .freetext[hidden]{display:none}
   /* 尺の切替（定常 / ワンハーフ）— 曲ごとに選ぶ */
-  .song-row .len-seg{display:flex; flex:0 0 auto; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--surface)}
-  .song-row .len-seg button{border:0; background:transparent; color:var(--muted); font-family:inherit; font-size:12px; font-weight:800; line-height:1; padding:13px 7px; cursor:pointer}
-  .song-row .len-seg button.on{background:var(--accent2); color:#fff}
+  .song-row .len-seg,.deal-row .len-seg{display:flex; flex:0 0 auto; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--surface)}
+  .song-row .len-seg button,.deal-row .len-seg button{border:0; background:transparent; color:var(--muted); font-family:inherit; font-size:12px; font-weight:800; line-height:1; padding:13px 7px; cursor:pointer}
+  .song-row .len-seg button.on,.deal-row .len-seg button.on{background:var(--accent2); color:#fff}
   .setlist-hint{color:var(--muted); font-size:11px; margin:-2px 0 8px 34px}
   .no-set{color:var(--muted); font-size:13px; margin:0 0 4px}
   /* チェキ入力（メンバー別ステッパー） */
@@ -307,6 +307,58 @@
   .dw-foot{padding:16px 18px 0; font-size:10.5px; color:var(--muted); line-height:1.7}
   /* 画面幅にかかわらず、三本線を押したときだけ出るオーバーレイに統一している。
      常設サイドバーにはしない（狭い画面と挙動が変わって迷うため） */
+  /* ===== チケット（申込期間・当落・受け渡しと精算） ===== */
+  input[type=datetime-local]{min-height:48px; -webkit-appearance:none; appearance:none}
+  .bn-item{position:relative}
+  .bn-badge{position:absolute; top:3px; left:50%; margin-left:5px; min-width:17px; height:17px; padding:0 5px; border-radius:9px;
+    background:var(--danger); color:#fff; font-size:10px; font-style:normal; font-weight:800; line-height:17px; text-align:center}
+  .bn-badge[hidden]{display:none}
+  .tk-sec{display:flex; align-items:center; gap:6px; margin:18px 2px 8px; font-size:13px; font-weight:800; color:var(--muted)}
+  .tk-sec .n{font-size:11px; background:var(--surface2); border-radius:10px; padding:1px 7px}
+  .tk-sec.warn{color:var(--danger)}
+  .ev.tk.ph-open{border-left:4px solid var(--danger)}
+  .ev.tk.ph-pay{border-left:4px solid var(--star)}
+  .ev.tk.ph-secured{border-left:4px solid var(--ok)}
+  .ev.tk.ph-missed,.ev.tk.ph-over{opacity:.6}
+  .tk-when{font-size:12px; margin:4px 0 0}
+  .tk-when b{font-weight:800; color:var(--muted)}
+  .tk-when b.due{color:var(--danger)}
+  .tk-deals{display:flex; flex-direction:column; gap:2px; margin-top:6px; font-size:12px}
+  .tk-deal.done{color:var(--muted); text-decoration:line-through}
+  .tk-steps{display:flex; gap:4px; margin-top:9px; flex-wrap:wrap}
+  .tk-steps button{flex:1 1 0; min-width:0; border:1px solid var(--border); background:transparent; color:var(--muted);
+    border-radius:8px; padding:6px 0; font-size:11.5px; font-weight:800; cursor:pointer; font-family:inherit; white-space:nowrap}
+  .tk-steps button.on{background:var(--accent); border-color:var(--accent); color:#fff}
+  .tk-steps button.on[data-s=lost]{background:var(--skip); border-color:var(--skip)}
+  .tk-mini{display:inline-block; margin-left:6px; font-size:10.5px; font-weight:800; color:var(--muted); vertical-align:1px}
+  .tk-mini.hot{color:var(--danger)}
+  .tk-2col{display:flex; gap:10px}
+  .tk-2col>div{flex:1}
+  .segmented.tk-pick{flex-wrap:wrap}
+  .segmented.tk-pick button{padding:10px 4px; font-size:13px; font-family:inherit}
+  .segmented.tk-pick button.on{background:var(--accent); color:#fff}
+  .segmented.tk-pick button.on[data-s=lost]{background:var(--skip)}
+  .deal-row{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:8px; background:var(--surface);
+    border:1px solid var(--border); border-radius:12px; padding:8px}
+  .deal-row .dp{flex:1 1 100%}
+  .deal-row .da{flex:1 1 90px}
+  .deal-row .dk{display:flex; align-items:center; gap:4px; margin:0; font-size:13px; color:var(--text); white-space:nowrap; cursor:pointer}
+  .deal-row .dk input{width:20px; height:20px; margin:0; accent-color:var(--ok)}
+  .deal-row .del{background:none; border:0; color:var(--danger); font-size:22px; cursor:pointer; padding:0 4px; flex-shrink:0}
+  .pay-card{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:12px; margin-bottom:10px; box-shadow:var(--shadow)}
+  .pay-head{display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:4px}
+  .pay-head b{font-size:15px; overflow-wrap:anywhere}
+  .pay-head span{font-weight:800; font-size:14px; white-space:nowrap}
+  .pay-head .neg{color:var(--danger)} .pay-head .pos{color:var(--ok)} .pay-head .zero{color:var(--muted)}
+  .pay-row{display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--border); cursor:pointer}
+  .pay-ck{width:28px; height:28px; flex-shrink:0; border:2px solid var(--border); border-radius:8px; background:transparent;
+    color:#fff; font-weight:800; font-size:15px; cursor:pointer; padding:0; line-height:1}
+  .pay-row.done .pay-ck{background:var(--ok); border-color:var(--ok)}
+  .pay-ev{flex:1; min-width:0; font-size:13px; font-weight:700; overflow-wrap:anywhere}
+  .pay-ev small{display:block; font-size:11px; color:var(--muted); font-weight:600}
+  .pay-amt{font-size:13px; font-weight:800; white-space:nowrap}
+  .pay-amt.pay{color:var(--danger)} .pay-amt.get{color:var(--ok)}
+  .pay-row.done .pay-ev, .pay-row.done .pay-amt{color:var(--muted); text-decoration:line-through}
 </style>
 </head>
 <body>
@@ -372,6 +424,15 @@
     <input type="file" id="importInput" accept="application/json" style="display:none">
   </section>
 
+  <!-- TICKETS -->
+  <section class="view" id="viewTickets">
+    <div class="seg-period" id="tkSeg">
+      <button class="on" data-s="apply">申込・入手</button>
+      <button data-s="money">精算</button>
+    </div>
+    <div id="tkBody"></div>
+  </section>
+
   <!-- SONGS -->
   <section class="view" id="viewSongs">
     <div class="seg-period" id="songSeg">
@@ -400,6 +461,7 @@
 
 <nav class="bottom-nav" id="bottomNav">
   <button class="bn-item active" data-view="home"><span class="ic">🏠</span><span class="lb">ホーム</span></button>
+  <button class="bn-item" data-view="tickets"><span class="ic">🎫</span><span class="lb">チケット</span><i class="bn-badge" id="tkBadge" hidden></i></button>
   <button class="bn-item" data-view="songs"><span class="ic">🎵</span><span class="lb">曲</span></button>
   <button class="bn-item" data-view="cheki"><span class="ic">📸</span><span class="lb">チェキ</span></button>
 </nav>
@@ -424,6 +486,8 @@
 <div class="sheet-backdrop" id="detailSheet"><div class="sheet" id="detailContent"></div></div>
 <!-- Day sheet -->
 <div class="sheet-backdrop" id="daySheet"><div class="sheet" id="dayContent"></div></div>
+<!-- Ticket sheet -->
+<div class="sheet-backdrop" id="ticketSheet"><div class="sheet" id="ticketContent"></div></div>
 
 <!-- Edit note / custom event sheet -->
 <div class="sheet-backdrop" id="editSheet">
@@ -495,7 +559,7 @@ let group = GROUPS[0];
 let KEY='';
 let OFFICIAL=[], SONGS=[], MEMBERS=[];
 
-let store={attend:{},notes:{},custom:[],hidden:{},lastBackup:''};
+let store={attend:{},notes:{},custom:[],hidden:{},tickets:[],lastBackup:''};
 let calY, calM;              // displayed month
 let selectedDay=null;        // ISO of day selected in calendar
 let typeFilter='ALL';
@@ -515,7 +579,8 @@ function byHue(list){
 
 function storeKeyOf(g){ return 'live-log-v1:'+g.id; }
 function groupById(id){ return GROUPS.find(g=>g.id===id); }
-function normStore(o){ o=o||{}; return {attend:o.attend||{}, notes:o.notes||{}, custom:o.custom||[], hidden:o.hidden||{}, lastBackup:o.lastBackup||''}; }
+/* 知らないキーはここで落ちるので、保存項目を増やしたら必ずここにも足す（復元時に消えるため） */
+function normStore(o){ o=o||{}; return {attend:o.attend||{}, notes:o.notes||{}, custom:o.custom||[], hidden:o.hidden||{}, tickets:Array.isArray(o.tickets)?o.tickets:[], lastBackup:o.lastBackup||''}; }
 /* 統合前の単体アプリの記録を引き継ぐ。新キーが空のときだけ旧キーを読む。
    旧キーは消さない（万一のときに戻せるようにしておくため） */
 function loadFor(g){
@@ -727,6 +792,7 @@ function evRow(e){
     <div class="ev-body">
       <span class="tp tp-${e.type}">${e.type==='OTHER'?'その他':e.type}</span>
       ${n.rating?`<span class="stars-mini" style="margin-left:6px">${'★'.repeat(n.rating)}</span>`:''}
+      ${tkMini(e.id)}
       <h3>${esc(e.title)}</h3>
       ${e.venue?`<p class="vn">📍 ${esc(e.venue)}</p>`:''}
       ${e.type==='LIVE'?`<div class="attend-toggle">
@@ -821,6 +887,13 @@ function openDetail(id){
       <div class="cheki-chips">${names.map(k=>`<span class="cchip">${emojiOf(k)} ${esc(k)}<b>${memberTotal(c[k])}</b></span>`).join('')}</div>`;
     })()}
     ${(e.type==='LIVE'||slH)?`<div class="sl-title">🎵 セットリスト ${slH?`<span class="count">全${songCount(n)}曲</span>`:''}</div>${slH||'<p class="no-set">まだ記録がありません。下の「記録を編集」から追加できます。</p>'}`:''}
+    ${(()=>{ const ts=ticketsOf(id);
+      /* TV・ラジオは普通チケットが無いので、記録が無ければ欄ごと出さない */
+      if(!ts.length && (e.type==='TV'||e.type==='RADIO')) return '';
+      return `<div class="sl-title">🎫 チケット ${ts.length?`<span class="count">${ts.length}件</span>`:''}</div>`
+        +`<div id="dTk">${ts.map(tkCard).join('')}</div>`
+        +`<div class="mini-btns"><button class="mini-btn" id="dTkAdd">＋ 申込・チケットを追加</button></div>`;
+    })()}
     <div class="actions">
       <button id="dEdit">✏️ 記録を編集</button>
       ${e.official?'<button class="del-btn" id="dHide">🗑 一覧から削除</button>':'<button class="del-btn" id="dDel">🗑 予定を削除</button>'}
@@ -833,6 +906,8 @@ function openDetail(id){
   }));
   $('#detailContent').querySelectorAll('.detail-gallery img, .flyer img').forEach(im=>im.addEventListener('click',()=>{ $('#lightboxImg').src=im.dataset.full; $('#lightbox').classList.add('open'); }));
   $('#dEdit').addEventListener('click',()=>{ closeSheet('#detailSheet'); setTimeout(()=>openEdit(id),120); });
+  if($('#dTk')) wireTkCards($('#dTk'), ()=>{ refresh(); openDetail(id); }, id);
+  const tkAdd=$('#dTkAdd'); if(tkAdd) tkAdd.addEventListener('click',()=>{ closeSheet('#detailSheet'); setTimeout(()=>openTicket(null,id,id),120); });
   const del=$('#dDel'); if(del) del.addEventListener('click',()=>{ if(confirm('この予定を削除しますか？')){ store.custom=store.custom.filter(x=>x.id!==id); delete store.attend[id]; delete store.notes[id]; save(); refresh(); closeSheet('#detailSheet'); toast('削除しました'); } });
   const hide=$('#dHide'); if(hide) hide.addEventListener('click',()=>{ if(confirm('この予定を一覧から削除しますか？\n（あとで「非表示の予定」から戻せます）')){ store.hidden[id]=true; save(); refresh(); closeSheet('#detailSheet'); toast('一覧から削除しました'); } });
   openSheet('#detailSheet');
@@ -1248,6 +1323,360 @@ function renderCheki(){
   wrap.innerHTML=h;
 }
 
+/* ---- チケット: 抽選・先着の申込期間、当落、受け渡しと精算 ----
+   store.tickets にグループごとに保存する（参戦記録と同じくこの端末の中だけ。バックアップに含まれる）。
+   1件 =「ある公演のチケットを1つの方法で取りにいく」単位。同じ公演で FC先行 と 一般 を
+   両方申し込むなら2件になる。
+   ev は公演id（参戦記録と同じキー）。title/date はリストに無い公演の入力値で、
+   リストの公演を選んだときも控えとして写しておく（公演側が消えても何の件か分かるように）。
+   deals はその件に付くお金のやりとり。dir:'pay'=自分が払う / 'get'=自分がもらう */
+const TK_HOW=[['lottery','抽選'],['first','先着'],['trade','譲渡・同行'],['other','その他']];
+const TK_STEPS={
+  lottery:[['','未申込'],['applied','申込済'],['won','当選'],['lost','落選'],['paid','入金済']],
+  first:  [['','未購入'],['applied','購入済'],['paid','入金済']],
+  trade:  [['','未受取'],['got','受取済']],
+  other:  [['','未完了'],['got','完了']]
+};
+/* 一覧の見出し。この順に並べる（やることが残っているものほど上） */
+const TK_PHASE=[
+  ['open','⏰ 受付中（まだ申し込んでいない）'],
+  ['pay','💴 入金待ち'],
+  ['result','🎲 当落発表待ち'],
+  ['before','🗓 受付開始前'],
+  ['receive','🤝 受け取り待ち'],
+  ['secured','✅ 確保済']
+];
+const TK_PHASE_ORDER=TK_PHASE.map(p=>p[0]).concat(['missed','over']);
+let tkSub='apply', tkShowOld=false, tkShowPaid=false;
+let tkEdit=null;
+
+function ticketsOf(evId){ return (store.tickets||[]).filter(t=>t.ev===evId); }
+function tkInfo(t){
+  const e=t.ev?evById(t.ev):null;
+  return {title:e?e.title:(t.title||'公演未設定'), date:e?e.date:(t.date||'')};
+}
+function tkStepLabel(t){ const s=(TK_STEPS[t.how]||TK_STEPS.other).find(x=>x[0]===(t.status||'')); return s?s[1]:''; }
+/* 状況と受付期間から「いま何待ちか」を決める */
+function tkPhase(t,now){
+  const s=t.status||'';
+  if(s==='lost') return 'over';
+  if(s==='paid'||s==='got') return 'secured';
+  if(t.how==='trade'||t.how==='other') return 'receive';
+  if(s==='won') return 'pay';
+  if(s==='applied') return t.how==='lottery'?'result':'pay';
+  const to=t.to?new Date(t.to):null, from=t.from?new Date(t.from):null;
+  if(to && now>to) return 'missed';
+  if(from && now<from) return 'before';
+  return 'open';
+}
+/* 終わったもの: 落選・申込しそびれ・公演日が過ぎたもの。一覧では畳んでおく */
+function tkArchived(t,ph){ const d=tkInfo(t).date; return ph==='missed'||ph==='over'||(!!d && d<todayISO()); }
+/* その段階で気にすべき期限 */
+function tkDue(t,ph){
+  if(ph==='open')   return {label:'締切', at:t.to};
+  if(ph==='before') return {label:'受付開始', at:t.from};
+  if(ph==='result') return {label:'当落発表', at:t.announce};
+  if(ph==='pay')    return {label:'入金期限', at:t.payBy};
+  return null;
+}
+function fmtDT(s){
+  if(!s) return '';
+  const d=new Date(s); if(isNaN(d)) return s;
+  const y=d.getFullYear()!==new Date().getFullYear()?d.getFullYear()+'/':'';
+  return `${y}${d.getMonth()+1}/${d.getDate()}(${WD[d.getDay()]}) ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+function untilText(ms){ const m=Math.floor(ms/60000); if(m<60) return `あと${m}分`; const h=Math.floor(m/60); return h<48?`あと${h}時間`:`あと${Math.floor(h/24)}日`; }
+function yen(n){ return '¥'+Math.round(+n||0).toLocaleString('ja-JP'); }
+/* 対応が要る件数（受付中で未申込＋入金待ち）。下部ナビのバッジに出す */
+function tkActionCount(){
+  const now=new Date();
+  return (store.tickets||[]).filter(t=>{ const ph=tkPhase(t,now); return (ph==='open'||ph==='pay') && !tkArchived(t,ph); }).length;
+}
+function updateTkBadge(){
+  const b=$('#tkBadge'); if(!b) return;
+  const n=tkActionCount(); b.hidden=!n; b.textContent=n;
+}
+/* 公演の行に出す小さな状況表示。複数あるときは一番手のかかる段階のものを代表にする */
+function tkMini(evId){
+  const ts=ticketsOf(evId); if(!ts.length) return '';
+  const now=new Date();
+  const top=ts.map(t=>({t,ph:tkPhase(t,now)})).sort((a,b)=>TK_PHASE_ORDER.indexOf(a.ph)-TK_PHASE_ORDER.indexOf(b.ph))[0];
+  return `<span class="tk-mini ${top.ph==='open'?'hot':''}">🎫 ${esc(tkStepLabel(top.t))}${ts.length>1?` 他${ts.length-1}`:''}</span>`;
+}
+function tkCard(t){
+  const now=new Date(), info=tkInfo(t), ph=tkPhase(t,now), due=tkDue(t,ph);
+  const d=info.date?new Date(info.date+'T00:00:00'):null;
+  const how=(TK_HOW.find(h=>h[0]===t.how)||TK_HOW[3])[1];
+  let when='';
+  if(due && due.at){
+    const ms=new Date(due.at)-now, hot=ms>=0 && ms<72*3600e3;
+    when=`${due.label} ${esc(fmtDT(due.at))}`+(isNaN(ms)?'':ms>=0?` ・ <b class="${hot?'due':''}">${untilText(ms)}</b>`:' ・ <b>過ぎています</b>');
+  } else if(t.from||t.to){
+    when=`受付 ${esc(fmtDT(t.from)||'?')} 〜 ${esc(fmtDT(t.to)||'?')}`;
+  }
+  const sub=[t.label,t.site].filter(Boolean).join(' ・ ');
+  const qty=[t.qty?`${t.qty}枚`+(t.price?` × ${yen(t.price)}`:''):'', t.seat||''].filter(Boolean).join(' ・ ');
+  const deals=(t.deals||[]).filter(x=>x.person||x.amount).map(x=>
+    `<span class="tk-deal ${x.done?'done':''}">${x.done?'✓':'・'} ${esc(x.person||'（名前なし）')}${x.dir==='get'?'から':'に'} ${yen(x.amount)} ${x.dir==='get'?'もらう':'払う'}</span>`).join('');
+  const steps=TK_STEPS[t.how]||TK_STEPS.other;
+  return `<div class="ev tk ph-${ph}" data-tk="${esc(t.id)}">
+    <div class="ev-date">${d?`<div class="d">${d.getDate()}</div><div class="w">${d.getMonth()+1}月 ${WD[d.getDay()]}</div>`:'<div class="w">日付<br>未定</div>'}</div>
+    <div class="ev-body">
+      <span class="tp tp-LIVE">${how}</span>
+      <h3>${esc(info.title)}</h3>
+      ${sub?`<p class="vn">${esc(sub)}</p>`:''}
+      ${when?`<p class="tk-when">${when}</p>`:''}
+      ${qty?`<p class="vn">${esc(qty)}</p>`:''}
+      ${deals?`<div class="tk-deals">${deals}</div>`:''}
+      <div class="tk-steps">${steps.map(s=>`<button type="button" data-s="${s[0]}" class="${(t.status||'')===s[0]?'on':''}">${s[1]}</button>`).join('')}</div>
+    </div></div>`;
+}
+/* カードの状況ボタンはその場で切り替え、カード本体のタップで編集を開く。
+   back は公演の詳細シートから来たときの公演id（編集を閉じたら詳細に戻る） */
+function wireTkCards(root, after, back){
+  root.querySelectorAll('.tk[data-tk]').forEach(card=>{
+    const id=card.dataset.tk;
+    card.querySelectorAll('.tk-steps button').forEach(b=>b.addEventListener('click',ev=>{
+      ev.stopPropagation();
+      const t=(store.tickets||[]).find(x=>x.id===id); if(!t) return;
+      t.status=b.dataset.s; save(); (after||refresh)();
+    }));
+    card.addEventListener('click',()=>{
+      if(back){ closeSheet('#detailSheet'); setTimeout(()=>openTicket(id,null,back),120); }
+      else openTicket(id);
+    });
+  });
+}
+function renderTickets(){
+  updateTkBadge();
+  const wrap=$('#tkBody'); if(!wrap) return;
+  if(tkSub==='money') return renderTkMoney(wrap);
+  const list=store.tickets||[];
+  if(!list.length){
+    wrap.innerHTML='<div class="list-empty"><div class="big">🎫</div><p>まだチケットの記録がありません</p><p style="font-size:12px">＋ から抽選・先着の受付期間や、譲ってもらうチケットを登録できます。<br>公演の詳細画面からも追加できます。</p></div>';
+    return;
+  }
+  const now=new Date(), cur=[], old=[];
+  list.forEach(t=>{ const ph=tkPhase(t,now); (tkArchived(t,ph)?old:cur).push({t,ph}); });
+  const key=x=>{ const d=tkDue(x.t,x.ph); return (d&&d.at)||((tkInfo(x.t).date||'9999-12-31')+'T99'); };
+  const cnt=p=>cur.filter(x=>x.ph===p).length;
+  let h='<div class="cal-summary">'
+    +`<div class="chip"><b${cnt('open')?' style="color:var(--danger)"':''}>${cnt('open')}</b><span>未申込</span></div>`
+    +`<div class="chip"><b>${cnt('result')}</b><span>当落待ち</span></div>`
+    +`<div class="chip"><b${cnt('pay')?' style="color:var(--star)"':''}>${cnt('pay')}</b><span>入金待ち</span></div>`
+    +`<div class="chip rate"><b>${cnt('secured')}</b><span>確保済</span></div>`
+    +'</div>';
+  TK_PHASE.forEach(([p,lab])=>{
+    const xs=cur.filter(x=>x.ph===p).sort((a,b)=>key(a).localeCompare(key(b)));
+    if(!xs.length) return;
+    h+=`<div class="tk-sec ${p==='open'?'warn':''}">${lab}<span class="n">${xs.length}</span></div>`+xs.map(x=>tkCard(x.t)).join('');
+  });
+  if(!cur.length) h+='<div class="agenda-empty">いま進行中のチケットはありません</div>';
+  if(old.length){
+    h+=`<button class="btn-ghost" id="tkOld">${tkShowOld?'終わったものを隠す':`終わったもの（${old.length}件）を表示`}</button>`;
+    if(tkShowOld) h+='<div style="margin-top:10px">'+old.sort((a,b)=>(tkInfo(b.t).date||'').localeCompare(tkInfo(a.t).date||'')).map(x=>tkCard(x.t)).join('')+'</div>';
+  }
+  h+='<div class="footer-note">締切・入金期限まで72時間を切ると赤字になります。<br>公演日が過ぎたもの・落選・申込しなかったものは「終わったもの」に畳まれます。</div>';
+  wrap.innerHTML=h;
+  wireTkCards(wrap);
+  const o=$('#tkOld'); if(o) o.addEventListener('click',()=>{ tkShowOld=!tkShowOld; renderTickets(); });
+}
+/* 精算: 相手ごとにまとめて、払う／もらうの差し引きを出す */
+function renderTkMoney(wrap){
+  const rows=[];
+  (store.tickets||[]).forEach(t=>(t.deals||[]).forEach(d=>{ if(d.person||d.amount) rows.push({t,d}); }));
+  if(!rows.length){
+    wrap.innerHTML='<div class="list-empty"><div class="big">💴</div><p>まだ精算の記録がありません</p><p style="font-size:12px">チケットの編集画面の「受け渡し・精算」に、<br>誰に・誰からいくらを入れるとここにまとまります。</p></div>';
+    return;
+  }
+  const sum=(xs,dir)=>xs.filter(x=>x.d.dir===dir).reduce((a,x)=>a+(+x.d.amount||0),0);
+  const open=rows.filter(x=>!x.d.done), done=rows.filter(x=>x.d.done);
+  const people=new Map();
+  open.forEach(x=>{ const k=(x.d.person||'').trim()||'（名前なし）'; if(!people.has(k)) people.set(k,[]); people.get(k).push(x); });
+  let h='<div class="cal-summary">'
+    +`<div class="chip"><b style="color:var(--danger)">${yen(sum(open,'pay'))}</b><span>払う（未精算）</span></div>`
+    +`<div class="chip"><b style="color:var(--ok)">${yen(sum(open,'get'))}</b><span>もらう（未精算）</span></div>`
+    +`<div class="chip"><b>${people.size}</b><span>相手</span></div>`
+    +'</div>';
+  if(!open.length) h+='<div class="agenda-empty">未精算はありません 🎉</div>';
+  [...people.entries()].sort((a,b)=>a[0].localeCompare(b[0],'ja')).forEach(([name,xs])=>{
+    const net=sum(xs,'get')-sum(xs,'pay');
+    const head=net<0?`<span class="neg">${yen(-net)} 払う</span>`:net>0?`<span class="pos">${yen(net)} もらう</span>`:'<span class="zero">差し引き ¥0</span>';
+    h+=`<div class="pay-card"><div class="pay-head"><b>${esc(name)}</b>${head}</div>${xs.map(x=>payRow(x,false)).join('')}</div>`;
+  });
+  if(done.length){
+    h+=`<button class="btn-ghost" id="tkPaid">${tkShowPaid?'精算済みを隠す':`精算済み（${done.length}件）を表示`}</button>`;
+    if(tkShowPaid) h+='<div class="pay-card" style="margin-top:10px">'+done.map(x=>payRow(x,true)).join('')+'</div>';
+  }
+  h+='<div class="footer-note">左の□をタップすると精算済みになります。行をタップするとそのチケットを編集できます。</div>';
+  wrap.innerHTML=h;
+  wrap.querySelectorAll('.pay-row').forEach(r=>{
+    r.querySelector('.pay-ck').addEventListener('click',ev=>{
+      ev.stopPropagation();
+      const t=(store.tickets||[]).find(x=>x.id===r.dataset.tk); if(!t) return;
+      const d=(t.deals||[]).find(x=>x.id===r.dataset.deal); if(!d) return;
+      d.done=!d.done; save(); renderTickets();
+      toast(d.done?'精算済みにしました':'未精算に戻しました');
+    });
+    r.addEventListener('click',()=>openTicket(r.dataset.tk));
+  });
+  const p=$('#tkPaid'); if(p) p.addEventListener('click',()=>{ tkShowPaid=!tkShowPaid; renderTickets(); });
+}
+function payRow(x,withName){
+  const info=tkInfo(x.t);
+  const sub=[info.date?info.date.replace(/-/g,'.'):'', withName?((x.d.person||'').trim()||'（名前なし）'):''].filter(Boolean).join(' ・ ');
+  return `<div class="pay-row ${x.d.done?'done':''}" data-tk="${esc(x.t.id)}" data-deal="${esc(x.d.id)}">`
+    +`<button type="button" class="pay-ck" aria-label="${x.d.done?'未精算に戻す':'精算済みにする'}">${x.d.done?'✓':''}</button>`
+    +`<span class="pay-ev">${esc(info.title)}${sub?`<small>${esc(sub)}</small>`:''}</span>`
+    +`<span class="pay-amt ${x.d.dir==='get'?'get':'pay'}">${x.d.dir==='get'?'もらう':'払う'} ${yen(x.d.amount)}</span></div>`;
+}
+
+/* ---- チケットの編集シート ---- */
+function openTicket(id, evId, back){
+  const t=id?(store.tickets||[]).find(x=>x.id===id):null;
+  const cur=t?JSON.parse(JSON.stringify(t)):{id:uid(), ev:evId||'', title:'', date:'', how:'lottery', label:'', site:'',
+    from:'', to:'', announce:'', payBy:'', status:'', qty:1, price:'', seat:'', memo:'', deals:[]};
+  tkEdit={id:cur.id, isNew:!t, how:cur.how||'lottery', status:cur.status||'', back:back||''};
+  const today=todayISO();
+  const evs=visibleEvents().slice().sort((a,b)=>a.date.localeCompare(b.date)||(a.id>b.id?1:-1));
+  /* 紐付け先の公演を一覧から非表示にしていても、選択肢からは消さない */
+  if(cur.ev && !evs.some(e=>e.id===cur.ev)){ const e=evById(cur.ev); if(e) evs.push(e); }
+  const opt=e=>{ const d=new Date(e.date+'T00:00:00'); return `<option value="${esc(e.id)}"${e.id===cur.ev?' selected':''}>${d.getMonth()+1}/${d.getDate()}(${WD[d.getDay()]}) ${esc(e.title)}</option>`; };
+  const up=evs.filter(e=>e.date>=today), past=evs.filter(e=>e.date<today).reverse();
+  const sites=[...new Set((store.tickets||[]).map(x=>(x.site||'').trim()).filter(Boolean))];
+  const people=[...new Set((store.tickets||[]).flatMap(x=>(x.deals||[]).map(d=>(d.person||'').trim())).filter(Boolean))];
+  $('#ticketContent').innerHTML=`
+    <div class="grip"></div>
+    <h2>${t?'チケットを編集':'チケットを追加'}</h2>
+    <label>公演</label>
+    <select id="tkEv">
+      <option value="">— リストにない公演（手入力）—</option>
+      ${up.length?`<optgroup label="これから">${up.map(opt).join('')}</optgroup>`:''}
+      ${past.length?`<optgroup label="過去">${past.map(opt).join('')}</optgroup>`:''}
+    </select>
+    <div id="tkFree">
+      <label>公演名 *</label><input type="text" id="tkTitle" placeholder="例）〇〇 ワンマンライブ">
+      <label>公演日</label><input type="date" id="tkDate">
+    </div>
+    <label>入手方法</label>
+    <div class="segmented tk-pick" id="tkHow">${TK_HOW.map(h=>`<button type="button" data-h="${h[0]}">${h[1]}</button>`).join('')}</div>
+    <div class="tk-f" data-how="lottery first">
+      <label>受付名</label><input type="text" id="tkLabel" placeholder="例）FC最速先行 / オフィシャル2次先行">
+      <label>申込先</label><input type="text" id="tkSite" list="tkSiteList" placeholder="例）ローチケ / イープラス / FCサイト">
+      <div class="tk-2col">
+        <div><label>受付開始</label><input type="datetime-local" id="tkFrom"></div>
+        <div><label>受付締切</label><input type="datetime-local" id="tkTo"></div>
+      </div>
+      <div class="tk-f" data-how="lottery"><label>当落発表</label><input type="datetime-local" id="tkAnn"></div>
+      <label>入金期限</label><input type="datetime-local" id="tkPay">
+    </div>
+    <label>状況</label>
+    <div class="segmented tk-pick" id="tkSt"></div>
+    <div class="tk-2col">
+      <div><label>枚数</label><input type="number" id="tkQty" min="0" inputmode="numeric"></div>
+      <div><label>1枚の値段（円）</label><input type="number" id="tkPrice" min="0" inputmode="numeric" placeholder="例）6000"></div>
+    </div>
+    <label>整理番号・座席</label><input type="text" id="tkSeat" placeholder="例）A123 / 2階 B列">
+    <label>受け渡し・精算</label>
+    <p class="setlist-hint" style="margin-left:0" id="tkDealHint"></p>
+    <div id="tkDeals"></div>
+    <div class="mini-btns">
+      <button type="button" class="mini-btn" id="tkAddPay">＋ 払う相手</button>
+      <button type="button" class="mini-btn" id="tkAddGet">＋ もらう相手</button>
+    </div>
+    <label>メモ</label><textarea id="tkMemo" placeholder="同行者・受け渡し場所・連絡先など"></textarea>
+    <button class="btn-primary" id="tkSave">保存する</button>
+    ${t?'<button class="btn-ghost" id="tkDel" style="color:var(--danger);border-color:var(--danger)">このチケットを削除</button>':''}
+    <button class="btn-ghost" id="tkCancel">キャンセル</button>
+    <datalist id="tkSiteList">${sites.map(s=>`<option value="${esc(s)}"></option>`).join('')}</datalist>
+    <datalist id="tkPersonList">${people.map(s=>`<option value="${esc(s)}"></option>`).join('')}</datalist>`;
+  /* 値は属性に埋めず .value で入れる（引用符などのエスケープ漏れを避けるため） */
+  $('#tkTitle').value=cur.ev?'':(cur.title||''); $('#tkDate').value=cur.ev?'':(cur.date||'');
+  $('#tkLabel').value=cur.label||''; $('#tkSite').value=cur.site||'';
+  $('#tkFrom').value=cur.from||''; $('#tkTo').value=cur.to||''; $('#tkAnn').value=cur.announce||''; $('#tkPay').value=cur.payBy||'';
+  $('#tkQty').value=cur.qty||''; $('#tkPrice').value=cur.price||''; $('#tkSeat').value=cur.seat||''; $('#tkMemo').value=cur.memo||'';
+  (cur.deals||[]).forEach(d=>$('#tkDeals').appendChild(dealRowEl(d)));
+  const syncFree=()=>{ $('#tkFree').style.display=$('#tkEv').value?'none':''; };
+  $('#tkEv').addEventListener('change',syncFree); syncFree();
+  $('#tkHow').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    tkEdit.how=b.dataset.h;
+    /* 方法を変えて今の状況が選べなくなったら未着手に戻す */
+    if(!(TK_STEPS[tkEdit.how]||[]).some(s=>s[0]===tkEdit.status)) tkEdit.status='';
+    syncHow();
+    /* 譲渡なら払う相手を1行出しておく（入れ忘れ防止） */
+    if(tkEdit.how==='trade' && !$('#tkDeals').children.length) $('#tkDeals').appendChild(dealRowEl({dir:'pay'}));
+  }));
+  syncHow();
+  $('#tkAddPay').addEventListener('click',()=>{ const r=dealRowEl({dir:'pay'}); $('#tkDeals').appendChild(r); r.querySelector('.dp').focus(); });
+  $('#tkAddGet').addEventListener('click',()=>{ const r=dealRowEl({dir:'get'}); $('#tkDeals').appendChild(r); r.querySelector('.dp').focus(); });
+  $('#tkSave').addEventListener('click',saveTicket);
+  $('#tkCancel').addEventListener('click',closeTicket);
+  const del=$('#tkDel'); if(del) del.addEventListener('click',()=>{
+    if(!confirm('このチケットの記録を削除しますか？\n（精算の記録も一緒に消えます）')) return;
+    store.tickets=(store.tickets||[]).filter(x=>x.id!==tkEdit.id); save(); refresh(); closeTicket(); toast('削除しました');
+  });
+  openSheet('#ticketSheet');
+}
+function syncHow(){
+  const how=tkEdit.how;
+  $('#ticketContent').querySelectorAll('.tk-f').forEach(el=>{ el.style.display=el.dataset.how.split(' ').includes(how)?'':'none'; });
+  $('#tkHow').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.h===how));
+  const st=$('#tkSt');
+  st.innerHTML=(TK_STEPS[how]||TK_STEPS.other).map(s=>`<button type="button" data-s="${s[0]}" class="${s[0]===tkEdit.status?'on':''}">${s[1]}</button>`).join('');
+  st.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    tkEdit.status=b.dataset.s; st.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+  }));
+  $('#tkDealHint').textContent = how==='trade'
+    ? 'チケットを譲ってくれる人と、その人に払う金額を入れておくと「精算」タブにまとまります。'
+    : '立て替えた・立て替えてもらった分を、相手ごとに入れておくと「精算」タブにまとまります。';
+}
+function dealRowEl(d){
+  const r=document.createElement('div'); r.className='deal-row';
+  r.dataset.id=d.id||uid(); r.dataset.dir=d.dir==='get'?'get':'pay';
+  r.innerHTML=`<input type="text" class="dp" list="tkPersonList" placeholder="相手の名前">
+    <div class="len-seg"><button type="button" data-dir="pay">払う</button><button type="button" data-dir="get">もらう</button></div>
+    <input type="number" class="da" min="0" inputmode="numeric" placeholder="金額（円）">
+    <label class="dk"><input type="checkbox" class="dn"> 精算済</label>
+    <button type="button" class="del" aria-label="この行を削除">×</button>`;
+  r.querySelector('.dp').value=d.person||'';
+  r.querySelector('.da').value=d.amount||'';
+  r.querySelector('.dn').checked=!!d.done;
+  const sync=()=>r.querySelectorAll('.len-seg button').forEach(b=>b.classList.toggle('on',b.dataset.dir===r.dataset.dir));
+  r.querySelectorAll('.len-seg button').forEach(b=>b.addEventListener('click',()=>{ r.dataset.dir=b.dataset.dir; sync(); }));
+  r.querySelector('.del').addEventListener('click',()=>r.remove());
+  sync();
+  return r;
+}
+function closeTicket(){
+  const back=tkEdit&&tkEdit.back;
+  closeSheet('#ticketSheet');
+  if(back) setTimeout(()=>openDetail(back),120);
+}
+function saveTicket(){
+  const ev=$('#tkEv').value, how=tkEdit.how, sale=(how==='lottery'||how==='first');
+  const e=ev?evById(ev):null;
+  const t={id:tkEdit.id, ev,
+    title:e?e.title:$('#tkTitle').value.trim(), date:e?e.date:$('#tkDate').value,
+    how, status:tkEdit.status,
+    label:sale?$('#tkLabel').value.trim():'', site:sale?$('#tkSite').value.trim():'',
+    from:sale?$('#tkFrom').value:'', to:sale?$('#tkTo').value:'',
+    announce:how==='lottery'?$('#tkAnn').value:'', payBy:sale?$('#tkPay').value:'',
+    qty:parseInt($('#tkQty').value,10)||'', price:parseInt($('#tkPrice').value,10)||'',
+    seat:$('#tkSeat').value.trim(), memo:$('#tkMemo').value.trim(),
+    deals:[...$('#tkDeals').querySelectorAll('.deal-row')].map(r=>({
+      id:r.dataset.id, person:r.querySelector('.dp').value.trim(), dir:r.dataset.dir,
+      amount:parseInt(r.querySelector('.da').value,10)||0, done:r.querySelector('.dn').checked
+    })).filter(d=>d.person||d.amount)
+  };
+  if(!t.ev && !t.title){ toast('公演を選ぶか、公演名を入れてね'); return; }
+  if(t.from && t.to && t.from>t.to){ toast('受付締切が受付開始より前になっています'); return; }
+  if(!Array.isArray(store.tickets)) store.tickets=[];
+  const i=store.tickets.findIndex(x=>x.id===t.id);
+  if(i>=0) store.tickets[i]=t; else store.tickets.push(t);
+  if(!save()) return;
+  refresh(); closeTicket(); toast('保存しました 🎫');
+}
+
 function setStars(v){ edit.rating=v; $('#starInput').querySelectorAll('.s').forEach(s=>s.classList.toggle('on',+s.dataset.n<=v)); }
 function saveEdit(){
   const id=edit.id;
@@ -1268,7 +1697,7 @@ function saveEdit(){
 /* ---- backup: 記録は端末内にしか無いので、書き出しを能動的に促す ---- */
 const BACKUP_WARN_DAYS=30;
 function recordCount(){
-  return Object.keys(store.notes||{}).length + Object.keys(store.attend||{}).length + (store.custom||[]).length;
+  return Object.keys(store.notes||{}).length + Object.keys(store.attend||{}).length + (store.custom||[]).length + (store.tickets||[]).length;
 }
 function daysSince(iso){
   if(!iso) return null;
@@ -1354,8 +1783,8 @@ function importData(file){
 /* ---- sheets / view ---- */
 function openSheet(s){ $(s).classList.add('open'); document.body.style.overflow='hidden'; }
 function closeSheet(s){ const bd=$(s); bd.classList.remove('open'); const sh=bd.querySelector('.sheet'); if(sh){ sh.style.transition=''; sh.style.transform=''; } document.body.style.overflow=''; }
-function refresh(){ setMonthLabels(); updateStats(); renderCalendar(); renderList(); renderSongs(); renderCheki(); renderBackupNotice(); }
-/* 下部ナビ: ホーム / 曲 / チェキ。カレンダーとリストはホームの中の切替 */
+function refresh(){ setMonthLabels(); updateStats(); renderCalendar(); renderList(); renderTickets(); renderSongs(); renderCheki(); renderBackupNotice(); }
+/* 下部ナビ: ホーム / チケット / 曲 / チェキ。カレンダーとリストはホームの中の切替 */
 let curView='home', curSub='cal';
 function switchView(v){
   curView=v;
@@ -1364,10 +1793,14 @@ function switchView(v){
   $('#homeTabs').style.display = home?'':'none';
   $('#viewCal').classList.toggle('active', home && curSub==='cal');
   $('#viewList').classList.toggle('active', home && curSub==='list');
+  $('#viewTickets').classList.toggle('active', v==='tickets');
   $('#viewSongs').classList.toggle('active', v==='songs');
   $('#viewCheki').classList.toggle('active', v==='cheki');
-  /* ＋（予定追加）はホームでだけ意味があるので他では隠す */
-  $('#addBtn').style.display = home?'':'none';
+  /* ＋ はホームでは予定追加、チケットではチケット追加。曲・チェキでは隠す */
+  $('#addBtn').style.display = (home||v==='tickets')?'':'none';
+  $('#addBtn').setAttribute('aria-label', v==='tickets'?'チケットを追加':'予定を追加');
+  /* 締切までの残り時間は開くたびに変わるので描き直す */
+  if(v==='tickets') renderTickets();
   /* 参加率などの参戦統計はホーム固有の情報。曲/チェキでは出さない */
   $('#headerStats').style.display = home?'':'none';
   window.scrollTo(0,0);
@@ -1399,7 +1832,14 @@ document.querySelectorAll('#chekiPeriod button').forEach(b=>b.addEventListener('
 $('#chekiPrev').addEventListener('click',()=>{ chekiOffset--; renderCheki(); });
 $('#chekiNext').addEventListener('click',()=>{ chekiOffset++; renderCheki(); });
 $('#typeFilter').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{ typeFilter=b.dataset.t; $('#typeFilter').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); renderList(); }));
-$('#addBtn').addEventListener('click',()=>openCustom());
+$('#addBtn').addEventListener('click',()=>{ if(curView==='tickets') openTicket(); else openCustom(); });
+document.querySelectorAll('#tkSeg button').forEach(b=>b.addEventListener('click',()=>{
+  tkSub=b.dataset.s;
+  document.querySelectorAll('#tkSeg button').forEach(x=>x.classList.toggle('on',x===b));
+  renderTickets();
+}));
+/* アプリに戻ってきたとき、締切の残り時間とバッジを今の時刻で描き直す */
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') renderTickets(); });
 $('#saveBtn').addEventListener('click',saveEdit);
 $('#cancelBtn').addEventListener('click',()=>closeSheet('#editSheet'));
 $('#addSong').addEventListener('click',()=>{ $('#setlistEditor').appendChild(songRowEl()); renumber(); });
