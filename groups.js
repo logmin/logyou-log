@@ -1,6 +1,6 @@
 /* グループ登録簿（参戦ログ）
    1つのアプリで複数グループを切り替えるための定義。ここに1件足して
-   groups/<id>/{schedule,songs,members}.js を置き、index.html と sw.js に
+   groups/<id>/{schedule,songs,members,tickets}.js を置き、index.html と sw.js に
    <script>/ASSETS を追記すればグループが増える。
 
    id        : localStorage キーと ?g= に使う識別子。**一度決めたら変えない**

@@ -72,6 +72,7 @@
 | `groups/<id>/schedule.js` | 公演スケジュール（公式のスケジュール一覧と各詳細ページ） |
 | `groups/<id>/songs.js` | 楽曲マスタ（公式 DISCOGRAPHY） |
 | `groups/<id>/members.js` | メンバー（公式 PROFILE） |
+| `groups/<id>/tickets.js` | チケット受付（公式詳細に載ったチケットURL → ぴあ / tiget / e+ の受付ページ。`tools/build_tickets.py` が生成） |
 
 `members.js` の配列は**公式PROFILEの掲載順**ですが、**画面上の並びはメンバーカラーの色相順**です（赤→橙→黄→緑→水→青→紫→桃で一周するのでグラデーションになる）。並べ替えは `index.html` の `byHue()` が表示時に行うので、`members.js` 側は出典どおりの順序を保ってください。`HUE_ORDER` に無い絵文字のメンバーは末尾に回ります。
 
@@ -91,6 +92,8 @@
 ### 更新
 
 `schedule.js` は前月〜6ヶ月先を対象に、全グループまとめて自動更新しています。既存の項目は削除も並べ替えもせず、`id` を固定したまま追加のみ行います（記録が `id` に紐づいているため）。
+
+`tickets.js` は同じ自動更新の中で `python tools/build_tickets.py` を実行して毎回作り直します（手で編集しない）。受付期間などはサイトに書かれているものだけを載せ、書かれていない日時は空欄のままにします。チケットビレッジのように自動取得を拒否するサイトは回避せず、URLだけを載せます。アプリの「チケット → 公式の受付」がこのファイルをチェックリストとして表示します。
 
 ---
 
@@ -116,10 +119,10 @@ python -m http.server 4173 --directory .
 
 ### グループを増やす手順
 
-1. `groups/<新id>/{schedule,songs,members}.js` を作る。グローバルは `window.<NS>_SCHEDULE` / `_SONGS` / `_MEMBERS` / `_SCHEDULE_UPDATED`
+1. `groups/<新id>/{schedule,songs,members}.js` を作る。グローバルは `window.<NS>_SCHEDULE` / `_SONGS` / `_MEMBERS` / `_SCHEDULE_UPDATED`（`tickets.js` は `tools/build_tickets.py` を実行すれば生成される）
 2. `groups.js` に1件追記（`id` / `name` / `emoji` / `ns` / `accent[light,dark]` / `legacyKey` / `site`）
-3. `index.html` に `<script src="groups/<新id>/*.js">` を3行追記
-4. `sw.js` の `ASSETS` に3行追記して `CACHE` を上げる
+3. `index.html` に `<script src="groups/<新id>/*.js">` を4行追記
+4. `sw.js` の `ASSETS` に4行追記して `CACHE` を上げる
 5. `manifest.webmanifest` の `shortcuts` に追記（任意）
 
 **`id` は一度決めたら変えないこと。** 記録が `live-log-v1:<id>` に紐づいています。

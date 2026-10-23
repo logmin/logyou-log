@@ -357,6 +357,29 @@
   .pay-row.done .pay-ck{background:var(--ok); border-color:var(--ok)}
   .pay-ev{flex:1; min-width:0; font-size:13px; font-weight:700; overflow-wrap:anywhere}
   .pay-ev small{display:block; font-size:11px; color:var(--muted); font-weight:600}
+  /* 公式の受付チェックリスト */
+  .sl-ev{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:10px 12px 2px; margin-bottom:10px; box-shadow:var(--shadow)}
+  .sl-head{display:flex; align-items:baseline; gap:8px; padding-bottom:8px; font-size:14px}
+  .sl-head .sl-d{font-size:12px; font-weight:800; color:var(--accent); white-space:nowrap}
+  .sl-head b{flex:1; min-width:0; overflow-wrap:anywhere}
+  .sl-plan{font-size:10.5px; font-weight:800; color:#fff; background:var(--accent); border-radius:8px; padding:1px 7px; white-space:nowrap}
+  .sl-row{display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-top:1px solid var(--border)}
+  .sl-ck{width:28px; height:28px; flex-shrink:0; border:2px solid var(--border); border-radius:8px; background:transparent;
+    color:#fff; font-weight:800; font-size:15px; cursor:pointer; padding:0; line-height:1; margin-top:1px}
+  .sl-row.st-open:not(.done) .sl-ck{border-color:var(--danger)}
+  .sl-row.done .sl-ck{background:var(--ok); border-color:var(--ok)}
+  .sl-main{flex:1; min-width:0}
+  .sl-name{font-size:13px; font-weight:700; overflow-wrap:anywhere}
+  .sl-row.done .sl-name{color:var(--muted)}
+  .sl-sub,.sl-when{font-size:11.5px; color:var(--muted); margin-top:2px; overflow-wrap:anywhere}
+  .sl-when b{font-weight:800} .sl-when b.due{color:var(--danger)}
+  .sl-pill{display:inline-block; font-size:10.5px; font-weight:800; border-radius:6px; padding:0 5px; margin-right:4px; border:1px solid currentColor}
+  .sl-pill.open{color:var(--danger)} .sl-pill.soon{color:var(--star)} .sl-pill.closed{color:var(--muted)}
+  .sl-linked{display:inline-block; font-size:11.5px; font-weight:800; color:var(--ok); margin-top:4px; cursor:pointer}
+  .sl-act{display:flex; flex-direction:column; gap:5px; flex-shrink:0}
+  .sl-act a,.sl-act button{font-size:11.5px; font-weight:800; border:1px solid var(--border); border-radius:8px; padding:5px 9px; background:transparent;
+    color:var(--muted); text-decoration:none; text-align:center; cursor:pointer; font-family:inherit; white-space:nowrap}
+  .sl-act a{color:var(--accent); border-color:var(--accent)}
   .pay-amt{font-size:13px; font-weight:800; white-space:nowrap}
   .pay-amt.pay{color:var(--danger)} .pay-amt.get{color:var(--ok)}
   .pay-row.done .pay-ev, .pay-row.done .pay-amt{color:var(--muted); text-decoration:line-through}
@@ -428,7 +451,8 @@
   <!-- TICKETS -->
   <section class="view" id="viewTickets">
     <div class="seg-period" id="tkSeg">
-      <button class="on" data-s="apply">申込・入手</button>
+      <button class="on" data-s="sales">公式の受付</button>
+      <button data-s="apply">申込・入手</button>
       <button data-s="money">精算</button>
     </div>
     <div id="tkBody"></div>
@@ -545,9 +569,11 @@
 <script src="groups/logyou/schedule.js"></script>
 <script src="groups/logyou/songs.js"></script>
 <script src="groups/logyou/members.js"></script>
+<script src="groups/logyou/tickets.js"></script>
 <script src="groups/toitoitoi/schedule.js"></script>
 <script src="groups/toitoitoi/songs.js"></script>
 <script src="groups/toitoitoi/members.js"></script>
+<script src="groups/toitoitoi/tickets.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const ATT={went:'参加',skip:'不参加',plan:'予定'};
@@ -561,7 +587,7 @@ let group = GROUPS[0];
 let KEY='';
 let OFFICIAL=[], SONGS=[], MEMBERS=[];
 
-let store={attend:{},notes:{},custom:[],hidden:{},tickets:[],lastBackup:''};
+let store={attend:{},notes:{},custom:[],hidden:{},tickets:[],saleSkip:{},lastBackup:''};
 let calY, calM;              // displayed month
 let selectedDay=null;        // ISO of day selected in calendar
 let typeFilter='ALL';
@@ -582,7 +608,7 @@ function byHue(list){
 function storeKeyOf(g){ return 'live-log-v1:'+g.id; }
 function groupById(id){ return GROUPS.find(g=>g.id===id); }
 /* 知らないキーはここで落ちるので、保存項目を増やしたら必ずここにも足す（復元時に消えるため） */
-function normStore(o){ o=o||{}; return {attend:o.attend||{}, notes:o.notes||{}, custom:o.custom||[], hidden:o.hidden||{}, tickets:Array.isArray(o.tickets)?o.tickets:[], lastBackup:o.lastBackup||''}; }
+function normStore(o){ o=o||{}; return {attend:o.attend||{}, notes:o.notes||{}, custom:o.custom||[], hidden:o.hidden||{}, tickets:Array.isArray(o.tickets)?o.tickets:[], saleSkip:o.saleSkip||{}, lastBackup:o.lastBackup||''}; }
 /* 統合前の単体アプリの記録を引き継ぐ。新キーが空のときだけ旧キーを読む。
    旧キーは消さない（万一のときに戻せるようにしておくため） */
 function loadFor(g){
@@ -1349,7 +1375,7 @@ const TK_PHASE=[
   ['secured','✅ 確保済']
 ];
 const TK_PHASE_ORDER=TK_PHASE.map(p=>p[0]).concat(['missed','over']);
-let tkSub='apply', tkShowOld=false, tkShowPaid=false;
+let tkSub='sales', tkShowOld=false, tkShowPaid=false;
 let tkEdit=null;
 
 function ticketsOf(evId){ return (store.tickets||[]).filter(t=>t.ev===evId); }
@@ -1392,7 +1418,8 @@ function yen(n){ return '¥'+Math.round(+n||0).toLocaleString('ja-JP'); }
 /* 対応が要る件数（受付中で未申込＋入金待ち）。下部ナビのバッジに出す */
 function tkActionCount(){
   const now=new Date();
-  return (store.tickets||[]).filter(t=>{ const ph=tkPhase(t,now); return (ph==='open'||ph==='pay') && !tkArchived(t,ph); }).length;
+  return (store.tickets||[]).filter(t=>{ const ph=tkPhase(t,now); return (ph==='open'||ph==='pay') && !tkArchived(t,ph); }).length
+    + saleRows(now).filter(r=>r.st==='open' && !r.t && !r.skip && isPlanEv(r.e)).length;
 }
 function updateTkBadge(){
   const b=$('#tkBadge'); if(!b) return;
@@ -1453,6 +1480,7 @@ function renderTickets(){
   updateTkBadge();
   const wrap=$('#tkBody'); if(!wrap) return;
   if(tkSub==='money') return renderTkMoney(wrap);
+  if(tkSub==='sales') return renderTkSales(wrap);
   const list=store.tickets||[];
   if(!list.length){
     wrap.innerHTML='<div class="list-empty"><div class="big">🎫</div><p>まだチケットの記録がありません</p><p style="font-size:12px">＋ から抽選・先着の受付期間や、譲ってもらうチケットを登録できます。<br>公演の詳細画面からも追加できます。</p></div>';
@@ -1531,6 +1559,143 @@ function payRow(x,withName){
     +`<button type="button" class="pay-ck" aria-label="${x.d.done?'未精算に戻す':'精算済みにする'}">${x.d.done?'✓':''}</button>`
     +`<span class="pay-ev">${esc(info.title)}${sub?`<small>${esc(sub)}</small>`:''}</span>`
     +`<span class="pay-amt ${x.d.dir==='get'?'get':'pay'}">${x.d.dir==='get'?'もらう':'払う'} ${yen(x.d.amount)}</span></div>`;
+}
+
+/* ---- 公式の受付チェックリスト ----
+   groups/<id>/tickets.js（毎日の自動更新が、公式の公演ページに載ったチケットURLから
+   各チケットサイトの受付を集めたもの）を公演ごとに並べ、申し込んだかをチェックする。
+   チェックすると store.tickets に1件作り（t.sale = 受付id）、当落・入金・精算は
+   「申込・入手」のいつもの流れで続ける。見送りは store.saleSkip[受付id]。
+   予定（または参加）にした公演を上に出す。 */
+const SALE_ST={open:'受付中',soon:'受付前',closed:'受付終了'};
+let tkShowSkip=false, tkShowEnded=false;
+function isPlanEv(e){ const a=attendOf(e.id); return a==='plan'||a==='went'; }
+/* データは1日1回の更新なので、受付開始・締切をまたいだぶんは今の時刻で読み直す */
+function saleState(s,now){
+  const from=s.from?new Date(s.from):null, to=s.to?new Date(s.to):null;
+  if((to && now>to) || s.status==='closed') return 'closed';
+  if(from && now<from) return 'soon';
+  if(s.status==='soon' && !from) return 'soon';
+  return (from||to||s.status==='open')?'open':'';
+}
+function saleRows(now){
+  const today=todayISO(), skip=store.saleSkip||{};
+  return (window[group.ns+'_TICKETS']||[]).map(s=>({s, e:evById(s.ev)}))
+    .filter(r=>r.e && r.e.date>=today)
+    .map(r=>({...r, st:saleState(r.s,now), t:(store.tickets||[]).find(t=>t.sale===r.s.id), skip:!!skip[r.s.id]}));
+}
+function saleRowHtml(r,now){
+  const s=r.s, how=s.how==='lottery'?'抽選':s.how==='first'?'先着':'';
+  const sub=[how, s.site, s.price].filter(Boolean).join(' ・ ');
+  let when='';
+  if(s.from||s.to){
+    const due=r.st==='soon'?s.from:r.st==='open'?s.to:'';
+    const ms=due?new Date(due)-now:NaN;
+    when=`${esc(fmtDT(s.from)||'')} 〜 ${esc(fmtDT(s.to)||'')}`
+      +(isNaN(ms)||ms<0?'':` ・ <b class="${r.st==='open'&&ms<72*3600e3?'due':''}">${r.st==='soon'?'開始まで':'締切まで'}${untilText(ms).replace('あと','')}</b>`);
+  }
+  return `<div class="sl-row st-${r.st||'na'} ${r.t?'done':''}" data-sale="${esc(s.id)}">
+    <button type="button" class="sl-ck" aria-label="${r.t?'申込済み':'申し込んだらチェック'}">${r.t?'✓':''}</button>
+    <div class="sl-main">
+      <div class="sl-name">${esc(s.name)}</div>
+      <div class="sl-sub">${r.st?`<span class="sl-pill ${r.st}">${SALE_ST[r.st]}</span>`:''}${esc(sub)}</div>
+      ${when?`<div class="sl-when">${when}</div>`:''}
+      ${s.announce?`<div class="sl-when">当落発表 ${esc(fmtDT(s.announce))}</div>`:''}
+      ${r.t?`<span class="sl-linked" data-tk="${esc(r.t.id)}">🎫 ${esc(tkStepLabel(r.t))} ›</span>`:''}
+    </div>
+    <div class="sl-act">
+      ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">開く</a>`:''}
+      ${r.t?'':`<button type="button" class="sl-skip">${r.skip?'戻す':'見送り'}</button>`}
+    </div></div>`;
+}
+function saleEvHtml(rs,now){
+  const e=rs[0].e, d=new Date(e.date+'T00:00:00');
+  const rank={open:0,soon:1,'':2,closed:3};
+  rs.sort((a,b)=>rank[a.st]-rank[b.st]||(a.s.to||'9').localeCompare(b.s.to||'9'));
+  return `<div class="sl-ev"><div class="sl-head"><span class="sl-d">${d.getMonth()+1}/${d.getDate()}(${WD[d.getDay()]})</span>`
+    +`<b>${esc(e.title)}</b>${isPlanEv(e)?'<span class="sl-plan">予定</span>':''}</div>`
+    +rs.map(r=>saleRowHtml(r,now)).join('')+'</div>';
+}
+function groupByEv(rows){
+  const m=new Map();
+  rows.forEach(r=>{ if(!m.has(r.e.id)) m.set(r.e.id,[]); m.get(r.e.id).push(r); });
+  return [...m.values()].sort((a,b)=>a[0].e.date.localeCompare(b[0].e.date)||(a[0].e.id>b[0].e.id?1:-1));
+}
+function renderTkSales(wrap){
+  const now=new Date(), rows=saleRows(now), upd=window[group.ns+'_TICKETS_UPDATED'];
+  const note=`<div class="footer-note">公式サイトの公演ページに載っているチケットURLから、各チケットサイトの受付を毎日自動で集めています${upd?`（最終更新 ${esc(upd)}）`:''}。`
+    +'日時はサイトの表記どおりで、書かれていないものは空欄です。申し込む前に必ずリンク先で確かめてね。<br>'
+    +'□ をタップすると申込済みになり「申込・入手」に追加されます（当落・入金・精算はそちらで）。<br>'
+    +'予定・参加にした公演が上に出ます。行かない受付は「見送り」で隠せます。</div>';
+  /* 申し込んだ後に当落発表日などが分かったら、チケット側の空欄を埋めておく */
+  let fixed=false;
+  rows.forEach(r=>{ if(!r.t) return; ['from','to','announce'].forEach(k=>{ if(!r.t[k] && r.s[k]){ r.t[k]=r.s[k]; fixed=true; } }); });
+  if(fixed) save();
+  if(!rows.length){
+    wrap.innerHTML='<div class="list-empty"><div class="big">📋</div><p>いま公式に載っている受付はありません</p></div>'+note;
+    return;
+  }
+  const live=rows.filter(r=>!r.skip), skipped=rows.filter(r=>r.skip);
+  const ended=live.filter(r=>r.st==='closed' && !r.t), act=live.filter(r=>!(r.st==='closed' && !r.t));
+  const plan=act.filter(r=>isPlanEv(r.e)), other=act.filter(r=>!isPlanEv(r.e));
+  const todo=plan.filter(r=>r.st==='open' && !r.t).length;
+  let h='<div class="cal-summary">'
+    +`<div class="chip"><b${todo?' style="color:var(--danger)"':''}>${todo}</b><span>予定の公演で未申込</span></div>`
+    +`<div class="chip"><b>${act.filter(r=>r.st==='soon').length}</b><span>受付前</span></div>`
+    +`<div class="chip rate"><b>${rows.filter(r=>r.t).length}</b><span>申込済み</span></div>`
+    +'</div>';
+  if(plan.length) h+=`<div class="tk-sec">⭐ 予定にしている公演<span class="n">${plan.length}</span></div>`+groupByEv(plan).map(rs=>saleEvHtml(rs,now)).join('');
+  if(other.length) h+=`<div class="tk-sec">ほかの公演<span class="n">${other.length}</span></div>`+groupByEv(other).map(rs=>saleEvHtml(rs,now)).join('');
+  if(!act.length) h+='<div class="agenda-empty">いま受付中・受付前のものはありません</div>';
+  if(ended.length){
+    h+=`<button class="btn-ghost" id="slEnded">${tkShowEnded?'受付が終わったものを隠す':`受付が終わったもの（${ended.length}件）を表示`}</button>`;
+    if(tkShowEnded) h+='<div style="margin-top:10px">'+groupByEv(ended).map(rs=>saleEvHtml(rs,now)).join('')+'</div>';
+  }
+  if(skipped.length){
+    h+=`<button class="btn-ghost" id="slSkip">${tkShowSkip?'見送りにしたものを隠す':`見送りにしたもの（${skipped.length}件）を表示`}</button>`;
+    if(tkShowSkip) h+='<div style="margin-top:10px">'+groupByEv(skipped).map(rs=>saleEvHtml(rs,now)).join('')+'</div>';
+  }
+  wrap.innerHTML=h+note;
+  const byId=id=>rows.find(r=>r.s.id===id);
+  wrap.querySelectorAll('.sl-row').forEach(row=>{
+    const r=byId(row.dataset.sale); if(!r) return;
+    row.querySelector('.sl-ck').addEventListener('click',()=>toggleSaleApplied(r));
+    const sk=row.querySelector('.sl-skip');
+    if(sk) sk.addEventListener('click',()=>{
+      if(!store.saleSkip) store.saleSkip={};
+      if(r.skip) delete store.saleSkip[r.s.id]; else store.saleSkip[r.s.id]=1;
+      save(); renderTickets(); toast(r.skip?'元に戻しました':'見送りにしました');
+    });
+    const ln=row.querySelector('.sl-linked');
+    if(ln) ln.addEventListener('click',()=>openTicket(ln.dataset.tk));
+  });
+  const en=$('#slEnded'); if(en) en.addEventListener('click',()=>{ tkShowEnded=!tkShowEnded; renderTickets(); });
+  const sp=$('#slSkip'); if(sp) sp.addEventListener('click',()=>{ tkShowSkip=!tkShowSkip; renderTickets(); });
+}
+/* チェック = 申込済みのチケットを1件作る。外すのは、まだ当落も精算も入れていないときだけ
+   （それ以降の記録をうっかり消さないように。そのときは編集画面を開く） */
+function toggleSaleApplied(r){
+  const s=r.s;
+  if(!r.t){
+    const price=parseInt(String(s.price||'').replace(/[^\d]/g,''),10)||'';
+    if(!Array.isArray(store.tickets)) store.tickets=[];
+    store.tickets.push({id:uid(), ev:s.ev, sale:s.id, title:r.e.title, date:r.e.date,
+      how:s.how==='lottery'?'lottery':'first', status:'applied', label:s.name, site:s.site,
+      from:s.from||'', to:s.to||'', announce:s.announce||'', payBy:'', qty:1, price, seat:'', memo:'', deals:[]});
+    if(store.saleSkip) delete store.saleSkip[s.id];
+    if(!save()) return;
+    refresh(); toast(s.how==='lottery'?'申込済みにしました 🎲 当落は「申込・入手」で':'購入済みにしました 🎫');
+    return;
+  }
+  const t=r.t;
+  if(t.status==='applied' && !(t.deals||[]).length && !t.memo){
+    if(!confirm('チェックを外しますか？（「申込・入手」の記録も消えます）')) return;
+    store.tickets=store.tickets.filter(x=>x.id!==t.id);
+    save(); refresh(); toast('未申込に戻しました');
+  } else {
+    toast('当落や精算が入っているので、編集画面で変更してね');
+    openTicket(t.id);
+  }
 }
 
 /* ---- チケットの編集シート ---- */
@@ -1657,7 +1822,8 @@ function closeTicket(){
 function saveTicket(){
   const ev=$('#tkEv').value, how=tkEdit.how, sale=(how==='lottery'||how==='first');
   const e=ev?evById(ev):null;
-  const t={id:tkEdit.id, ev,
+  const src=(store.tickets||[]).find(x=>x.id===tkEdit.id);
+  const t={id:tkEdit.id, ev, ...(src&&src.sale?{sale:src.sale}:{}),
     title:e?e.title:$('#tkTitle').value.trim(), date:e?e.date:$('#tkDate').value,
     how, status:tkEdit.status,
     label:sale?$('#tkLabel').value.trim():'', site:sale?$('#tkSite').value.trim():'',
