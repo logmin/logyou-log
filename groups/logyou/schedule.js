@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-10-21";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-10-23";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -201,8 +201,8 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-10-04-1", date:"2026-10-04", type:"LIVE",  title:"かがやきフェス2026", venue:"Eight Hall他 金沢市内7会場（石川）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/1ee044fceff64d04e60b86556e6dd0e7.jpeg" },
   { id:"2026-10-05-1", date:"2026-10-05", type:"LIVE",  title:"松本玲奈 生誕祭2026", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/97c9f25c561a582c5fb2e2a45af728f4.jpeg" },
   { id:"2026-10-05-2", date:"2026-10-05", type:"OTHER", title:"💜松本玲奈 BIRTHDAY💜", venue:"" },
-  { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/ced59668ddc07e7526a953408c591750.jpeg" },
-  { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/d6584b21bef40d1f96e0803c2af16dbf.jpeg" },
+  { id:"2026-10-07-1", date:"2026-10-07", type:"LIVE",  title:"超 明星現象 2026", venue:"渋谷14会場（Shibuya LOVEZ／Spotify O-EAST ほか）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/dfc514b995f9bbfc54d0c8b4d2592196.jpg" },
+  { id:"2026-10-10-1", date:"2026-10-10", type:"LIVE",  title:"@JAM the Field vol.30＜1部＞", venue:"GARDEN 新木場 FACTORY", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/9e4724601d895fc23a70b40d165a9954.jpg" },
   { id:"2026-10-10-2", date:"2026-10-11", type:"LIVE",  title:"LadySteady×WEGO", venue:"イオンレイクタウン店（KAZE内）（埼玉）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/e891df4ddac7336d68e0c7cdc4cc17af.png" },  // 公式一覧は10/10表記だが詳細本文・本人確認で10/11。記録保護のためidは据え置き
   { id:"2026-10-12-1", date:"2026-10-12", type:"LIVE",  title:"ぐんまちゃんアイドルフェスティバル 2026", venue:"群馬県庁県民広場・群馬会館ほか（群馬）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/f78b097a8e31c5b22d1ebc72e82ebbf0.png" },
   { id:"2026-10-16-1", date:"2026-10-16", type:"LIVE",  title:"うるトラすフェスタSP", venue:"豊洲PIT", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/b26010f7ca99ec338603d8434f010e77.png" },
