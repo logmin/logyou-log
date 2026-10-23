@@ -1,3 +1,4 @@
 .claude/
 *.zip
 tools/last_run.txt
+__pycache__/
