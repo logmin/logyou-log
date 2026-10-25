@@ -10,7 +10,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-25";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-26";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -285,7 +285,7 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-10-31-1", date:"2026-10-31", type:"LIVE",  title:"PEAK SPOT JOIN Vol.11", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/4e169ee19e552101d50f0d8c22afe0f0.png" },
 
   // ===== 2026-11 =====
-  { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
+  { id:"2026-11-01-1", date:"2026-11-01", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY3", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/fe77273250a384d1c24412b5c03633a4.jpg" },
   { id:"2026-11-01-2", date:"2026-11-01", type:"LIVE",  title:"東洋大学 第62回白山祭 特別企画TOYO IDOL FESTIVAL", venue:"東洋大学白山キャンパス 2号館16階スカイホール" },
   { id:"2026-11-03-1", date:"2026-11-03", type:"LIVE",  title:"sound stock Vol.20", venue:"Spotify O-nest", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/f81eea602da6b1bb4ddac6de671f03ac.png" },
   { id:"2026-11-15-1", date:"2026-11-15", type:"LIVE",  title:"Toi Toi Toi 主催単独ライブ", venue:"スタァライト劇場（旧飛行船シアター）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/7bea7b9a57722bc11936f2755ea31f1f.png" },

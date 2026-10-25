@@ -4,12 +4,12 @@
    how: lottery=抽選 / first=先着 / ""=不明。status: open / soon / closed / ""=不明（statusText はサイトの表記そのまま）。
    id は受付ごとに固定（アプリ側のチェック状態がこれに紐づく）。
 */
-window.LOGYOU_TICKETS_UPDATED = "2026-10-25";
+window.LOGYOU_TICKETS_UPDATED = "2026-10-26";
 window.LOGYOU_TICKETS = [
   {"id": "2026-10-31-1|ぴあ|先行peakspotjoinvol11最速先行受付", "ev": "2026-10-31-1", "name": "先行 / 「PEAK SPOT JOIN vol.11」最速先行受付", "how": "lottery", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?lotRlsCd=53439", "from": "2026-09-18T20:00", "to": "2026-09-27T23:59", "announce": "2026-09-29T18:00", "status": "closed", "statusText": "抽選受付終了", "price": ""},
   {"id": "2026-10-31-1|ぴあ|一般発売peakspotjoinvol11お試しスタンディング", "ev": "2026-10-31-1", "name": "一般発売 / PEAK SPOT JOIN vol.11<お試し(スタンディング)>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2637097&rlsCd=001", "from": "2026-10-03T10:00", "to": "2026-10-30T23:59", "announce": "", "status": "open", "statusText": "販売期間中", "price": ""},
+  {"id": "2026-10-31-1|ぴあ|一般発売peakspotjoinvol11一般スタンディング", "ev": "2026-10-31-1", "name": "一般発売 / PEAK SPOT JOIN vol.11<一般(スタンディング)>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2637093&rlsCd=001", "from": "2026-10-03T10:00", "to": "2026-10-30T23:59", "announce": "", "status": "open", "statusText": "販売期間中", "price": ""},
   {"id": "2026-10-31-1|ぴあ|一般発売peakspotjoinvol11前方スタンディング", "ev": "2026-10-31-1", "name": "一般発売 / PEAK SPOT JOIN vol.11<前方(スタンディング)>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2636750&rlsCd=001", "from": "2026-10-03T10:00", "to": "2026-10-30T23:59", "announce": "", "status": "open", "statusText": "販売期間中", "price": ""},
-  {"id": "2026-10-31-1|ぴあ|一般発売peakspotjoinvol11一般スタンディング", "ev": "2026-10-31-1", "name": "一般発売 / PEAK SPOT JOIN vol.11<一般(スタンディング)>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2637093&rlsCd=001", "from": "", "to": "2026-10-30T23:59", "announce": "", "status": "open", "statusText": "販売期間中", "price": ""},
   {"id": "2026-11-01-1|ticketdive|チケット", "ev": "2026-11-01-1", "name": "チケット", "how": "", "site": "TicketDive", "url": "https://ticketdive.com/event/chibaidolfes", "from": "", "to": "", "announce": "", "status": "", "statusText": "", "price": ""},
   {"id": "2026-11-11-1|チケットビレッジ|チケット", "ev": "2026-11-11-1", "name": "チケット", "how": "", "site": "チケットビレッジ", "url": "https://ticketvillage.jp/events/13902", "from": "", "to": "", "announce": "", "status": "", "statusText": "", "price": ""},
   {"id": "2026-11-17-1|e|チケット", "ev": "2026-11-17-1", "name": "チケット", "how": "", "site": "e+", "url": "https://eplus.jp/sf/word/0000131445", "from": "", "to": "", "announce": "", "status": "", "statusText": "", "price": ""},
