@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-10-26";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-10-27";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },

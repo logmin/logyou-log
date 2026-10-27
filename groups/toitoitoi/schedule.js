@@ -10,7 +10,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-26";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-27";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -281,7 +281,7 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-10-17-1", date:"2026-10-17", type:"LIVE",  title:"sound stock Vol.19", venue:"LIQUIDROOM", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/00dacf2be3cc432317d552bc7f719aa6.jpeg" },
   { id:"2026-10-20-1", date:"2026-10-20", type:"LIVE",  title:"ONE AND ONLY Vol.45 SP", venue:"LIQUIDROOM", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/ae346410cf86b16609f8b66a85decae7.png" },
   { id:"2026-10-25-1", date:"2026-10-25", type:"LIVE",  title:"TOKYO GIRLS GIRLS Halloween!!", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/6593b5cf625f2e01eee9d763b354b7ce.png" },
-  { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）" },
+  { id:"2026-10-30-1", date:"2026-10-30", type:"LIVE",  title:"IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon DAY1", venue:"埼玉スタジアム2002 野外特設ステージ（埼玉）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/5294bdd18addc932b1a49b36107354bb.png" },
   { id:"2026-10-31-1", date:"2026-10-31", type:"LIVE",  title:"PEAK SPOT JOIN Vol.11", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/4e169ee19e552101d50f0d8c22afe0f0.png" },
 
   // ===== 2026-11 =====
@@ -291,7 +291,7 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-11-15-1", date:"2026-11-15", type:"LIVE",  title:"Toi Toi Toi 主催単独ライブ", venue:"スタァライト劇場（旧飛行船シアター）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/7bea7b9a57722bc11936f2755ea31f1f.png" },
   { id:"2026-11-16-1", date:"2026-11-16", type:"LIVE",  title:"MARQUEE Fes.-day1-", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/394d55f6a8b5ca32133078067752eb63.jpg" },
   { id:"2026-11-17-1", date:"2026-11-17", type:"LIVE",  title:"対バン出演予定", venue:"" },
-  { id:"2026-11-17-2", date:"2026-11-17", type:"LIVE",  title:"sound stock Vol.22", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/ab022fc6c80bdb9d73385c4c1792b114.jpg" },
+  { id:"2026-11-17-2", date:"2026-11-17", type:"LIVE",  title:"sound stock Vol.22", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/a8b0f3ed04c398648d054b49be779dcf.jpg" },
   { id:"2026-11-21-1", date:"2026-11-21", type:"LIVE",  title:"対バン出演予定", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/1b07d5b5991b29dad45c7253d14114ff.png" },
   { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/5fce2c1f6d729c238fc7207174d88484.png" },
   { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/92296dee1aba84f2c98f570799ec4fa5.png" },
