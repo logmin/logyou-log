@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-10-27";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-11-02";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -229,12 +229,14 @@ window.LOGYOU_SCHEDULE = [
   { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/a8e3c4888029333d0fd3005da1120ce4.jpg" },
   { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/d33a0c902e9c9e5864b5cf647d9a570d.jpg" },
   { id:"2026-11-26-1", date:"2026-11-26", type:"LIVE",  title:"MARQUEE祭 Vol.184", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/bc10e043f9d854e02fa4f4b15f6c98b9.jpg" },
-  { id:"2026-11-29-1", date:"2026-11-29", type:"LIVE",  title:"久保怜音 生誕祭2026", venue:"Spotify O-WEST" },
-  { id:"2026-11-29-2", date:"2026-11-29", type:"LIVE",  title:"竹内月音 生誕祭2026", venue:"Spotify O-WEST" },
+  { id:"2026-11-29-1", date:"2026-11-29", type:"LIVE",  title:"久保怜音 生誕祭2026", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/2ae34936998daa2b25c86f814f174d00.jpeg" },
+  { id:"2026-11-29-2", date:"2026-11-29", type:"LIVE",  title:"竹内月音 生誕祭2026", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/12d4e6c89c97c301a6f28bed26fda127.jpeg" },
 
 
   // ===== 2026-12 =====
+  { id:"2026-12-01-1", date:"2026-12-01", type:"LIVE",  title:"BEEEEM FES Vol.12", venue:"Veats Shibuya", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/9d049ffb2af4cc7b74b5f4e3f077d9bc.jpg" },
   { id:"2026-12-07-1", date:"2026-12-07", type:"LIVE",  title:"MARQUEE祭 Vol.186", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/0c1ab9ade5264af784008296fe4f1510.jpg" },
+  { id:"2026-12-17-1", date:"2026-12-17", type:"LIVE",  title:"MARQUEE祭 Vol.187", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/bb6d49391553c0625b4d0e3b0d2068b8.jpg" },
 
 
   // ===== 2027-02 =====
