@@ -163,7 +163,7 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-02-11-1", date:"2026-02-11", type:"LIVE",  title:"❤️萩田こころ❤️生誕祭", venue:"表参道GROUND" },
   { id:"2026-02-14-1", date:"2026-02-14", type:"LIVE",  title:"【大阪】PEAK SPOT JOIN Vol.4", venue:"am HALL（大阪）" },
   { id:"2026-02-15-1", date:"2026-02-15", type:"LIVE",  title:"【大阪】OSAKA GIRLS GIRLS circuit!!", venue:"大阪5会場（大阪）" },
-  { id:"2026-02-20-1", date:"2026-02-20", type:"LIVE",  title:"sound stock Vol.8 × iCON DOLL LOUNGE 2026", venue:"Spotify O-EAST" },
+  { id:"2026-02-20-1", date:"2026-03-16", type:"LIVE",  title:"sound stock Vol.8 × iCON DOLL LOUNGE 2026", venue:"Spotify O-EAST" },  // 公式の公演日欄は2/20(チケット先行開始日)だが詳細本文・Eventernoteで3/16。記録保護のためidは据え置き
   { id:"2026-02-22-1", date:"2026-02-22", type:"LIVE",  title:"Merry Made vol.2", venue:"EBiS303" },
   { id:"2026-02-25-1", date:"2026-02-25", type:"LIVE",  title:"HANiKAMi Vol,2", venue:"豊洲PIT" },
 
@@ -176,8 +176,12 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-03-12-1", date:"2026-03-12", type:"OTHER", title:"来店イベント『sound stock × iCON DOLL LOUNGE 2026』POP UP SHOP", venue:"ラフォーレ原宿" },
   { id:"2026-03-14-1", date:"2026-03-14", type:"LIVE",  title:"ONE AND ONLY Vol.31", venue:"飛行船シアター" },
   { id:"2026-03-15-1", date:"2026-03-15", type:"OTHER", title:"IDOL RUNWAY COLLECTION 2026", venue:"国立代々木競技場 第一体育館" },
+  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
+  { id:"2026-03-17-1", date:"2026-03-17", type:"LIVE",  title:"MAGICAL SPEC Spotify O-nest 定期公演 vol.20 Weekday session", venue:"Spotify O-nest" },  // 公式未掲載（ticketdive・Eventernoteで出演確認、ユーザー確認済み）
   { id:"2026-03-21-1", date:"2026-03-21", type:"LIVE",  title:"Toi Toi Toi 3月主催ライブ", venue:"五反田BLAZE" },
   { id:"2026-03-22-1", date:"2026-03-22", type:"LIVE",  title:"【東京】PEAK SPOT JOIN Vol.6", venue:"池袋 harevutai" },
+  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
+  { id:"2026-03-22-2", date:"2026-03-22", type:"LIVE",  title:"PEAK SPOT JOIN Vol.7 -東京公演-", venue:"池袋 harevutai" },  // 公式未掲載（fav me公式X・Eventernoteで出演確認、ユーザー確認済み）
   { id:"2026-03-26-1", date:"2026-03-26", type:"LIVE",  title:"Zipper×NIG FES  –LIVE & FASHION SHOW–", venue:"Kanadevia Hall" },
   { id:"2026-03-29-1", date:"2026-03-29", type:"LIVE",  title:"sound stock Vol.9", venue:"BLAZE GOTANDA" },
 
