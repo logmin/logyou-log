@@ -10,7 +10,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-10-27";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-11-26";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -292,15 +292,30 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-11-16-1", date:"2026-11-16", type:"LIVE",  title:"MARQUEE Fes.-day1-", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/394d55f6a8b5ca32133078067752eb63.jpg" },
   { id:"2026-11-17-1", date:"2026-11-17", type:"LIVE",  title:"対バン出演予定", venue:"" },
   { id:"2026-11-17-2", date:"2026-11-17", type:"LIVE",  title:"sound stock Vol.22", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/a8b0f3ed04c398648d054b49be779dcf.jpg" },
-  { id:"2026-11-21-1", date:"2026-11-21", type:"LIVE",  title:"対バン出演予定", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/1b07d5b5991b29dad45c7253d14114ff.png" },
+  { id:"2026-11-21-1", date:"2026-11-21", type:"LIVE",  title:"わーすたpresents にゃんぽこらフェス！vol.3", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/795c669c6cfe26bca7a5fb74f015c294.png" },
   { id:"2026-11-22-1", date:"2026-11-22", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/5fce2c1f6d729c238fc7207174d88484.png" },
   { id:"2026-11-23-1", date:"2026-11-23", type:"LIVE",  title:"MAGICAL SPEC presents 超天神祭2026", venue:"福岡 DRUM LOGOS／DRUM Be-1／DRUM SON（福岡）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/92296dee1aba84f2c98f570799ec4fa5.png" },
+  { id:"2026-11-28-1", date:"2026-11-28", type:"LIVE",  title:"GIFT〜Girls Idol Festival Tokyo〜", venue:"SGC ホール有明", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/d9d78001dfa1317a79307575b618dc92.jpg" },
 
   // ===== 2026-12 =====
   { id:"2026-12-02-1", date:"2026-12-02", type:"LIVE",  title:"MARQUEE祭 Vol.185", venue:"duo MUSIC EXCHANGE", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/9e959a6cc88307ea95f623a75dfd3a04.png" },
-  { id:"2026-12-07-1", date:"2026-12-07", type:"LIVE",  title:"対バン予定", venue:"" },
+  { id:"2026-12-05-1", date:"2026-12-05", type:"LIVE",  title:"SPARK 2026 -秋葉原冬祭-", venue:"ベルサール秋葉原 / 秋葉原コンベンションホール 含む他複数会場", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/122917b8a55239754afbf846d6aa9a9a.png" },
+  { id:"2026-12-06-1", date:"2026-12-06", type:"LIVE",  title:"UP-T FESTIVAL vol.8", venue:"神田スクエアホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/0a53496fcf1ac8960f381a4e2d46be23.jpg" },
+  { id:"2026-12-07-1", date:"2026-12-07", type:"LIVE",  title:"sound stock Vol.23", venue:"Veats Shibuya", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/7c5173c2e4574be3d5961dd01e1b0b96.png" },
+  { id:"2026-12-08-1", date:"2026-12-08", type:"LIVE",  title:"Massive Music Showcase Vol.2", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/3680bd7ac5317fadbc3a38b179a55088.jpg" },
   { id:"2026-12-16-1", date:"2026-12-16", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 大阪公演", venue:"Yogibo META VALLEY（大阪）" },
   { id:"2026-12-17-1", date:"2026-12-17", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 名古屋公演", venue:"ell.FITS ALL（愛知）" },
-  { id:"2026-12-20-1", date:"2026-12-20", type:"LIVE",  title:"対バン出演予定", venue:"" },
-  { id:"2026-12-29-1", date:"2026-12-29", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 東京公演", venue:"品川インターシティホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/de4f89c9ac484eebee374df82137404a.png" }
+  { id:"2026-12-20-1", date:"2026-12-20", type:"LIVE",  title:"mini TIF vol.123,124「X'mas Special!!」", venue:"GARDEN新木場FACTRORY" },
+  { id:"2026-12-26-1", date:"2026-12-26", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-12-29-1", date:"2026-12-29", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 東京公演", venue:"品川インターシティホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/de4f89c9ac484eebee374df82137404a.png" },
+
+
+  // ===== 2027-01 =====
+  { id:"2027-01-24-1", date:"2027-01-24", type:"LIVE",  title:"前垣さら生誕祭2027", venue:"表参道GROUND" },
+
+
+  // ===== 2027-03 =====
+  { id:"2027-03-13-1", date:"2027-03-13", type:"LIVE",  title:"IDORISE!! FESTIVAL 2027", venue:"渋谷サーキット", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/15a96d7d690499058ae282a35e496612.jpg" },
+  { id:"2027-03-14-1", date:"2027-03-14", type:"LIVE",  title:"IDORISE!! FESTIVAL 2027", venue:"渋谷サーキット", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/deaaa75602f6b7df785dec1c135b9883.jpg" },
+  { id:"2027-03-27-1", date:"2027-03-27", type:"LIVE",  title:"BERRY IDOL FESTIVAL 2027 supported by NTTドコモ", venue:"ライトキューブ宇都宮 中ホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/da9110115cda633e547c0813b510104c.jpg" }
 ];

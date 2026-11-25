@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-11-02";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-11-26";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -234,13 +234,29 @@ window.LOGYOU_SCHEDULE = [
 
 
   // ===== 2026-12 =====
-  { id:"2026-12-01-1", date:"2026-12-01", type:"LIVE",  title:"BEEEEM FES Vol.12", venue:"Veats Shibuya", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/9d049ffb2af4cc7b74b5f4e3f077d9bc.jpg" },
+  { id:"2026-12-01-1", date:"2026-12-01", type:"LIVE",  title:"BEEEEM FES Vol.12", venue:"Veats Shibuya", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/80065d04ad1ecb6ed496518c4fc44576.jpg" },
+  { id:"2026-12-03-1", date:"2026-12-03", type:"RADIO", title:"公開収録『原口あきまさとlog you のそれ！頂きっ～大公録フェスティバル～Vol.1』", venue:"", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/information/1955/1f3f80b53f57bc0d98e020fe3288e1b5.jpg" },
+  { id:"2026-12-05-1", date:"2026-12-05", type:"LIVE",  title:"SPARK 2026 -秋葉原冬祭-", venue:"ベルサール秋葉原 / 秋葉原コンベンションホール 含む他複数会場", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/5c6f7c4731a9e38cdc7673a5675666b1.png" },
+  { id:"2026-12-06-1", date:"2026-12-06", type:"LIVE",  title:"UP-T FESTIVAL vol.8", venue:"神田スクエアホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/35061ede6c7259676e8cd928003ba36e.jpeg" },
   { id:"2026-12-07-1", date:"2026-12-07", type:"LIVE",  title:"MARQUEE祭 Vol.186", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/0c1ab9ade5264af784008296fe4f1510.jpg" },
   { id:"2026-12-17-1", date:"2026-12-17", type:"LIVE",  title:"MARQUEE祭 Vol.187", venue:"Spotify O-WEST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/bb6d49391553c0625b4d0e3b0d2068b8.jpg" },
+  { id:"2026-12-20-1", date:"2026-12-20", type:"LIVE",  title:"X'mas Special!!", venue:"GARDEN新木場FACTRORY", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/9b6ebeb4bb2a44834cf5a885079b2097.jpg" },
+  { id:"2026-12-21-1", date:"2026-12-21", type:"LIVE",  title:"ふぉにコレ!Vol.7 X’mas SP", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/cd6f2083a134af4a501b6d6fdde60325.png" },
+  { id:"2026-12-24-1", date:"2026-12-24", type:"LIVE",  title:"Appare!CHRISTMAS 2026", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/1610addb644340b68687c4c382c2f489.png" },
+
+
+  // ===== 2027-01 =====
+  { id:"2027-01-26-1", date:"2027-01-26", type:"LIVE",  title:"KAWAII PARTY CIRCUIT DX", venue:"渋谷周辺サーキット(全12会場)", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/b38195e52029a6766c36190c8ec57427.jpeg" },
 
 
   // ===== 2027-02 =====
   { id:"2027-02-12-1", date:"2027-02-12", type:"OTHER", title:"🩷小浜菜摘 BIRTHDAY🩷", venue:"" },
+
+
+  // ===== 2027-03 =====
+  { id:"2027-03-13-1", date:"2027-03-13", type:"LIVE",  title:"IDORISE!! FESTIVAL 2027", venue:"Spotify O-EAST、Spotify O-WEST、Spotify O-nest、Spotify O-Crest、duo MUSIC EXCHANGE、Veats Shibuya、WOMB、club asia、LOFT9 Shibuya、SHIBUYA RING (※10会場連動)", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/6fa02a1937a9d073d136fb50fee2cb61.jpg" },
+  { id:"2027-03-14-1", date:"2027-03-14", type:"LIVE",  title:"IDORISE!! FESTIVAL 2027", venue:"Spotify O-EAST、Spotify O-WEST、Spotify O-nest、Spotify O-Crest、duo MUSIC EXCHANGE、Veats Shibuya、WOMB、club asia、LOFT9 Shibuya、SHIBUYA RING (※10会場連動)", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/6fa02a1937a9d073d136fb50fee2cb61.jpg" },
+  { id:"2027-03-28-1", date:"2027-03-28", type:"LIVE",  title:"BERRY IDOL FESTIVAL 2027 supported by NTTドコモ", venue:"ライトキューブ宇都宮 中ホール（栃木）", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/1b5140a07a8482447eac1d764cd4f8b9.jpg" },
 
 
   // ===== 2027-04 =====
