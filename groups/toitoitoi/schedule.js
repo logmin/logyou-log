@@ -236,6 +236,8 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-07-05-1", date:"2026-07-05", type:"LIVE",  title:"超NATSUZOME 2026", venue:"幕張海浜公園Gブロック特設会場" },
   { id:"2026-07-10-1", date:"2026-07-10", type:"LIVE",  title:"sound stock Vol.14", venue:"Spotify O-nest" },
   { id:"2026-07-11-1", date:"2026-07-11", type:"LIVE",  title:"GMO 渋谷エンタメ祭 2026", venue:"代々木公園・野外ステージ" },
+  // ↓公式サイト未掲載・Eventernote等の外部情報（出演可否は要確認）
+  { id:"2026-07-11-2", date:"2026-07-11", type:"LIVE",  title:"SPARK2026 渋谷納涼祭 Day1", venue:"" },  // 公式未掲載（Eventernoteの出演者一覧のみ。一次情報で未確認、ユーザー判断で追加）
   { id:"2026-07-13-1", date:"2026-07-13", type:"LIVE",  title:"BEEEEM FES Vol.6", venue:"白金高輪SELENE b2" },
   { id:"2026-07-14-1", date:"2026-07-14", type:"LIVE",  title:"MARQUEE祭mini Vol.333", venue:"Spotify O-nest" },
   { id:"2026-07-16-1", date:"2026-07-16", type:"LIVE",  title:"ONE AND ONLY 2nd Anniversary day2", venue:"Spotify O-EAST" },
