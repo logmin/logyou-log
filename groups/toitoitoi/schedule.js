@@ -10,7 +10,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-11-26";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-11-27";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -311,12 +311,17 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-12-16-1", date:"2026-12-16", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 大阪公演", venue:"Yogibo META VALLEY（大阪）" },
   { id:"2026-12-17-1", date:"2026-12-17", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 名古屋公演", venue:"ell.FITS ALL（愛知）" },
   { id:"2026-12-20-1", date:"2026-12-20", type:"LIVE",  title:"mini TIF vol.123,124「X'mas Special!!」", venue:"GARDEN新木場FACTRORY" },
+  { id:"2026-12-22-1", date:"2026-12-22", type:"LIVE",  title:"ONE AND ONLY Vol.48 Xmas SP", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/06783806a1ec084475c335caba8f6d93.png" },
   { id:"2026-12-26-1", date:"2026-12-26", type:"LIVE",  title:"対バン出演予定", venue:"" },
   { id:"2026-12-29-1", date:"2026-12-29", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 東京公演", venue:"品川インターシティホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/de4f89c9ac484eebee374df82137404a.png" },
 
 
   // ===== 2027-01 =====
   { id:"2027-01-24-1", date:"2027-01-24", type:"LIVE",  title:"前垣さら生誕祭2027", venue:"表参道GROUND" },
+
+
+  // ===== 2027-02 =====
+  { id:"2027-02-06-1", date:"2027-02-06", type:"LIVE",  title:"萩田こころ生誕祭2027", venue:"表参道GROUND" },
 
 
   // ===== 2027-03 =====

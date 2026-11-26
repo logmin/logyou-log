@@ -4,7 +4,7 @@
    how: lottery=抽選 / first=先着 / ""=不明。status: open / soon / closed / ""=不明（statusText はサイトの表記そのまま）。
    id は受付ごとに固定（アプリ側のチェック状態がこれに紐づく）。
 */
-window.TOITOITOI_TICKETS_UPDATED = "2026-11-26";
+window.TOITOITOI_TICKETS_UPDATED = "2026-11-27";
 window.TOITOITOI_TICKETS = [
   {"id": "2026-12-02-1|e|先行予約", "ev": "2026-12-02-1", "name": "先行予約", "how": "lottery", "site": "e+", "url": "http://eplus.jp/marquee-matsuri/", "from": "2026-10-16T12:00", "to": "2026-10-25T23:59", "announce": "", "status": "closed", "statusText": "", "price": ""},
   {"id": "2026-12-02-1|e|marquee祭vol185一般発売", "ev": "2026-12-02-1", "name": "MARQUEE祭Vol.185/一般発売", "how": "first", "site": "e+", "url": "https://eplus.jp/sf/detail/2029630001-P0030582P021001", "from": "2026-10-31T10:00", "to": "2026-12-01T18:00", "announce": "", "status": "open", "statusText": "先着", "price": ""},
@@ -20,7 +20,8 @@ window.TOITOITOI_TICKETS = [
   {"id": "2026-12-17-1|ぴあ|先着先行toitoitoi一般スタンディング", "ev": "2026-12-17-1", "name": "先着先行 / Toi Toi Toi<一般スタンディング>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2640850&rlsCd=003", "from": "2026-10-26T17:00", "to": "", "announce": "", "status": "closed", "statusText": "販売終了", "price": ""},
   {"id": "2026-12-17-1|ぴあ|一般発売toitoitoi一般スタンディング", "ev": "2026-12-17-1", "name": "一般発売 / Toi Toi Toi<一般スタンディング>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2640850&rlsCd=001", "from": "2026-10-31T10:00", "to": "2026-12-08T23:59", "announce": "", "status": "open", "statusText": "販売期間中", "price": ""},
   {"id": "2026-12-20-1|tiget|チケット", "ev": "2026-12-20-1", "name": "チケット", "how": "", "site": "tiget", "url": "https://tiget.net/events/539818", "from": "", "to": "", "announce": "", "status": "", "statusText": "", "price": ""},
-  {"id": "2026-12-29-1|ぴあ|公式告知の受付抽選", "ev": "2026-12-29-1", "name": "公式告知の受付（抽選）", "how": "lottery", "site": "ぴあ", "url": "https://w.pia.jp/t/toitoitoi-tour2026/", "from": "2026-10-01T12:00", "to": "2026-10-12T23:59", "announce": "", "status": "closed", "statusText": "", "price": ""},
+  {"id": "2026-12-22-1|ローチケ|一般チケット", "ev": "2026-12-22-1", "name": "一般チケット", "how": "first", "site": "ローチケ", "url": "http://l-tike.com/oneandonly/", "from": "2026-11-22T20:00", "to": "2026-12-21T23:59", "announce": "", "status": "open", "statusText": "", "price": ""},
+  {"id": "2026-12-22-1|ローチケ|アップグレードチケット", "ev": "2026-12-22-1", "name": "アップグレードチケット", "how": "first", "site": "ローチケ", "url": "http://l-tike.com/oneandonly/", "from": "2026-12-15T20:00", "to": "2026-12-21T23:59", "announce": "", "status": "soon", "statusText": "", "price": ""},
   {"id": "2026-12-29-1|ぴあ|先行プレリザーブ", "ev": "2026-12-29-1", "name": "先行 / プレリザーブ", "how": "lottery", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?lotRlsCd=13762", "from": "2026-10-14T12:00", "to": "2026-10-22T23:59", "announce": "2026-10-24T18:00", "status": "closed", "statusText": "抽選受付終了", "price": ""},
   {"id": "2026-12-29-1|ぴあ|一般発売toitoitoi一般指定席", "ev": "2026-12-29-1", "name": "一般発売 / Toi Toi Toi<一般指定席>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2638545&rlsCd=001", "from": "2026-10-31T10:00", "to": "2026-12-20T23:59", "announce": "", "status": "open", "statusText": "販売期間中", "price": ""},
   {"id": "2026-12-29-1|ぴあ|一般発売toitoitoi前方指定席", "ev": "2026-12-29-1", "name": "一般発売 / Toi Toi Toi<前方指定席>", "how": "first", "site": "ぴあ", "url": "https://t.pia.jp/pia/ticketInformation.do?eventCd=2638544&rlsCd=001", "from": "2026-10-31T10:00", "to": "2026-12-20T23:59", "announce": "", "status": "open", "statusText": "販売期間中", "price": ""},
