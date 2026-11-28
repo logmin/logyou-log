@@ -9,7 +9,7 @@
    ※公式は過去分を落とすため、行末に「公式未掲載（要確認）」がある項目は
      Eventernote（非公式のイベントDB）由来。出演可否は一次情報で未確認。
 */
-window.LOGYOU_SCHEDULE_UPDATED = "2026-11-27";
+window.LOGYOU_SCHEDULE_UPDATED = "2026-11-28";
 window.LOGYOU_SCHEDULE = [
   // ===== 2025-11（デビュー） =====
   { id:"2025-11-15-1", date:"2025-11-15", type:"LIVE",  title:"PEAK SPOT JOIN Vol.1（デビュー公演）", venue:"恵比寿LIQUIDROOM" },
@@ -247,6 +247,7 @@ window.LOGYOU_SCHEDULE = [
 
 
   // ===== 2027-01 =====
+  { id:"2027-01-10-1", date:"2027-01-10", type:"LIVE",  title:"TOKYO GIRLS GIRLS", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/a622dae48e609957eba90dfe61d355cd.png" },
   { id:"2027-01-26-1", date:"2027-01-26", type:"LIVE",  title:"KAWAII PARTY CIRCUIT DX", venue:"渋谷周辺サーキット(全12会場)", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1955/b38195e52029a6766c36190c8ec57427.jpeg" },
 
 

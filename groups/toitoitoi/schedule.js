@@ -10,7 +10,7 @@
    ※公式カテゴリの LIVE / EVENT はどちらもライブ出演のため "LIVE" に寄せている。
      MAGAZINE（誌面掲載のみ）は収録しない。
 */
-window.TOITOITOI_SCHEDULE_UPDATED = "2026-11-27";
+window.TOITOITOI_SCHEDULE_UPDATED = "2026-11-28";
 window.TOITOITOI_SCHEDULE = [
   // ===== 2025-04 =====
   { id:"2025-04-04-1", date:"2025-04-04", type:"LIVE",  title:"ッスッゴイライブ", venue:"EX THEATER ROPPONGI" },
@@ -310,14 +310,18 @@ window.TOITOITOI_SCHEDULE = [
   { id:"2026-12-08-1", date:"2026-12-08", type:"LIVE",  title:"Massive Music Showcase Vol.2", venue:"Spotify O-EAST", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/3680bd7ac5317fadbc3a38b179a55088.jpg" },
   { id:"2026-12-16-1", date:"2026-12-16", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 大阪公演", venue:"Yogibo META VALLEY（大阪）" },
   { id:"2026-12-17-1", date:"2026-12-17", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 名古屋公演", venue:"ell.FITS ALL（愛知）" },
-  { id:"2026-12-20-1", date:"2026-12-20", type:"LIVE",  title:"mini TIF vol.123,124「X'mas Special!!」", venue:"GARDEN新木場FACTRORY" },
+  { id:"2026-12-20-1", date:"2026-12-20", type:"LIVE",  title:"mini TIF vol.123,124「X'mas Special!!」", venue:"GARDEN新木場FACTRORY", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/ea8d0c99bc240d8c027a612a6cc3873f.png" },
   { id:"2026-12-22-1", date:"2026-12-22", type:"LIVE",  title:"ONE AND ONLY Vol.48 Xmas SP", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/06783806a1ec084475c335caba8f6d93.png" },
-  { id:"2026-12-26-1", date:"2026-12-26", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2026-12-26-1", date:"2026-12-26", type:"LIVE",  title:"AFTER X'MAS!! JOIN", venue:"Zepp Shinjuku", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/e6d492c14ee6bbc41e90556b8a7ad039.png" },
   { id:"2026-12-29-1", date:"2026-12-29", type:"LIVE",  title:"Toi Toi Toi 東名阪ツアー 2026 東京公演", venue:"品川インターシティホール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/de4f89c9ac484eebee374df82137404a.png" },
 
 
   // ===== 2027-01 =====
+  { id:"2027-01-09-1", date:"2027-01-09", type:"LIVE",  title:"対バン出演予定", venue:"" },
+  { id:"2027-01-10-1", date:"2027-01-10", type:"LIVE",  title:"TOKYO GIRLS GIRLS", venue:"ステラボール", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/b1d8ee12657e66049356e4582c2f9d17.jpeg" },
+  { id:"2027-01-16-1", date:"2027-01-16", type:"LIVE",  title:"対バン出演予定", venue:"" },
   { id:"2027-01-24-1", date:"2027-01-24", type:"LIVE",  title:"前垣さら生誕祭2027", venue:"表参道GROUND" },
+  { id:"2027-01-26-1", date:"2027-01-26", type:"LIVE",  title:"KAWAII PARTY CIRCUIT DX", venue:"渋谷周辺サーキット(全12会場)", image:"https://d1rjcmiyngzjnh.cloudfront.net/prod/public/fcopen/contents/live_information/1582/81384b45e8ffa35f1adc2d8069202fbb.png" },
 
 
   // ===== 2027-02 =====
